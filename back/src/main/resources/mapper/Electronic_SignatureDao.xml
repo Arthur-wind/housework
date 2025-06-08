@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Electronic_SignatureDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.Electronic_SignatureEntity" id="electronic_signatureMap">
+        <result property="project_name" column="project_name"/>
+        <result property="content" column="content"/>
+        <result property="electronic_signature" column="electronic_signature"/>
+        <result property="sign_date" column="sign_date"/>
+        <result property="validity_period" column="validity_period"/>
+        <result property="employer_account" column="employer_account"/>
+        <result property="employer_name" column="employer_name"/>
+        <result property="phone" column="phone"/>
+        <result property="employee_account" column="employee_account"/>
+        <result property="employee_name" column="employee_name"/>
+        <result property="contact_phone" column="contact_phone"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.electronic_signatureVO" >
+		SELECT * FROM electronic_signature  electronic_signature
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.electronic_signatureVO" >
+		SELECT  electronic_signature.* FROM electronic_signature  electronic_signature
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.Electronic_SignatureView" >
+
+		SELECT  electronic_signature.* FROM electronic_signature  electronic_signature
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.Electronic_SignatureView" >
+		SELECT * FROM electronic_signature  electronic_signature <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+
+</mapper>

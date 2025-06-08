@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Requirement_InfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.Requirement_InfoEntity" id="requirement_infoMap">
+        <result property="title" column="title"/>
+        <result property="project_name" column="project_name"/>
+        <result property="salary" column="salary"/>
+        <result property="working_hours" column="working_hours"/>
+        <result property="work_location" column="work_location"/>
+        <result property="requirements" column="requirements"/>
+        <result property="detailed_description" column="detailed_description"/>
+        <result property="publish_time" column="publish_time"/>
+        <result property="cover_image" column="cover_image"/>
+        <result property="employer_account" column="employer_account"/>
+        <result property="employer_name" column="employer_name"/>
+        <result property="phone" column="phone"/>
+        <result property="last_click_time" column="last_click_time"/>
+        <result property="click_count" column="click_count"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.Requirement_InfoVO" >
+		SELECT * FROM requirement_info  requirement_info
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.Requirement_InfoVO" >
+		SELECT  requirement_info.* FROM requirement_info  requirement_info
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.Requirement_InfoView" >
+
+		SELECT  requirement_info.* FROM requirement_info  requirement_info
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.Requirement_InfoView" >
+		SELECT * FROM requirement_info  requirement_info <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Service_ProjectDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.Service_ProjectEntity" id="service_projectMap">
+        <result property="project_name" column="project_name"/>
+        <result property="project_type" column="project_type"/>
+        <result property="price" column="price"/>
+        <result property="cover_image" column="cover_image"/>
+        <result property="status" column="status"/>
+        <result property="description" column="description"/>
+        <result property="employee_account" column="employee_account"/>
+        <result property="employee_name" column="employee_name"/>
+        <result property="contact_phone" column="contact_phone"/>
+        <result property="is_reviewed" column="is_reviewed"/>
+        <result property="review_comment" column="review_comment"/>
+        <result property="thumbs_up" column="thumbs_up"/>
+        <result property="thumbs_down" column="thumbs_down"/>
+        <result property="last_click_time" column="last_click_time"/>
+        <result property="click_count" column="click_count"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.Service_ProjectVO" >
+		SELECT * FROM service_project  service_project
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.Service_ProjectVO" >
+		SELECT  service_project.* FROM service_project  service_project
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.Service_ProjectView" >
+
+		SELECT  service_project.* FROM service_project  service_project
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.Service_ProjectView" >
+		SELECT * FROM service_project  service_project <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+
+</mapper>

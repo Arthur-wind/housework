@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Consult_EmployeeDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.Consult_EmployeeEntity" id="consult_employeeMap">
+        <result property="title" column="title"/>
+        <result property="question" column="question"/>
+        <result property="consult_time" column="consult_time"/>
+        <result property="employee_account" column="employee_account"/>
+        <result property="employee_name" column="employee_name"/>
+        <result property="employer_account" column="employer_account"/>
+        <result property="employer_name" column="employer_name"/>
+        <result property="is_reviewed" column="is_reviewed"/>
+        <result property="review_comment" column="review_comment"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.Consult_EmployeeVO" >
+		SELECT * FROM consult_employee  consult_employee
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.Consult_EmployeeVO" >
+		SELECT  consult_employee.* FROM consult_employee  consult_employee
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.Consult_EmployeeView" >
+
+		SELECT  consult_employee.* FROM consult_employee  consult_employee
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.Consult_EmployeeView" >
+		SELECT * FROM consult_employee  consult_employee <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+
+</mapper>
