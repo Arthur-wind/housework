@@ -4,14 +4,14 @@
 <mapper namespace="com.dao.EmployeeDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.entity.EmployeeEntity" id="employeeMap">
-        <result property="employee_account" column="employee_account"/>
+	<resultMap type="com.entity.EmployeeEntity" id="employeeMap">
+        <result property="employeeAccount" column="employee_account"/>
         <result property="password" column="password"/>
-        <result property="employee_name" column="employee_name"/>
+        <result property="employeeName" column="employee_name"/>
         <result property="age" column="age"/>
         <result property="gender" column="gender"/>
-        <result property="contact_phone" column="contact_phone"/>
-        <result property="id_card" column="id_card"/>
+        <result property="contactPhone" column="contact_phone"/>
+        <result property="idCard" column="id_card"/>
         <result property="photo" column="photo"/>
     </resultMap>
 

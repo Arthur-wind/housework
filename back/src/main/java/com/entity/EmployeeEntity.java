@@ -54,49 +54,14 @@ public class EmployeeEntity<T> implements Serializable {
 	/**
 	 * 雇员账号
 	 */
-					
-	private String employee_account;
-	
-	/**
-	 * 密码
-	 */
-					
+
+	private String employeeAccount;  // 对应employee_account字段
 	private String password;
-	
-	/**
-	 * 雇员姓名
-	 */
-					
-	private String employee_name;
-	
-	/**
-	 * 年龄
-	 */
-					
+	private String employeeName;     // 对应employee_name字段
 	private Integer age;
-	
-	/**
-	 * 性别
-	 */
-					
 	private String gender;
-	
-	/**
-	 * 联系电话
-	 */
-					
-	private String contact_phone;
-	
-	/**
-	 * 身份证
-	 */
-					
-	private String id_card;
-	
-	/**
-	 * 照片
-	 */
-					
+	private String contactPhone;     // 对应contact_phone字段
+	private String idCard;           // 对应id_card字段
 	private String photo;
 	
 	
@@ -122,13 +87,13 @@ public class EmployeeEntity<T> implements Serializable {
 	 * 设置：雇员账号
 	 */
 	public void setEmployee_Account(String employee_account) {
-		this.employee_account = employee_account;
+		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
 	public String getEmployee_Account() {
-		return employee_account;
+		return employeeAccount;
 	}
 	/**
 	 * 设置：密码
@@ -146,13 +111,13 @@ public class EmployeeEntity<T> implements Serializable {
 	 * 设置：雇员姓名
 	 */
 	public void setEmployee_Name(String employee_name) {
-		this.employee_name = employee_name;
+		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
 	public String getEmployee_Name() {
-		return employee_name;
+		return employeeName;
 	}
 	/**
 	 * 设置：年龄
@@ -182,25 +147,25 @@ public class EmployeeEntity<T> implements Serializable {
 	 * 设置：联系电话
 	 */
 	public void setContact_Phone(String contact_phone) {
-		this.contact_phone = contact_phone;
+		this.contactPhone = contact_phone;
 	}
 	/**
 	 * 获取：联系电话
 	 */
 	public String getContact_Phone() {
-		return contact_phone;
+		return contactPhone;
 	}
 	/**
 	 * 设置：身份证
 	 */
 	public void setId_Card(String id_card) {
-		this.id_card = id_card;
+		this.idCard = id_card;
 	}
 	/**
 	 * 获取：身份证
 	 */
 	public String getId_Card() {
-		return id_card;
+		return idCard;
 	}
 	/**
 	 * 设置：照片

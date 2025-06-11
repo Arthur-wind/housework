@@ -1229,10 +1229,13 @@
         }
       },
       methods: {
-        jump(url) {
-          	jump(url)
-        },
-      }
+		  methods: {
+			  jump(url) {
+				  window.location.href = url;
+			  }
+		  }
+
+	  }
     });
 
     layui.use(['layer', 'form', 'element', 'carousel', 'http', 'jquery'], function() {
