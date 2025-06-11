@@ -42,6 +42,6 @@
 		resultType="com.entity.view.Employer_evaluationView" >
 		SELECT * FROM employer_evaluation  employer_evaluation <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
-	
+
 
 </mapper>

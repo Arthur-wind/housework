@@ -50,7 +50,6 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
 
-    
 	@Autowired
 	private TokenService tokenService;
 	
@@ -75,7 +74,7 @@ public class EmployeeController {
 	@IgnoreAuth
     @RequestMapping("/register")
     public R register(@RequestBody EmployeeEntity employee){
-    	//ValidatorUtils.validateEntity(employee);
+    	ValidatorUtils.validateEntity(employee);
     	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployee_Account()));
 		if(user!=null) {
 			return R.error("注册用户已存在");

@@ -32,9 +32,6 @@ import com.utils.PageUtils;
 import com.utils.R;
 import com.utils.ValidatorUtils;
 
-/**
- * 登录相关
- */
 @RequestMapping("users")
 @RestController
 public class UserController{
