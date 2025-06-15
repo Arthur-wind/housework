@@ -2,23 +2,23 @@
   <div class="login-bg">
     <div class="container loginIn">
       <div class="login-panel">
-        <el-form class="login-form" label-position="left" :label-width="'0px'">
+        <el-form class="login-form" label-position="left" label-width="80px">
           <div class="title-container">
             <h3 class="title">家政服务平台的设计与实现登录</h3>
           </div>
-          <el-form-item class="input-item">
+          <el-form-item label="用户名" class="input-item">
             <span class="svg-container">
               <svg-icon icon-class="user" />
             </span>
             <el-input placeholder="请输入用户名" name="username" type="text" v-model="rulesForm.username" />
           </el-form-item>
-          <el-form-item class="input-item">
+          <el-form-item label="密码" class="input-item">
             <span class="svg-container">
               <svg-icon icon-class="password" />
             </span>
             <el-input placeholder="请输入密码" name="password" type="password" v-model="rulesForm.password" />
           </el-form-item>
-          <el-form-item class="input-item" v-if="1 == '1'">
+          <el-form-item label="验证码" class="input-item" v-if="1 == '1'">
             <span class="svg-container">
               <svg-icon icon-class="code" />
             </span>
@@ -220,7 +220,6 @@ export default {
   text-align: center;
   margin-bottom: 32px;
   .title {
-    margin-top: 48px; 
     color: #3bb78f;
     font-size: 28px;
     font-weight: 600;
@@ -229,15 +228,18 @@ export default {
   }
 }
 .input-item {
-  display: flex;
-  align-items: center;
   margin-bottom: 22px;
   background: #f6fff8;
   border-radius: 8px;
   padding: 0 12px;
   border: 1px solid #d2f5e3;
   position: relative;
-  padding-right: 90px; // 给验证码预留空间
+  padding-right: 70px; // 给验证码预留空间
+  // 让内容区（图标+输入框）横向排列
+  .el-form-item__content {
+    display: flex;
+    align-items: center;
+  }
   .svg-container {
     color: #3bb78f;
     font-size: 18px;
@@ -251,8 +253,9 @@ export default {
   }
   .getCodeBt {
     position: absolute;
-    left: 250px;
+    left: 195px;
     top: 50%;
+    transform: translateY(-50%);
     background: #aee9f7;
     color: #fff;
     border-radius: 6px;
@@ -294,7 +297,6 @@ export default {
   }
 }
 .setting {
-  display: flex;
   justify-content: center;
   .register {
     color: #5ec6c6;
