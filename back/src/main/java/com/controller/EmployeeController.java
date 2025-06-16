@@ -73,17 +73,26 @@ public class EmployeeController {
      */
 	@IgnoreAuth
     @RequestMapping("/register")
-    public R register(@RequestBody EmployeeEntity employee){
-    	ValidatorUtils.validateEntity(employee);
-    	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployee_Account()));
-		if(user!=null) {
-			return R.error("注册用户已存在");
-		}
-		Long uId = new Date().getTime();
-		employee.setId(uId);
-        employeeService.insert(employee);
-        return R.ok();
+public R register(@RequestBody EmployeeEntity employee) {
+    System.out.println("接收到的数据：" + employee); // 调试输出
+    if (employee.getEmployee_Account() == null || employee.getEmployee_Account().isEmpty()) {
+        return R.error("账号不能为空");
     }
+
+    ValidatorUtils.validateEntity(employee);
+
+    EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>()
+            .eq("employee_account", employee.getEmployee_Account()));
+    if (user != null) {
+        return R.error("注册用户已存在");
+    }
+
+    Long uId = new Date().getTime();
+    employee.setId(uId);
+    employeeService.insert(employee);
+    return R.ok();
+}
+
 
 	
 	/**

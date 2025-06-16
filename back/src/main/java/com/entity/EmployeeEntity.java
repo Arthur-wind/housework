@@ -1,183 +1,182 @@
 package com.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.lang.reflect.InvocationTargetException;
+import com.baomidou.mybatisplus.annotations.*;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
-import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.commons.beanutils.BeanUtils;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
-
 
 /**
  * 雇员
  * 数据库通用操作实体类（普通增删改查）
- * @author 
- * @email 
+ * @author
+ * @email
  * @date 2022-04-18 19:23:55
  */
 @TableName("employee")
 public class EmployeeEntity<T> implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
+    public EmployeeEntity() {}
 
-	public EmployeeEntity() {
-		
-	}
-	
-	public EmployeeEntity(T t) {
-		try {
-			BeanUtils.copyProperties(this, t);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * 主键id
-	 */
-	@TableId
-	private Long id;
-	/**
-	 * 雇员账号
-	 */
+    public EmployeeEntity(T t) {
+        try {
+            BeanUtils.copyProperties(this, t);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
 
-	private String employeeAccount;  // 对应employee_account字段
-	private String password;
-	private String employeeName;     // 对应employee_name字段
-	private Integer age;
-	private String gender;
-	private String contactPhone;     // 对应contact_phone字段
-	private String idCard;           // 对应id_card字段
-	private String photo;
-	
-	
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat
-	private Date addtime;
+    /**
+     * 主键id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
-	public Date getAddtime() {
-		return addtime;
-	}
-	public void setAddtime(Date addtime) {
-		this.addtime = addtime;
-	}
+    /**
+     * 雇员账号
+     */
+    @TableField("employee_account")
+    @JsonProperty("employee_account")
+    private String employeeAccount;
 
-	public Long getId() {
-		return id;
-	}
+    /**
+     * 密码
+     */
+    @TableField("password")
+    private String password;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	/**
-	 * 设置：雇员账号
-	 */
-	public void setEmployee_Account(String employee_account) {
-		this.employeeAccount = employee_account;
-	}
-	/**
-	 * 获取：雇员账号
-	 */
-	public String getEmployee_Account() {
-		return employeeAccount;
-	}
-	/**
-	 * 设置：密码
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	/**
-	 * 获取：密码
-	 */
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * 设置：雇员姓名
-	 */
-	public void setEmployee_Name(String employee_name) {
-		this.employeeName = employee_name;
-	}
-	/**
-	 * 获取：雇员姓名
-	 */
-	public String getEmployee_Name() {
-		return employeeName;
-	}
-	/**
-	 * 设置：年龄
-	 */
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-	/**
-	 * 获取：年龄
-	 */
-	public Integer getAge() {
-		return age;
-	}
-	/**
-	 * 设置：性别
-	 */
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	/**
-	 * 获取：性别
-	 */
-	public String getGender() {
-		return gender;
-	}
-	/**
-	 * 设置：联系电话
-	 */
-	public void setContact_Phone(String contact_phone) {
-		this.contactPhone = contact_phone;
-	}
-	/**
-	 * 获取：联系电话
-	 */
-	public String getContact_Phone() {
-		return contactPhone;
-	}
-	/**
-	 * 设置：身份证
-	 */
-	public void setId_Card(String id_card) {
-		this.idCard = id_card;
-	}
-	/**
-	 * 获取：身份证
-	 */
-	public String getId_Card() {
-		return idCard;
-	}
-	/**
-	 * 设置：照片
-	 */
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-	/**
-	 * 获取：照片
-	 */
-	public String getPhoto() {
-		return photo;
-	}
+    /**
+     * 雇员姓名
+     */
+    @TableField("employee_name")
+    @JsonProperty("employee_name")
+    private String employeeName;
 
+    /**
+     * 年龄
+     */
+    @TableField("age")
+    private Integer age;
+
+    /**
+     * 性别
+     */
+    @TableField("gender")
+    private String gender;
+
+    /**
+     * 联系电话
+     */
+    @TableField("contact_phone")
+    @JsonProperty("contact_phone")
+    private String contactPhone;
+
+    /**
+     * 身份证
+     */
+    @TableField("id_card")
+    @JsonProperty("id_card")
+    private String idCard;
+
+    /**
+     * 照片
+     */
+    @TableField("photo")
+    private String photo;
+
+    /**
+     * 添加时间
+     */
+    @TableField("addtime")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat
+    private Date addtime;
+
+    // Getter and Setter Methods
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmployee_Account() {
+        return employeeAccount;
+    }
+
+    public void setEmployee_Account(String employee_account) {
+        this.employeeAccount = employee_account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmployee_Name() {
+        return employeeName;
+    }
+
+    public void setEmployee_Name(String employee_name) {
+        this.employeeName = employee_name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getContact_Phone() {
+        return contactPhone;
+    }
+
+    public void setContact_Phone(String contact_phone) {
+        this.contactPhone = contact_phone;
+    }
+
+    public String getId_Card() {
+        return idCard;
+    }
+
+    public void setId_Card(String id_card) {
+        this.idCard = id_card;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Date getAddtime() {
+        return addtime;
+    }
+
+    public void setAddtime(Date addtime) {
+        this.addtime = addtime;
+    }
 }

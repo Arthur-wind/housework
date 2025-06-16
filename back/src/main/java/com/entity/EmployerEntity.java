@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.beanutils.BeanUtils;
@@ -54,43 +55,46 @@ public class EmployerEntity<T> implements Serializable {
 	/**
 	 * 账号
 	 */
-					
+	@TableField("employer_account")
+	@JsonProperty("employer_account")
 	private String employer_account;
 	
 	/**
 	 * 密码
 	 */
-					
+	@TableField("password")
 	private String password;
 	
 	/**
 	 * 姓名
 	 */
-					
+	@TableField("employer_name")
+	@JsonProperty("employer_name")
 	private String employer_name;
 	
 	/**
 	 * 年龄
 	 */
-					
+	@TableField("age")
 	private Integer age;
 	
 	/**
 	 * 性别
 	 */
-					
+	@TableField("gender")
 	private String gender;
 	
 	/**
 	 * 手机
 	 */
-					
+	@TableField("phone")
+	@JsonProperty("phone")
 	private String phone;
 	
 	/**
 	 * 照片
 	 */
-					
+	@TableField("photo")
 	private String photo;
 	
 	

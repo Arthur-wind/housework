@@ -182,7 +182,8 @@ export default {
 <style lang="scss" scoped>
 .login-bg {
   min-height: 100vh;
-  background: linear-gradient(135deg, #b8f2e6 0%, #e6ffe6 100%);
+  background: url('~@/assets/img/loginbackground.jpg') no-repeat center center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,6 +194,11 @@ export default {
   align-items: center;
   min-height: 80vh;
 }
+// .login-panel {
+//   background: #f0f6ff;
+//   border: 1px solid #cce0ff;
+//   box-shadow: 0 4px 32px 0 rgba(100, 149, 237, 0.18), 0 1.5px 6px 0 rgba(30, 144, 255, 0.08);
+// }
 .login-form {
   position: relative;
     top: 0;
@@ -207,32 +213,23 @@ export default {
     border-radius: 18px;
 }
 
-// .login-panel {
-//   background: #fffbea;
-//   border-radius: 18px;
-//   box-shadow: 0 4px 32px 0 rgba(144, 238, 144, 0.18), 0 1.5px 6px 0 rgba(0, 206, 209, 0.08);
-//   padding: 48px 40px 36px 40px;
-//   width: 420px;
-//   max-width: 90vw;
-//   border: 1px solid #e0f7ef;
-// }
 .title-container {
   text-align: center;
   margin-bottom: 32px;
   .title {
-    color: #3bb78f;
+    color: #2574c7;
+    text-shadow: 0 2px 8px #e6f0ff;
     font-size: 28px;
     font-weight: 600;
     letter-spacing: 2px;
-    text-shadow: 0 2px 8px #e6ffe6;
   }
 }
 .input-item {
   margin-bottom: 22px;
-  background: #f6fff8;
+  background: #eaf3ff;
+  border: 1px solid #b3d1ff;
   border-radius: 8px;
   padding: 0 12px;
-  border: 1px solid #d2f5e3;
   position: relative;
   padding-right: 70px; // 给验证码预留空间
   // 让内容区（图标+输入框）横向排列
@@ -241,7 +238,7 @@ export default {
     align-items: center;
   }
   .svg-container {
-    color: #3bb78f;
+    color: #2574c7;
     font-size: 18px;
     margin-right: 8px;
     z-index: 2;
@@ -256,7 +253,7 @@ export default {
     left: 195px;
     top: 50%;
     transform: translateY(-50%);
-    background: #aee9f7;
+    background: #6cb6ff;
     color: #fff;
     border-radius: 6px;
     padding: 0 12px;
@@ -266,7 +263,7 @@ export default {
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 2px 8px #b8f2e6;
+    box-shadow: 0 2px 8px #b3d1ff;
     user-select: none;
   }
 }
@@ -274,40 +271,40 @@ export default {
   margin-bottom: 18px;
   .el-radio {
     margin-right: 18px;
-    color: #3bb78f;
+    color: #2574c7;
   }
   .el-radio__input.is-checked .el-radio__inner {
-    border-color: #3bb78f;
-    background: #b8f2e6;
+    border-color: #2574c7;
+    background: #b3d1ff;
   }
 }
 .loginInBt {
   width: 100%;
-  background: linear-gradient(90deg, #b8f2e6 0%, #3bb78f 100%);
+  background: linear-gradient(90deg, #b3d1ff 0%, #2574c7 100%);
   color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 18px;
-  box-shadow: 0 2px 8px #b8f2e6;
+  box-shadow: 0 2px 8px #b3d1ff;
   transition: background 0.3s;
   &:hover {
-    background: linear-gradient(90deg, #3bb78f 0%, #b8f2e6 100%);
+    background: linear-gradient(90deg, #2574c7 0%, #b3d1ff 100%);
   }
 }
 .setting {
   justify-content: center;
   .register {
-    color: #5ec6c6;
+    color: #5eaaff;
     cursor: pointer;
     font-size: 15px;
     padding: 0 8px;
     border-radius: 4px;
     transition: background 0.2s, color 0.2s;
     &:hover {
-      background: #e0f7ef;
-      color: #3bb78f;
+      background: #e0f0ff;
+      color: #2574c7;
     }
   }
 }
