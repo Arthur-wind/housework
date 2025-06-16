@@ -317,41 +317,7 @@ export default {
     },
     // 表格按钮
     contentTableBtnStyleChange(){
-      // this.$nextTick(()=>{
-      //   setTimeout(()=>{
-      //     document.querySelectorAll('.table-content .tables .el-table__body .el-button--success').forEach(el=>{
-      //       el.style.height = this.contents.tableBtnHeight
-      //       el.style.color = this.contents.tableBtnDetailFontColor
-      //       el.style.fontSize = this.contents.tableBtnFontSize
-      //       el.style.borderWidth = this.contents.tableBtnBorderWidth
-      //       el.style.borderStyle = this.contents.tableBtnBorderStyle
-      //       el.style.borderColor = this.contents.tableBtnBorderColor
-      //       el.style.borderRadius = this.contents.tableBtnBorderRadius
-      //       el.style.backgroundColor = this.contents.tableBtnDetailBgColor
-      //     })
-      //     document.querySelectorAll('.table-content .tables .el-table__body .el-button--primary').forEach(el=>{
-      //       el.style.height = this.contents.tableBtnHeight
-      //       el.style.color = this.contents.tableBtnEditFontColor
-      //       el.style.fontSize = this.contents.tableBtnFontSize
-      //       el.style.borderWidth = this.contents.tableBtnBorderWidth
-      //       el.style.borderStyle = this.contents.tableBtnBorderStyle
-      //       el.style.borderColor = this.contents.tableBtnBorderColor
-      //       el.style.borderRadius = this.contents.tableBtnBorderRadius
-      //       el.style.backgroundColor = this.contents.tableBtnEditBgColor
-      //     })
-      //     document.querySelectorAll('.table-content .tables .el-table__body .el-button--danger').forEach(el=>{
-      //       el.style.height = this.contents.tableBtnHeight
-      //       el.style.color = this.contents.tableBtnDelFontColor
-      //       el.style.fontSize = this.contents.tableBtnFontSize
-      //       el.style.borderWidth = this.contents.tableBtnBorderWidth
-      //       el.style.borderStyle = this.contents.tableBtnBorderStyle
-      //       el.style.borderColor = this.contents.tableBtnBorderColor
-      //       el.style.borderRadius = this.contents.tableBtnBorderRadius
-      //       el.style.backgroundColor = this.contents.tableBtnDelBgColor
-      //     })
 
-      //   }, 50)
-      // })
     },
     // 分页
     contentPageStyleChange(){
