@@ -1,115 +1,116 @@
 <template>
-  <div>
+  <div class="center-bg">
     <el-form
-      class="detail-form-content"
+      class="detail-form-content center-form"
       ref="ruleForm"
       :model="ruleForm"
       label-width="80px"
-	  style="background: transparent;"
     >  
-     <el-row>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employer'"  label="账号" prop="employer_account">
-          <el-input v-model="ruleForm.employer_account" readonly              placeholder="账号" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employer'"  label="姓名" prop="employer_name">
-          <el-input v-model="ruleForm.employer_name"               placeholder="姓名" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employer'"  label="年龄" prop="age">
-          <el-input v-model="ruleForm.age"               placeholder="年龄" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item v-if="flag=='employer'"  label="性别" prop="gender">
-          <el-select v-model="ruleForm.gender"  placeholder="请选择性别">
-            <el-option
+      <el-row :gutter="24">
+        <!-- 雇主信息 -->
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employer'" label="账号" prop="employer_account">
+            <el-input v-model="ruleForm.employer_account" readonly placeholder="账号" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employer'" label="姓名" prop="employer_name">
+            <el-input v-model="ruleForm.employer_name" placeholder="姓名" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employer'" label="年龄" prop="age">
+            <el-input v-model="ruleForm.age" placeholder="年龄" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employer'" label="性别" prop="gender">
+            <el-select v-model="ruleForm.gender" placeholder="请选择性别">
+              <el-option
                 v-for="(item,index) in employergenderOptions"
-                v-bind:key="index"
+                :key="index"
                 :label="item"
                 :value="item">
-            </el-option>
-          </el-select>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employer'"  label="手机" prop="phone">
-          <el-input v-model="ruleForm.phone"               placeholder="手机" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="24">  
-        <el-form-item v-if="flag=='employer'" label="照片" prop="photo">
-          <file-upload
-          tip="点击上传照片"
-          action="file/upload"
-          :limit="3"
-          :multiple="true"
-          :fileUrls="ruleForm.photo?ruleForm.photo:''"
-          @change="employerphotoUploadChange"
-          ></file-upload>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employee'"  label="雇员账号" prop="employee_account">
-          <el-input v-model="ruleForm.employee_account" readonly              placeholder="雇员账号" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employee'"  label="雇员姓名" prop="employee_name">
-          <el-input v-model="ruleForm.employee_name"               placeholder="雇员姓名" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employee'"  label="年龄" prop="age">
-          <el-input v-model="ruleForm.age"               placeholder="年龄" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item v-if="flag=='employee'"  label="性别" prop="gender">
-          <el-select v-model="ruleForm.gender"  placeholder="请选择性别">
-            <el-option
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employer'" label="手机" prop="phone">
+            <el-input v-model="ruleForm.phone" placeholder="手机" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="24">  
+          <el-form-item v-if="flag=='employer'" label="照片" prop="photo">
+            <file-upload
+              tip="点击上传照片"
+              action="file/upload"
+              :limit="3"
+              :multiple="true"
+              :fileUrls="ruleForm.photo?ruleForm.photo:''"
+              @change="employerphotoUploadChange"
+            ></file-upload>
+          </el-form-item>
+        </el-col>
+        <!-- 雇员信息 -->
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employee'" label="雇员账号" prop="employee_account">
+            <el-input v-model="ruleForm.employee_account" readonly placeholder="雇员账号" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employee'" label="雇员姓名" prop="employee_name">
+            <el-input v-model="ruleForm.employee_name" placeholder="雇员姓名" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employee'" label="年龄" prop="age">
+            <el-input v-model="ruleForm.age" placeholder="年龄" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employee'" label="性别" prop="gender">
+            <el-select v-model="ruleForm.gender" placeholder="请选择性别">
+              <el-option
                 v-for="(item,index) in employeegenderOptions"
-                v-bind:key="index"
+                :key="index"
                 :label="item"
                 :value="item">
-            </el-option>
-          </el-select>
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employee'" label="联系电话" prop="contact_phone">
+            <el-input v-model="ruleForm.contact_phone" placeholder="联系电话" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item v-if="flag=='employee'" label="身份证" prop="id_card">
+            <el-input v-model="ruleForm.id_card" placeholder="身份证" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="24">  
+          <el-form-item v-if="flag=='employee'" label="照片" prop="photo">
+            <file-upload
+              tip="点击上传照片"
+              action="file/upload"
+              :limit="3"
+              :multiple="true"
+              :fileUrls="ruleForm.photo?ruleForm.photo:''"
+              @change="employeephotoUploadChange"
+            ></file-upload>
+          </el-form-item>
+        </el-col>
+        <!-- 用户信息 -->
+        <el-form-item v-if="flag=='users'" label="用户名" prop="username">
+          <el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
         </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employee'"  label="联系电话" prop="contact_phone">
-          <el-input v-model="ruleForm.contact_phone"               placeholder="联系电话" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item   v-if="flag=='employee'"  label="身份证" prop="id_card">
-          <el-input v-model="ruleForm.id_card"               placeholder="身份证" clearable></el-input>
-        </el-form-item>
-      </el-col>
-      <el-col :span="24">  
-        <el-form-item v-if="flag=='employee'" label="照片" prop="photo">
-          <file-upload
-          tip="点击上传照片"
-          action="file/upload"
-          :limit="3"
-          :multiple="true"
-          :fileUrls="ruleForm.photo?ruleForm.photo:''"
-          @change="employeephotoUploadChange"
-          ></file-upload>
-        </el-form-item>
-      </el-col>
-      <el-form-item v-if="flag=='users'" label="用户名" prop="username">
-        <el-input v-model="ruleForm.username" 
-        placeholder="用户名"></el-input>
-      </el-form-item>
-      <el-col :span="24">
-      <el-form-item>
-        <el-button type="primary" @click="onUpdateHandler">修 改</el-button>
-      </el-form-item>
-      </el-col>
+        <el-col :span="24">
+          <el-form-item>
+            <el-button type="primary" class="center-btn" @click="onUpdateHandler">修 改</el-button>
+          </el-form-item>
+        </el-col>
       </el-row>
     </el-form>
   </div>
@@ -203,7 +204,7 @@ export default {
                 this.ruleForm.photo = this.ruleForm.photo.replace(new RegExp(this.$base.url,"g"),"");
         }
       if('users'==this.flag && this.ruleForm.username.trim().length<1) {
-	this.$message.error(`用户名不能为空`);
+        this.$message.error(`用户名不能为空`);
         return	
       }
       this.$http({
@@ -228,4 +229,57 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.center-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #b8f2e6 0%, #e6ffe6 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 48px;
+}
+.center-form {
+  background: #fffbea;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 rgba(144, 238, 144, 0.18), 0 1.5px 6px 0 rgba(0, 206, 209, 0.08);
+  padding: 36px 32px 24px 32px;
+  width: 700px;
+  max-width: 98vw;
+  border: 1px solid #e0f7ef;
+}
+.el-form-item__label {
+  color: #3bb78f;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.el-input,
+.el-select {
+  background: #f6fff8 !important;
+  border-radius: 8px !important;
+  border: 1px solid #d2f5e3 !important;
+  font-size: 16px;
+}
+.el-input[readonly] {
+  background: #e6ffe6 !important;
+  color: #a0a0a0;
+}
+.el-select .el-input__inner {
+  background: #f6fff8 !important;
+  border-radius: 8px !important;
+}
+.center-btn {
+  width: 120px;
+  background: linear-gradient(90deg, #b8f2e6 0%, #3bb78f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 12px;
+  box-shadow: 0 2px 8px #b8f2e6;
+  transition: background 0.3s;
+  &:hover {
+    background: linear-gradient(90deg, #3bb78f 0%, #b8f2e6 100%);
+  }
+}
 </style>

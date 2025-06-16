@@ -44,12 +44,33 @@ export default {
 </script>
 <style lang="scss" scoped>
 .index-aside {
+  // background: #fffbea;
+  border-radius: 18px 0 0 18px;
+  box-shadow: 0 4px 32px 0 rgba(144, 238, 144, 0.12),
+    0 1.5px 6px 0 rgba(0, 206, 209, 0.06);
   margin-top: 80px;
-  overflow: hidden;
+  border-right: 1px solid #e0f7ef;
   .index-aside-inner {
     width: 217px;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    background: transparent;
+    padding: 0;
+  }
+  .el-menu {
+    background: transparent;
+    border: none;
+    .el-menu-item {
+      color: #3bb78f;
+      font-weight: 500;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      &:hover,
+      &.is-active {
+        background: linear-gradient(90deg, #b8f2e6 0%, #3bb78f 100%) !important;
+        color: #fff !important;
+      }
+    }
   }
 }
 </style>

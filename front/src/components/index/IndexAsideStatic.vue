@@ -235,6 +235,12 @@ export default {
     overflow: hidden;
 	display: flex;
 	flex-wrap: wrap;
+	background: #fffbea;
+	border-radius: 18px 0 0 18px;
+	box-shadow: 0 4px 32px 0 rgba(144, 238, 144, 0.12), 0 1.5px 6px 0 rgba(0, 206, 209, 0.06);
+	min-height: calc(100vh - 58px);
+	padding-top: 0;
+	border-right: 1px solid #e0f7ef;
 
     .menulistImg {
 		font-size: 0;
@@ -257,6 +263,7 @@ export default {
       overflow-x: hidden !important;
       padding-top: 58px;
       box-sizing: border-box;
+      background: transparent;
 
       &:focus {
         outline: none;
@@ -279,28 +286,31 @@ export default {
 		border-width: 0 !important;
 		border-style: solid !important;
 		border-color: rgba(0, 0, 0, 0.3) !important;
-		background: rgba(234, 207, 164, 1) !important;
-		box-shadow: 0 0 6px rgba(30, 144, 255, .2);
+		background: #f6fff8 !important;
+		box-shadow: 0 2px 8px #b8f2e6;
 		box-sizing: border-box;
 	}
 			.el-menu-demo {
 		box-sizing: border-box;
 		min-height: calc(100vh - 58px);
-			
+		background: transparent;
+
 		&>.el-menu-item {
 			width: 180px;
 			height: auto !important;
 			line-height: 55px !important;
 			padding: 0;
 			margin: 0px 0px 0px 10px;
-			color: rgba(0, 0, 0, 1);
+			color: #3bb78f !important;
 			font-size: 16px;
-			border-radius: 0;
+			font-weight: 500;
+			border-radius: 8px;
+			margin-bottom: 6px;
 			border-width: 0px 0px 3px 0px;
 			border-style: solid;
-			border-color: rgba(74, 50, 22, 1) !important;
-			background-color: rgba(234, 207, 164, 1) !important;
-			box-shadow: 0px 0px 0px 0px rgba(74, 50, 22, 1);
+			// border-color: rgba(74, 50, 22, 1) !important;
+			// background-color: rgba(234, 207, 164, 1) !important;
+			// box-shadow: 0px 0px 0px 0px rgba(74, 50, 22, 1);
 			box-sizing: initial;
 			display: flex;
 			align-items: center;
@@ -312,7 +322,7 @@ export default {
             	padding: 0;
             	width: 24px;
             	line-height: 24px;
-            	color: rgba(74, 50, 22, 1);
+            	// color: rgba(74, 50, 22, 1);
             	font-size: 16px;
             	border-radius: 0;
             	border-width: 0;
@@ -332,14 +342,16 @@ export default {
 			height: auto !important;
 			line-height: 55px !important;
 			padding: 0;
-			color: rgba(0, 0, 0, 1);
+			color: #3bb78f !important;
 			font-size: 16px;
-			border-radius: 0;
+			font-weight: 500;
+			border-radius: 8px;
+			margin-bottom: 6px;
 			border-width: 0px 0px 3px 0px;
 			border-style: solid;
-			border-color: rgba(74, 50, 22, 1) !important;
-			background-color: rgba(234, 207, 164, 1) !important;
-			box-shadow: 0px 0px 0px 0px rgba(74, 50, 22, 1);
+			// border-color: rgba(74, 50, 22, 1) !important;
+			// background-color: rgba(234, 207, 164, 1) !important;
+			// box-shadow: 0px 0px 0px 0px rgba(74, 50, 22, 1);
 			box-sizing: initial;
 			display: flex;
 			align-items: center;
@@ -351,7 +363,7 @@ export default {
 				padding: 0;
 				width: 24px;
 				line-height: 24px;
-				color: rgba(74, 50, 22, 1);
+				// color: rgba(74, 50, 22, 1);
 				font-size: 16px;
 				border-radius: 0;
 				border-width: 0;
@@ -366,7 +378,7 @@ export default {
 				padding: 0;
 				width: 12px;
 				line-height: 12px;
-				color: rgba(74, 50, 22, 1) !important;
+				// color: rgba(74, 50, 22, 1) !important;
 				font-size: 12px;
 				border-radius: 0;
 				border-width: 0;
@@ -440,9 +452,9 @@ export default {
 					border-radius: 0;
 					border-width: 0;
 					border-style: solid;
-					border-color: rgba(0, 0, 0, .3);
-					background-color: rgba(74, 50, 22, 1) !important;
-					box-shadow: 0 0 6px rgba(30, 144, 255, 0);
+					// border-color: rgba(0, 0, 0, .3);
+					// background-color: rgba(74, 50, 22, 1) !important;
+					// box-shadow: 0 0 6px rgba(30, 144, 255, 0);
 					text-align: center;
 				}
 			}
@@ -494,7 +506,7 @@ export default {
 				border-width: 0;
 				border-style: solid;
 				border-color: rgba(0, 0, 0, .3);
-				background-color: rgba(74, 50, 22, 1) !important;
+				/* background-color: rgba(74, 50, 22, 1) !important; */
 				box-shadow: 0 0 6px rgba(30, 144, 255, 0);
 				text-align: center;
 			}

@@ -182,7 +182,8 @@ export default {
 <style lang="scss" scoped>
 .login-bg {
   min-height: 100vh;
-  background: linear-gradient(135deg, #b8f2e6 0%, #e6ffe6 100%);
+  background: url('~@/assets/img/loginbackground.jpg') no-repeat center center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,15 +208,6 @@ export default {
     border-radius: 18px;
 }
 
-// .login-panel {
-//   background: #fffbea;
-//   border-radius: 18px;
-//   box-shadow: 0 4px 32px 0 rgba(144, 238, 144, 0.18), 0 1.5px 6px 0 rgba(0, 206, 209, 0.08);
-//   padding: 48px 40px 36px 40px;
-//   width: 420px;
-//   max-width: 90vw;
-//   border: 1px solid #e0f7ef;
-// }
 .title-container {
   text-align: center;
   margin-bottom: 32px;

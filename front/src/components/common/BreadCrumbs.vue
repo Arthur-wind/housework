@@ -1,9 +1,25 @@
 <template>
-  <el-breadcrumb class="app-breadcrumb" separator="/" style="height:35px;backgroundColor:rgba(74, 50, 22, 1);borderRadius:0;padding:0;boxShadow:0px 0px 0px 12px rgba(234,207,164, 1) ;borderWidth:0;borderStyle:solid;borderColor:rgba(74, 50, 22, 1);">
-    <transition-group name="breadcrumb" class="box" :style="2==1?'justifyContent:flex-start;':2==2?'justifyContent:center;':'justifyContent:flex-end;'">
+  <el-breadcrumb
+    class="app-breadcrumb"
+    separator="/"
+    style="height:35px; background:linear-gradient(90deg,#b8f2e6 0%,#e6ffe6 100%); border-radius:10px; padding:0 18px; box-shadow:0 2px 8px #b8f2e6; border:0;"
+  >
+    <transition-group
+      name="breadcrumb"
+      class="box"
+      :style="2==1?'justifyContent:flex-start;':2==2?'justifyContent:center;':'justifyContent:flex-end;'"
+    >
       <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
-        <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect" style="color:rgba(255, 215, 0, 1)">{{ item.name }}</span>
-        <a v-else @click.prevent="handleLink(item)">{{ item.name }}</a>
+        <span
+          v-if="item.redirect==='noRedirect'||index==levelList.length-1"
+          class="no-redirect"
+          style="color:#3bb78f; font-weight:600;"
+        >{{ item.name }}</span>
+        <a
+          v-else
+          @click.prevent="handleLink(item)"
+          style="color:#5ec6c6; font-weight:500;"
+        >{{ item.name }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
