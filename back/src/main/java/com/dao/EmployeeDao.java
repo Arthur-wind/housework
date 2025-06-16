@@ -3,7 +3,7 @@ package com.dao;
 import com.entity.EmployeeEntity;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import java.util.List;
-import java.util.Map;
+
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 
@@ -30,6 +30,6 @@ public interface EmployeeDao extends BaseMapper<EmployeeEntity> {
 	List<EmployeeView> selectListView(Pagination page,@Param("ew") Wrapper<EmployeeEntity> wrapper);
 	
 	EmployeeView selectView(@Param("ew") Wrapper<EmployeeEntity> wrapper);
-	
+
 
 }

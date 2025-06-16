@@ -27,17 +27,7 @@ public class InterceptorConfig extends WebMvcConfigurationSupport{
         );
 //        super.addInterceptors(registry);
 	}
-//	@Override
-//public void addInterceptors(InterceptorRegistry registry) {
-//    registry.addInterceptor(new LoginInterceptor())
-//        .addPathPatterns("/**")
-//        .excludePathPatterns(
-//            "/employer/register",
-//            "/employee/register",
-//            "/login",
-//            "/static/**"
-//        );
-//}
+
 	/**
 	 * springboot 2.0配置WebMvcConfigurationSupport之后，会导致默认配置被覆盖，要访问静态资源需要重写addResourceHandlers方法
 	 */
