@@ -33,7 +33,6 @@ import center from '@/views/center'
 //2.配置路由   注意：名字
 const routes = [{
     path: '/index',
-    name: '首页',
     component: Index,
     children: [{
       // 这里不设置值，是把main作为默认页面
@@ -158,7 +157,7 @@ const routes = [{
   },
   {
     path: '/',
-    name: '首页',
+    name: '首页默认页 ',
     redirect: '/index'
   }, /*默认跳转路由*/
   {

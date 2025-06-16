@@ -2,20 +2,20 @@
   <div class="login-bg">
     <div class="container loginIn">
       <div class="login-panel">
-        <el-form class="login-form" label-position="left" label-width="80px">
+        <el-form :model="rulesForm" class="login-form" label-position="left" label-width="80px">
           <div class="title-container">
             <h3 class="title">家政服务平台的设计与实现登录</h3>
           </div>
           <el-form-item label="用户名" class="input-item">
-            <span class="svg-container">
-              <svg-icon icon-class="user" />
-            </span>
+          <!-- <span class="svg-container">
+            <svg-icon icon-class="user" />
+          </span> -->
             <el-input placeholder="请输入用户名" name="username" type="text" v-model="rulesForm.username" />
           </el-form-item>
           <el-form-item label="密码" class="input-item">
-            <span class="svg-container">
+              <!-- <span class="svg-container">
               <svg-icon icon-class="password" />
-            </span>
+            </span> -->
             <el-input placeholder="请输入密码" name="password" type="password" v-model="rulesForm.password" />
           </el-form-item>
           <el-form-item label="验证码" class="input-item" v-if="1 == '1'">
@@ -78,7 +78,8 @@ export default {
     }
   },
   created() {
-    this.getRandCode()
+      console.log('rulesForm in created:', this.rulesForm);
+          this.getRandCode();
   },
   methods: {
     register(tableName){
@@ -177,6 +178,7 @@ export default {
       }
     },
   }
+  
 };
 </script>
 <style lang="scss" scoped>

@@ -2,20 +2,20 @@
   <div class="login-bg">
     <div class="container loginIn">
       <div class="login-panel">
-        <el-form class="login-form" label-position="left" :label-width="'0px'">
+        <el-form :model="rulesForm" class="login-form" label-position="left" :label-width="'0px'">
           <div class="title-container">
             <h3 class="title">家政服务平台的设计与实现登录</h3>
           </div>
           <el-form-item class="input-item">
-            <span class="svg-container">
-              <svg-icon icon-class="user" />
-            </span>
+          <!-- <span class="svg-container">
+            <svg-icon icon-class="user" />
+          </span> -->
             <el-input placeholder="请输入用户名" name="username" type="text" v-model="rulesForm.username" />
           </el-form-item>
           <el-form-item class="input-item">
-            <span class="svg-container">
+              <!-- <span class="svg-container">
               <svg-icon icon-class="password" />
-            </span>
+            </span> -->
             <el-input placeholder="请输入密码" name="password" type="password" v-model="rulesForm.password" />
           </el-form-item>
           <el-form-item v-if="roles.length>1" label="角色" prop="loginInRole" class="role-select">
@@ -42,7 +42,21 @@ import menu from "@/utils/menu";
 export default {
   data() {
     return {
-      // ...existing code...
+      rulesForm: {
+        username: "",
+        password: "",
+        role: "",
+        code: '',
+      },
+      menus: [],
+      roles: [],
+      tableName: "",
+      codes: [
+        { num: 1, color: '#000', rotate: '10deg', size: '16px' },
+        { num: 2, color: '#000', rotate: '10deg', size: '16px' },
+        { num: 3, color: '#000', rotate: '10deg', size: '16px' },
+        { num: 4, color: '#000', rotate: '10deg', size: '16px' }
+      ],
     };
   },
   // ...existing code...
