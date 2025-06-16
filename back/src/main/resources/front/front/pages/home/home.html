@@ -1581,6 +1581,11 @@
                 page: 1,
             },
             function (res) {
+                console.log("接口返回的数据：", res); // 🔍 添加这个查看内容
+                if (!vue.service_projectRecommend || vue.service_projectRecommend.length === 0) {
+                    console.warn("service_projectRecommend 数据为空，不执行 Swiper");
+                    return; // 直接返回，不再执行下面逻辑
+                }
                 vue.service_projectRecommend = res.data.list
                 let flag = 7;
                 let options = {
@@ -1644,6 +1649,8 @@
                     })
                 }
             });
+
+
         // 获取推荐信息
         var autoSortUrl = "requirement_info/autoSort";
         http.request(autoSortUrl, 'get', {

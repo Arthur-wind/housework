@@ -51,6 +51,13 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	 */
 	@TableId
 	private Long id;
+
+	/**
+	 * 添加时间
+	 */
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat
+	private Date addtime;
 	/**
 	 * 标题
 	 */
@@ -108,9 +115,7 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	private String review_comment;
 	
 	
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat
-	private Date addtime;
+
 
 	public Date getAddtime() {
 		return addtime;

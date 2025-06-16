@@ -1,25 +1,25 @@
 # Tomcat
 server:
-    tomcat:
-        uri-encoding: UTF-8
-    port: 8080
-    servlet:
-        context-path: /springbootc90g5
+  tomcat:
+    uri-encoding: UTF-8
+  port: 8080
+  servlet:
+    context-path: /springbootc90g5
 
 spring:
-    datasource:
-        driverClassName: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/t294?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
-        username: root
-        password: root
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/home_service?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+    username: root
+    password: 1111
 
 
-    servlet:
-      multipart:
-        max-file-size: 300MB
-        max-request-size: 300MB
-    resources:
-      static-locations: classpath:static/,file:static/
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
+  resources:
+    static-locations: classpath:static/,file:static/
 
 #mybatis
 mybatis-plus:
@@ -45,4 +45,4 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
     #springboot 项目mybatis plus 设置 jdbcTypeForNull (oracle数据库需配置JdbcType.NULL, 默认是Other)
-    jdbc-type-for-null: 'null' 
+    jdbc-type-for-null: 'null'
