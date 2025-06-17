@@ -243,8 +243,114 @@ export default {
       shForm: {},
       chartVisiable: false,
       addOrUpdateFlag:false,
-      contents:{"searchBtnFontColor":"rgba(0, 0, 0, 1)","pagePosition":"2","inputFontSize":"14px","inputBorderRadius":"5px","tableBtnDelFontColor":"rgba(0, 0, 0, 1)","tableBtnIconPosition":"1","searchBtnHeight":"40px","tableBgColor":"rgba(253, 253, 229, 1)","inputIconColor":"rgba(0, 0, 0, 1)","searchBtnBorderRadius":"5px","tableStripe":true,"btnAdAllWarnFontColor":"rgba(74, 50, 22, 1)","tableBtnDelBgColor":"rgba(234, 207, 164, 1)","searchBtnIcon":"1","tableSize":"medium","searchBtnBorderStyle":"solid","text":{"padding":"0px 0px 0px 0px","boxShadow":"0 0 0px rgba(0,0,0,.1)","margin":"10px  auto","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 255, 255, 0)","color":"rgba(74, 50, 22, 1)","borderRadius":"0","borderWidth":"0","width":"800px","lineHeight":"60px","fontSize":"30px","borderStyle":"solid"},"tableSelection":true,"searchBtnBorderWidth":"0","tableContentFontSize":"14px","searchBtnBgColor":"rgba(234, 207, 164, 1)","inputTitleSize":"15px","btnAdAllBorderColor":"rgba(74, 50, 22, 1)","pageJumper":true,"btnAdAllIconPosition":"1","searchBoxPosition":"1","tableBtnDetailFontColor":"rgba(2, 0, 0, 1)","tableBtnHeight":"40px","pagePager":true,"searchBtnBorderColor":"rgba(74, 50, 22, 1)","tableHeaderFontColor":"rgba(255, 255, 255, 1)","inputTitle":"1","tableBtnBorderRadius":"5px","btnAdAllFont":"1","btnAdAllDelFontColor":"rgba(74, 50, 22, 1)","tableBtnIcon":"1","btnAdAllHeight":"40px","btnAdAllWarnBgColor":"rgba(255, 255, 255, 0)","btnAdAllBorderWidth":"0","tableStripeFontColor":"rgba(0, 0, 0, 1)","tableBtnBorderStyle":"solid","inputHeight":"40px","btnAdAllBorderRadius":"5px","btnAdAllDelBgColor":"rgba(255, 255, 255, 0)","pagePrevNext":true,"btnAdAllAddBgColor":"rgba(255, 255, 255, 0)","searchBtnFont":"1","tableIndex":true,"btnAdAllIcon":"1","tableSortable":false,"pageSizes":true,"tableFit":true,"pageBtnBG":true,"searchBtnFontSize":"14px","tableBtnEditBgColor":"rgba(234, 207, 164, 1)","box":{"padding":"12px 0px 0px 0px","boxShadow":"0 0 6px rgba(0,0,0,0)","flag":"2","backgroundImage":"","background":"rgba(253, 253, 229, 1)"},"inputBorderWidth":"0","inputFontPosition":"2","inputFontColor":"rgba(239, 239, 239, 1)","pageEachNum":10,"tableHeaderBgColor":"rgba(74, 50, 22, 1)","inputTitleColor":"rgba(0, 0, 0, 1)","btnAdAllBoxPosition":"1","tableBtnDetailBgColor":"rgba(234, 207, 164, 1)","inputIcon":"1","searchBtnIconPosition":"1","btnAdAllFontSize":"16px","inputBorderStyle":"solid","tableHoverFontColor":"#333","inputBgColor":"rgba(74, 50, 22, 1)","pageStyle":false,"pageTotal":true,"btnAdAllAddFontColor":"rgba(74, 50, 22, 1)","tableBtnFont":"1","tableContentFontColor":"rgba(0, 0, 0, 1)","inputBorderColor":"rgba(74, 50, 22, 1)","tableShowHeader":true,"tableHoverBgColor":"rgba(234, 207, 164, 1)","tableBtnFontSize":"15px","tableBtnBorderColor":"rgba(0, 0, 0, 1)","inputIconPosition":"1","tableBorder":true,"btnAdAllBorderStyle":"solid","tableBtnBorderWidth":"6px 0px 6px 0px","tableStripeBgColor":"rgba(253, 253, 229, 1)","tableBtnEditFontColor":"rgba(0, 0, 0, 1)","tableAlign":"center"},
-      layouts: '',
+contents: {
+  "searchBtnFontColor": "rgba(0, 0, 0, 1)",
+  "pagePosition": "2",
+  "inputFontSize": "14px",
+  "inputBorderRadius": "5px",
+  "tableBtnDelFontColor": "rgba(0, 0, 0, 1)",
+  "tableBtnIconPosition": "1",
+  "searchBtnHeight": "40px",
+  "tableBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "inputIconColor": "rgba(0, 0, 0, 1)",
+  "searchBtnBorderRadius": "5px",
+  "tableStripe": true,
+  "btnAdAllWarnFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "tableBtnDelBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "searchBtnIcon": "1",
+  "tableSize": "medium",
+  "searchBtnBorderStyle": "solid",
+  "text": {
+    "padding": "0px 0px 0px 0px",
+    "boxShadow": "0 0 0px rgba(0,0,0,.1)",
+    "margin": "10px  auto",
+    "borderColor": "rgba(0,0,0,.3)",
+    "backgroundColor": "rgba(245, 245, 245, 1)", // 灰色
+    "color": "rgba(0, 0, 0, 1)", // 黑色
+    "borderRadius": "0",
+    "borderWidth": "0",
+    "width": "800px",
+    "lineHeight": "60px",
+    "fontSize": "30px",
+    "borderStyle": "solid"
+  },
+  "tableSelection": true,
+  "searchBtnBorderWidth": "0",
+  "tableContentFontSize": "14px",
+  "searchBtnBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "inputTitleSize": "15px",
+  "btnAdAllBorderColor": "rgba(200, 200, 200, 1)", // 灰色边框
+  "pageJumper": true,
+  "btnAdAllIconPosition": "1",
+  "searchBoxPosition": "1",
+  "tableBtnDetailFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "tableBtnHeight": "40px",
+  "pagePager": true,
+  "searchBtnBorderColor": "rgba(200, 200, 200, 1)", // 灰色边框
+  "tableHeaderFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "inputTitle": "1",
+  "tableBtnBorderRadius": "5px",
+  "btnAdAllFont": "1",
+  "btnAdAllDelFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "tableBtnIcon": "1",
+  "btnAdAllHeight": "40px",
+  "btnAdAllWarnBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "btnAdAllBorderWidth": "0",
+  "tableStripeFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "tableBtnBorderStyle": "solid",
+  "inputHeight": "40px",
+  "btnAdAllBorderRadius": "5px",
+  "btnAdAllDelBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "pagePrevNext": true,
+  "btnAdAllAddBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "searchBtnFont": "1",
+  "tableIndex": true,
+  "btnAdAllIcon": "1",
+  "tableSortable": false,
+  "pageSizes": true,
+  "tableFit": true,
+  "pageBtnBG": true,
+  "searchBtnFontSize": "14px",
+  "tableBtnEditBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "box": {
+    "padding": "12px 0px 0px 0px",
+    "boxShadow": "0 0 6px rgba(0,0,0,0)",
+    "flag": "2",
+    "backgroundImage": "",
+    "background": "rgba(245, 245, 245, 1)" // 灰色
+  },
+  "inputBorderWidth": "0",
+  "inputFontPosition": "2",
+  "inputFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "pageEachNum": 10,
+  "tableHeaderBgColor": "rgba(220, 220, 220, 1)", // 浅灰色表头
+  "inputTitleColor": "rgba(0, 0, 0, 1)", // 黑色
+  "btnAdAllBoxPosition": "1",
+  "tableBtnDetailBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "inputIcon": "1",
+  "searchBtnIconPosition": "1",
+  "btnAdAllFontSize": "16px",
+  "inputBorderStyle": "solid",
+  "tableHoverFontColor": "#000", // 黑色
+  "inputBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "pageStyle": false,
+  "pageTotal": true,
+  "btnAdAllAddFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "tableBtnFont": "1",
+  "tableContentFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "inputBorderColor": "rgba(200, 200, 200, 1)", // 灰色边框
+  "tableShowHeader": true,
+  "tableHoverBgColor": "rgba(220, 220, 220, 1)", // 浅灰色hover
+  "tableBtnFontSize": "15px",
+  "tableBtnBorderColor": "rgba(200, 200, 200, 1)", // 灰色边框
+  "inputIconPosition": "1",
+  "tableBorder": true,
+  "btnAdAllBorderStyle": "solid",
+  "tableBtnBorderWidth": "6px 0px 6px 0px",
+  "tableStripeBgColor": "rgba(245, 245, 245, 1)", // 灰色
+  "tableBtnEditFontColor": "rgba(0, 0, 0, 1)", // 黑色
+  "tableAlign": "center"
+},       layouts: '',
 
 
     };
@@ -553,90 +659,99 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  .slt {
-    margin: 0 !important;
-    display: flex;
-  }
+.slt {
+  margin: 0 !important;
+  display: flex;
+}
 
-  .ad {
-    margin: 0 !important;
-    display: flex;
-  }
+.ad {
+  margin: 0 !important;
+  display: flex;
+}
 
-  .pages {
-    & ::v-deep el-pagination__sizes{
-      & ::v-deep el-input__inner {
-        height: 22px;
-        line-height: 22px;
-      }
+.pages {
+  & ::v-deep el-pagination__sizes {
+    & ::v-deep el-input__inner {
+      height: 22px;
+      line-height: 22px;
     }
   }
-  
+}
 
-  .el-button+.el-button {
-    margin:0;
-  } 
+.el-button + .el-button {
+  margin: 0;
+}
 
-  .tables {
-	& ::v-deep .el-button--success {
-		height: 40px;
-		color: rgba(2, 0, 0, 1);
-		font-size: 15px;
-		border-width: 6px 0px 6px 0px;
-		border-style: solid;
-		border-color: rgba(0, 0, 0, 1);
-		border-radius: 5px;
-		background-color: rgba(234, 207, 164, 1);
-	}
-	
-	& ::v-deep .el-button--primary {
-		height: 40px;
-		color: rgba(0, 0, 0, 1);
-		font-size: 15px;
-		border-width: 6px 0px 6px 0px;
-		border-style: solid;
-		border-color: rgba(0, 0, 0, 1);
-		border-radius: 5px;
-		background-color: rgba(234, 207, 164, 1);
-	}
-	
-	& ::v-deep .el-button--danger {
-		height: 40px;
-		color: rgba(0, 0, 0, 1);
-		font-size: 15px;
-		border-width: 6px 0px 6px 0px;
-		border-style: solid;
-		border-color: rgba(0, 0, 0, 1);
-		border-radius: 5px;
-		background-color: rgba(234, 207, 164, 1);
-	}
-
-    & ::v-deep .el-button {
-      margin: 4px;
+.tables {
+  & ::v-deep .el-button--success {
+    height: 40px;
+    // color: #fff;
+    font-size: 15px;
+    border-width: 6px 0px 6px 0px;
+    border-style: solid;
+    border-color: #3bb78f;
+    border-radius: 5px;
+    background-color: #3bb78f;
+    transition: background 0.3s;
+    &:hover {
+      background-color: #2fa77a;
     }
   }
-	.form-content {
-		background: transparent;
-	}
-	.table-content {
-		background: transparent;
-	}
-	
-	.tables ::v-deep .el-table__body tr {
-				background-color: rgba(253, 253, 229, 1) !important;
-				color: rgba(0, 0, 0, 1) !important;
-	 }
-	.tables ::v-deep .el-table__body tr.el-table__row--striped td {
-	    background: transparent;
-	}
-	.tables ::v-deep .el-table__body tr.el-table__row--striped {
-		background-color: rgba(253, 253, 229, 1) !important;
-		color: rgba(0, 0, 0, 1) !important;
-	}
-	
-	 .tables ::v-deep .el-table__body tr:hover>td {
-	   	   background-color: rgba(234, 207, 164, 1) !important;
-	   	   	   color: #333 !important;
-	   	 }
-	 
+
+  & ::v-deep .el-button--primary {
+    height: 40px;
+    color: #fff;
+    font-size: 15px;
+    border-width: 6px 0px 6px 0px;
+    border-style: solid;
+    border-color: #5ec6c6;
+    border-radius: 5px;
+    background-color: #5ec6c6;
+    transition: background 0.3s;
+    &:hover {
+      background-color: #3bb78f;
+    }
+  }
+
+  & ::v-deep .el-button--danger {
+    height: 40px;
+    color: #fff;
+    font-size: 15px;
+    border-width: 6px 0px 6px 0px;
+    border-style: solid;
+    border-color: #b8f2e6;
+    border-radius: 5px;
+    background-color: #b8f2e6;
+    color: #3bb78f;
+    transition: background 0.3s;
+    &:hover {
+      background-color: #3bb78f;
+      color: #fff;
+    }
+  }
+
+  & ::v-deep .el-button {
+    margin: 4px;
+  }
+}
+
+.form-content {
+  background: transparent;
+}
+.table-content {
+  background: transparent;
+}
+
+.tables ::v-deep .el-table__body tr {
+  background-color: #f6fff8 !important;
+}
+.tables ::v-deep .el-table__body tr.el-table__row--striped td {
+  background: transparent;
+}
+
+
+.tables ::v-deep .el-table__body tr:hover > td {
+  background-color: #e0f7ef !important;
+  color: #2574c7 !important;
+}
 </style>

@@ -439,90 +439,103 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  .slt {
-    margin: 0 !important;
-    display: flex;
-  }
+.slt {
+  margin: 0 !important;
+  display: flex;
+}
 
-  .ad {
-    margin: 0 !important;
-    display: flex;
-  }
+.ad {
+  margin: 0 !important;
+  display: flex;
+}
 
-  .pages {
-    & ::v-deep el-pagination__sizes{
-      & ::v-deep el-input__inner {
-        height: 22px;
-        line-height: 22px;
-      }
+.pages {
+  & ::v-deep el-pagination__sizes {
+    & ::v-deep el-input__inner {
+      height: 22px;
+      line-height: 22px;
     }
   }
-  
+}
 
-  .el-button+.el-button {
-    margin:0;
-  } 
+.el-button + .el-button {
+  margin: 0;
+}
 
-  .tables {
-	& ::v-deep .el-button--success {
-		height: 40px;
-		color: rgba(2, 0, 0, 1);
-		font-size: 15px;
-		border-width: 6px 0px 6px 0px;
-		border-style: solid;
-		border-color: rgba(0, 0, 0, 1);
-		border-radius: 5px;
-		background-color: rgba(234, 207, 164, 1);
-	}
-	
-	& ::v-deep .el-button--primary {
-		height: 40px;
-		color: rgba(0, 0, 0, 1);
-		font-size: 15px;
-		border-width: 6px 0px 6px 0px;
-		border-style: solid;
-		border-color: rgba(0, 0, 0, 1);
-		border-radius: 5px;
-		background-color: rgba(234, 207, 164, 1);
-	}
-	
-	& ::v-deep .el-button--danger {
-		height: 40px;
-		color: rgba(0, 0, 0, 1);
-		font-size: 15px;
-		border-width: 6px 0px 6px 0px;
-		border-style: solid;
-		border-color: rgba(0, 0, 0, 1);
-		border-radius: 5px;
-		background-color: rgba(234, 207, 164, 1);
-	}
-
-    & ::v-deep .el-button {
-      margin: 4px;
+.tables {
+  & ::v-deep .el-button--success {
+    height: 40px;
+    color: #fff;
+    font-size: 15px;
+    border-width: 6px 0px 6px 0px;
+    border-style: solid;
+    border-color: #3bb78f;
+    border-radius: 5px;
+    background-color: #3bb78f;
+    transition: background 0.3s;
+    &:hover {
+      background-color: #2fa77a;
     }
   }
-	.form-content {
-		background: transparent;
-	}
-	.table-content {
-		background: transparent;
-	}
-	
-	.tables ::v-deep .el-table__body tr {
-				background-color: rgba(253, 253, 229, 1) !important;
-				color: rgba(0, 0, 0, 1) !important;
-	 }
-	.tables ::v-deep .el-table__body tr.el-table__row--striped td {
-	    background: transparent;
-	}
-	.tables ::v-deep .el-table__body tr.el-table__row--striped {
-		background-color: rgba(253, 253, 229, 1) !important;
-		color: rgba(0, 0, 0, 1) !important;
-	}
-	
-	 .tables ::v-deep .el-table__body tr:hover>td {
-	   	   background-color: rgba(234, 207, 164, 1) !important;
-	   	   	   color: #333 !important;
-	   	 }
-	 
+
+  & ::v-deep .el-button--primary {
+    height: 40px;
+    color: #fff;
+    font-size: 15px;
+    border-width: 6px 0px 6px 0px;
+    border-style: solid;
+    border-color: #5ec6c6;
+    border-radius: 5px;
+    background-color: #5ec6c6;
+    transition: background 0.3s;
+    &:hover {
+      background-color: #3bb78f;
+    }
+  }
+
+  & ::v-deep .el-button--danger {
+    height: 40px;
+    color: #fff;
+    font-size: 15px;
+    border-width: 6px 0px 6px 0px;
+    border-style: solid;
+    border-color: #b8f2e6;
+    border-radius: 5px;
+    background-color: #b8f2e6;
+    color: #3bb78f;
+    transition: background 0.3s;
+    &:hover {
+      background-color: #3bb78f;
+      color: #fff;
+    }
+  }
+
+  & ::v-deep .el-button {
+    margin: 4px;
+  }
+}
+
+.form-content {
+  background: transparent;
+}
+.table-content {
+  background: transparent;
+}
+
+.tables ::v-deep .el-table__body tr {
+  background-color: #f6fff8 !important;
+  color: #3bb78f !important;
+}
+.tables ::v-deep .el-table__body tr.el-table__row--striped td {
+  background: transparent;
+}
+.tables ::v-deep .el-table__body tr.el-table__row--striped {
+  background-color: #b8f2e6 !important;
+  color: #3bb78f !important;
+}
+
+.tables ::v-deep .el-table__body tr:hover > td {
+  background-color: #e0f7ef !important;
+  color: #2574c7 !important;
+}
 </style>

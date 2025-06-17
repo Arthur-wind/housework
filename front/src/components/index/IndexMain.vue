@@ -1,8 +1,11 @@
 <template>
-			<el-main style="padding: 12px 0px 0px 0px;
-						background: rgba(253, 253, 229, 1);
-				boxShadow: 0 0 6px rgba(0,0,0,0);
-        		">
+			<el-main
+				:style="{
+					backgroundImage: `url(${require('@/assets/img/loginbackground.jpg')})`,
+					backgroundSize: 'cover',
+					boxShadow: '0 0 6px rgba(0,0,0,0)'
+				}"
+			>
     		<bread-crumbs :title="title" class="bread-crumbs"></bread-crumbs>
 		<router-view class="router-view" style="height:auto;background: transparent;"></router-view>
 	</el-main>

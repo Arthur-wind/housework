@@ -79,13 +79,13 @@ export default {
       this.$nextTick(()=>{
         document.querySelectorAll('.app-breadcrumb .el-breadcrumb__separator').forEach(el=>{
           el.innerText = "/"
-          el.style.color = "rgba(255, 255, 255, 1)"
+          // el.style.color = "rgba(255, 255, 255, 1)"
         })
         document.querySelectorAll('.app-breadcrumb .el-breadcrumb__inner a').forEach(el=>{
-          el.style.color = "rgba(255, 255, 255, 1)"
+          // el.style.color = "rgba(255, 255, 255, 1)"
         })
         document.querySelectorAll('.app-breadcrumb .el-breadcrumb__inner .no-redirect').forEach(el=>{
-          el.style.color = "rgba(255, 215, 0, 1)"
+          // el.style.color = "rgba(255, 215, 0, 1)"
         })
 
         let str = "2"
