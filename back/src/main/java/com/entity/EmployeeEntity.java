@@ -36,7 +36,7 @@ public class EmployeeEntity<T> implements Serializable {
      * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Long id;    
 
     /**
      * 雇员账号

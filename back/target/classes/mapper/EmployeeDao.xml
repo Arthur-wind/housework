@@ -39,31 +39,6 @@
 		SELECT * FROM employee  employee <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 
-<!--	<insert id="insert">-->
-<!--		INSERT INTO employee (-->
-<!--			id,-->
-<!--			employee_account,-->
-<!--			password,-->
-<!--			employee_name,-->
-<!--			age,-->
-<!--			gender,-->
-<!--			contact_phone,-->
-<!--			id_card,-->
-<!--			photo,-->
-<!--			addtime-->
-<!--		) VALUES (-->
-<!--					 #{id},-->
-<!--					 #{employeeAccount},-->
-<!--					 #{password},-->
-<!--					 #{employeeName},-->
-<!--					 #{age},-->
-<!--					 #{gender},-->
-<!--					 #{contactPhone},-->
-<!--					 #{idCard},-->
-<!--					 #{photo},-->
-<!--					 #{addtime}-->
-<!--				 )-->
-<!--	</insert>-->
 
 
 </mapper>

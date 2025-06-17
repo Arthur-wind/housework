@@ -76,7 +76,7 @@ public class EmployerController {
     @RequestMapping("/register")
     public R register(@RequestBody EmployerEntity employer){
     	//ValidatorUtils.validateEntity(employer);
-    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_Account()));
+    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_account()));
 		if(user!=null) {
 			return R.error("注册用户已存在");
 		}
@@ -129,7 +129,9 @@ public class EmployerController {
     public R page(@RequestParam Map<String, Object> params,EmployerEntity employer,
 		HttpServletRequest request){
         EntityWrapper<EmployerEntity> ew = new EntityWrapper<EmployerEntity>();
-		PageUtils page = employerService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer), params), params));
+		PageUtils page = employerService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer), params),
+				params)
+		);
 
         return R.ok().put("data", page);
     }
@@ -196,7 +198,7 @@ public class EmployerController {
     public R save(@RequestBody EmployerEntity employer, HttpServletRequest request){
     	employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
     	//ValidatorUtils.validateEntity(employer);
-    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_Account()));
+    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_account()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}
@@ -212,7 +214,7 @@ public class EmployerController {
     public R add(@RequestBody EmployerEntity employer, HttpServletRequest request){
     	employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
     	//ValidatorUtils.validateEntity(employer);
-    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_Account()));
+    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_account()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}

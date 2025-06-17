@@ -56,21 +56,20 @@ public class EmployerEntity<T> implements Serializable {
 	 * 账号
 	 */
 	@TableField("employer_account")
-	@JsonProperty("employer_account")
-	private String employer_account;
+	private String employerAccount; // 改为驼峰命名（推荐）
+
+	/**
+	 * 姓名
+	 */
+	@TableField("employer_name")
+	private String employerName; // 改为驼峰命名（推荐）
 	
 	/**
 	 * 密码
 	 */
 	@TableField("password")
 	private String password;
-	
-	/**
-	 * 姓名
-	 */
-	@TableField("employer_name")
-	@JsonProperty("employer_name")
-	private String employer_name;
+
 	
 	/**
 	 * 年龄
@@ -119,14 +118,14 @@ public class EmployerEntity<T> implements Serializable {
 	/**
 	 * 设置：账号
 	 */
-	public void setEmployer_Account(String employer_account) {
-		this.employer_account = employer_account;
+	public void setEmployer_account(String employer_account) {
+		this.employerAccount = employer_account;
 	}
 	/**
 	 * 获取：账号
 	 */
-	public String getEmployer_Account() {
-		return employer_account;
+	public String getEmployer_account() {
+		return employerAccount;
 	}
 	/**
 	 * 设置：密码
@@ -143,14 +142,14 @@ public class EmployerEntity<T> implements Serializable {
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_Name(String employer_name) {
-		this.employer_name = employer_name;
+	public void setEmployer_name(String employer_name) {
+		this.employerName = employer_name;
 	}
 	/**
 	 * 获取：姓名
 	 */
-	public String getEmployer_Name() {
-		return employer_name;
+	public String getEmployer_name() {
+		return employerName;
 	}
 	/**
 	 * 设置：年龄

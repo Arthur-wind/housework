@@ -436,25 +436,7 @@ contents: {
         })
       })
     },
-    // 表格
-    // rowStyle({ row, rowIndex}) {
-    //   if (rowIndex % 2 == 1) {
-    //     if(this.contents.tableStripe) {
-    //       return {color:this.contents.tableStripeFontColor}
-    //     }
-    //   } else {
-    //     return ''
-    //   }
-    // },
-    // cellStyle({ row, rowIndex}){
-    //   if (rowIndex % 2 == 1) {
-    //     if(this.contents.tableStripe) {
-    //       return {backgroundColor:this.contents.tableStripeBgColor}
-    //     }
-    //   } else {
-    //     return ''
-    //   }
-    // },
+  
     headerRowStyle({ row, rowIndex}){
       return {color: this.contents.tableHeaderFontColor}
     },
