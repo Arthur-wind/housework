@@ -350,7 +350,7 @@ contents: {
   "tableStripeBgColor": "rgba(245, 245, 245, 1)", // 灰色
   "tableBtnEditFontColor": "rgba(0, 0, 0, 1)", // 黑色
   "tableAlign": "center"
-},       layouts: '',
+},        layouts: '',
 
 
     };

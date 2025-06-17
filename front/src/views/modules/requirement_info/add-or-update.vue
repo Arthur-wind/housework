@@ -787,7 +787,7 @@ var objcross = this.$storage.getObj('crossObj');
   height: 500px;
   
   & ::v-deep .ql-container {
-	  height: 310px;
+      height: 310px;
   }
 }
 .amap-wrapper {
@@ -798,11 +798,11 @@ var objcross = this.$storage.getObj('crossObj');
   position: absolute;
 }
 .addEdit-block {
-	margin: -10px;
+    margin: -10px;
 }
 .detail-form-content {
-	padding: 12px;
-	background-color: transparent;
+    padding: 12px;
+    background-color: transparent;
 }
 .btn .el-button {
   padding: 0;
