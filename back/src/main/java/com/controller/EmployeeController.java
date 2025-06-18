@@ -75,14 +75,14 @@ public class EmployeeController {
     @RequestMapping("/register")
 public R register(@RequestBody EmployeeEntity employee) {
     System.out.println("接收到的数据：" + employee); // 调试输出
-    if (employee.getEmployee_Account() == null || employee.getEmployee_Account().isEmpty()) {
+    if (employee.getEmployeeAccount() == null || employee.getEmployeeAccount().isEmpty()) {
         return R.error("账号不能为空");
     }
 
     ValidatorUtils.validateEntity(employee);
 
     EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>()
-            .eq("employee_account", employee.getEmployee_Account()));
+            .eq("employee_account", employee.getEmployeeAccount()));
     if (user != null) {
         return R.error("注册用户已存在");
     }
@@ -134,11 +134,24 @@ public R register(@RequestBody EmployeeEntity employee) {
      * 后端列表
      */
     @RequestMapping("/page")
-    public R page(@RequestParam Map<String, Object> params,EmployeeEntity employee,
-		HttpServletRequest request){
-        EntityWrapper<EmployeeEntity> ew = new EntityWrapper<EmployeeEntity>();
-		PageUtils page = employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employee), params), params));
+    public R page(@RequestParam Map<String, Object> params, EmployeeEntity employee, HttpServletRequest request){
+        // 手动赋值
+        if(params.get("employee_account") != null){
+            employee.setEmployeeAccount((String)params.get("employee_account"));
+        }
+        if(params.get("employee_name") != null){
+            employee.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.get("contact_phone") != null){
+            employee.setContact_Phone((String)params.get("contact_phone"));
+        }
+        if(params.get("id_card") != null){
+            employee.setId_Card((String)params.get("id_card"));
+        }
+        // 其它字段同理
 
+        EntityWrapper<EmployeeEntity> ew = new EntityWrapper<EmployeeEntity>();
+        PageUtils page = employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employee), params), params));
         return R.ok().put("data", page);
     }
     
@@ -147,10 +160,24 @@ public R register(@RequestBody EmployeeEntity employee) {
      */
 	@IgnoreAuth
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params,EmployeeEntity employee, 
-		HttpServletRequest request){
+    public R list(@RequestParam Map<String, Object> params, EmployeeEntity employee, HttpServletRequest request){
+        // 手动赋值
+        if(params.get("employee_account") != null){
+            employee.setEmployeeAccount((String)params.get("employee_account"));
+        }
+        if(params.get("employee_name") != null){
+            employee.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.get("contact_phone") != null){
+            employee.setContact_Phone((String)params.get("contact_phone"));
+        }
+        if(params.get("id_card") != null){
+            employee.setId_Card((String)params.get("id_card"));
+        }
+        // 其它字段同理
+
         EntityWrapper<EmployeeEntity> ew = new EntityWrapper<EmployeeEntity>();
-		PageUtils page = employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employee), params), params));
+        PageUtils page = employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employee), params), params));
         return R.ok().put("data", page);
     }
 
@@ -204,7 +231,7 @@ public R register(@RequestBody EmployeeEntity employee) {
     public R save(@RequestBody EmployeeEntity employee, HttpServletRequest request){
     	employee.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
     	//ValidatorUtils.validateEntity(employee);
-    	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployee_Account()));
+    	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployeeAccount()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}
@@ -220,7 +247,7 @@ public R register(@RequestBody EmployeeEntity employee) {
     public R add(@RequestBody EmployeeEntity employee, HttpServletRequest request){
     	employee.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
     	//ValidatorUtils.validateEntity(employee);
-    	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployee_Account()));
+    	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployeeAccount()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}
