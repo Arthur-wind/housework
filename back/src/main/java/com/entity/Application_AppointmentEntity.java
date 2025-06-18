@@ -55,13 +55,14 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 * 预约编号
 	 */
 					
-	private String appointment_no;
+	private String appointmentNo;
 	
 	/**
 	 * 项目名称
 	 */
-					
-	private String project_name;
+
+	@TableId("project_name")
+	private String projectName;
 	
 	/**
 	 * 薪资
@@ -75,25 +76,28 @@ public class Application_AppointmentEntity<T> implements Serializable {
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat 		
-	private Date application_time;
+	private Date applicationTime;
 	
 	/**
 	 * 申请备注
 	 */
-					
-	private String application_notes;
+
+	@TableField("application_notes")
+	private String applicationNotes;
 	
 	/**
 	 * 账号
 	 */
-					
-	private String employer_account;
+
+	@TableField("employer_account")
+	private String employerAccount;
 	
 	/**
 	 * 姓名
 	 */
-					
-	private String employer_name;
+
+	@TableField("employer_name")
+	private String employerName;
 	
 	/**
 	 * 手机
@@ -104,20 +108,22 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 雇员账号
 	 */
-					
-	private String employee_account;
+
+	@TableField("employee_account")
+	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
-					
-	private String employee_name;
+
+	@TableField("employee_name")
+	private String employeeName;
 	
 	/**
 	 * 联系电话
 	 */
 					
-	private String contact_phone;
+	private String contactPhone;
 	
 	/**
 	 * 是否审核
@@ -128,8 +134,9 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 审核回复
 	 */
-					
-	private String review_comment;
+
+	@TableField("review_comment")
+	private String reviewComment;
 	
 	/**
 	 * 是否支付
@@ -160,25 +167,25 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 * 设置：预约编号
 	 */
 	public void setAppointment_no(String appointment_no) {
-		this.appointment_no = appointment_no;
+		this.appointmentNo = appointment_no;
 	}
 	/**
 	 * 获取：预约编号
 	 */
 	public String getAppointment_no() {
-		return appointment_no;
+		return appointmentNo;
 	}
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_Name(String project_name) {
-		this.project_name = project_name;
+	public void setProject_name(String project_name) {
+		this.projectName = project_name;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_Name() {
-		return project_name;
+	public String getProject_name() {
+		return projectName;
 	}
 	/**
 	 * 设置：薪资
@@ -195,50 +202,50 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 设置：申请时间
 	 */
-	public void setApplication_Time(Date application_time) {
-		this.application_time = application_time;
+	public void setApplication_time(Date application_time) {
+		this.applicationTime = application_time;
 	}
 	/**
 	 * 获取：申请时间
 	 */
-	public Date getApplication_Time() {
-		return application_time;
+	public Date getApplication_time() {
+		return applicationTime;
 	}
 	/**
 	 * 设置：申请备注
 	 */
 	public void setShenqingbeizhu(String application_notes) {
-		this.application_notes = application_notes;
+		this.applicationNotes = application_notes;
 	}
 	/**
 	 * 获取：申请备注
 	 */
 	public String getShenqingbeizhu() {
-		return application_notes;
+		return applicationNotes;
 	}
 	/**
 	 * 设置：账号
 	 */
-	public void setEmployer_Account(String employer_account) {
-		this.employer_account = employer_account;
+	public void setEmployer_account(String employer_account) {
+		this.employerAccount = employer_account;
 	}
 	/**
 	 * 获取：账号
 	 */
-	public String getEmployer_Account() {
-		return employer_account;
+	public String getEmployer_account() {
+		return employerAccount;
 	}
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_Name(String employer_name) {
-		this.employer_name = employer_name;
+	public void setEmployer_name(String employer_name) {
+		this.employerName = employer_name;
 	}
 	/**
 	 * 获取：姓名
 	 */
-	public String getEmployer_Name() {
-		return employer_name;
+	public String getEmployer_name() {
+		return employerName;
 	}
 	/**
 	 * 设置：手机
@@ -255,73 +262,73 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_Account(String employee_account) {
-		this.employee_account = employee_account;
+	public void setEmployee_account(String employee_account) {
+		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_Account() {
-		return employee_account;
+	public String getEmployee_account() {
+		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_Name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployee_name(String employee_name) {
+		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_Name() {
-		return employee_name;
+	public String getEmployee_name() {
+		return employeeName;
 	}
 	/**
 	 * 设置：联系电话
 	 */
-	public void setContact_Phone(String contact_phone) {
-		this.contact_phone = contact_phone;
+	public void setContact_phone(String contact_phone) {
+		this.contactPhone = contact_phone;
 	}
 	/**
 	 * 获取：联系电话
 	 */
-	public String getContact_Phone() {
-		return contact_phone;
+	public String getContact_phone() {
+		return contactPhone;
 	}
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_Reviewed(String is_reviewed) {
+	public void setIs_reviewed(String is_reviewed) {
 		this.is_reviewed = is_reviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_Reviewed() {
+	public String getIs_reviewed() {
 		return is_reviewed;
 	}
 	/**
 	 * 设置：审核回复
 	 */
-	public void setReview_Comment(String review_comment) {
-		this.review_comment = review_comment;
+	public void setReview_comment(String review_comment) {
+		this.reviewComment = review_comment;
 	}
 	/**
 	 * 获取：审核回复
 	 */
-	public String getReview_Comment() {
-		return review_comment;
+	public String getReview_comment() {
+		return reviewComment;
 	}
 	/**
 	 * 设置：是否支付
 	 */
-	public void setPayment_Status(String payment_status) {
+	public void setPayment_status(String payment_status) {
 		this.payment_status = payment_status;
 	}
 	/**
 	 * 获取：是否支付
 	 */
-	public String getPayment_Status() {
+	public String getPayment_status() {
 		return payment_status;
 	}
 

@@ -7,6 +7,7 @@ import java.util.Map;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 import com.entity.vo.Application_AppointmentVO;
 import com.entity.view.Application_AppointmentView;
@@ -31,10 +32,12 @@ public interface Application_AppointmentDao extends BaseMapper<Application_Appoi
 	
 	Application_AppointmentView selectView(@Param("ew") Wrapper<Application_AppointmentEntity> wrapper);
 	
-
+	@MapKey("id")
     List<Map<String, Object>> selectValue(@Param("params") Map<String, Object> params,@Param("ew") Wrapper<Application_AppointmentEntity> wrapper);
 
+	@MapKey("id")
     List<Map<String, Object>> selectTimeStatValue(@Param("params") Map<String, Object> params,@Param("ew") Wrapper<Application_AppointmentEntity> wrapper);
 
+	@MapKey("id")
     List<Map<String, Object>> selectGroup(@Param("params") Map<String, Object> params,@Param("ew") Wrapper<Application_AppointmentEntity> wrapper);
 }

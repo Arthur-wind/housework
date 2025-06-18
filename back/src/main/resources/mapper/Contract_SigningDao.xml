@@ -5,17 +5,17 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.Contract_SigningEntity" id="contract_signingMap">
-        <result property="project_name" column="project_name"/>
+        <result property="projectName" column="project_name"/>
         <result property="content" column="content"/>
         <result property="document" column="document"/>
-        <result property="sign_date" column="sign_date"/>
-        <result property="validity_period" column="validity_period"/>
-        <result property="employer_account" column="employer_account"/>
-        <result property="employer_name" column="employer_name"/>
+        <result property="signDate" column="sign_date"/>
+        <result property="validityPeriod" column="validity_period"/>
+        <result property="employerAccount" column="employer_account"/>
+        <result property="employerName" column="employer_name"/>
         <result property="phone" column="phone"/>
-        <result property="employee_account" column="employee_account"/>
-        <result property="employee_name" column="employee_name"/>
-        <result property="contact_phone" column="contact_phone"/>
+        <result property="employeeAccount" column="employee_account"/>
+        <result property="employeeName" column="employee_name"/>
+        <result property="contactPhone" column="contact_phone"/>
         <result property="is_reviewed" column="is_reviewed"/>
         <result property="review_comment" column="review_comment"/>
     </resultMap>

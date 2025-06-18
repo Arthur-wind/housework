@@ -5,19 +5,19 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.Application_AppointmentEntity" id="application_appointmentMap">
-        <result property="appointment_no" column="appointment_no"/>
-        <result property="project_name" column="project_name"/>
+        <result property="appointmentNo" column="appointment_no"/>
+        <result property="projectName" column="project_name"/>
         <result property="salary" column="salary"/>
-        <result property="application_time" column="application_time"/>
-        <result property="application_notes" column="application_notes"/>
-        <result property="employer_account" column="employer_account"/>
-        <result property="employer_name" column="employer_name"/>
+        <result property="applicationTime" column="application_time"/>
+        <result property="applicationNotes" column="application_notes"/>
+        <result property="employerAccount" column="employer_account"/>
+        <result property="employerName" column="employer_name"/>
         <result property="phone" column="phone"/>
-        <result property="employee_account" column="employee_account"/>
-        <result property="employee_name" column="employee_name"/>
-        <result property="contact_phone" column="contact_phone"/>
+        <result property="employeeAccount" column="employee_account"/>
+        <result property="employeeName" column="employee_name"/>
+        <result property="contactPhone" column="contact_phone"/>
         <result property="is_reviewed" column="is_reviewed"/>
-        <result property="review_comment" column="review_comment"/>
+        <result property="reviewComment" column="review_comment"/>
         <result property="payment_status" column="payment_status"/>
     </resultMap>
 

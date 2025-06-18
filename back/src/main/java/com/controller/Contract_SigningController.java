@@ -61,10 +61,10 @@ public class Contract_SigningController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("employer")) {
-			contract_signing.setEmployer_Account((String)request.getSession().getAttribute("username"));
+			contract_signing.setEmployer_account((String)request.getSession().getAttribute("username"));
 		}
 		if(tableName.equals("employee")) {
-			contract_signing.setEmployee_Account((String)request.getSession().getAttribute("username"));
+			contract_signing.setEmployee_account((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<Contract_SigningEntity> ew = new EntityWrapper<Contract_SigningEntity>();
 		PageUtils page = contract_signingService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, contract_signing), params), params));
