@@ -108,11 +108,11 @@ public class EmployeeEntity<T> implements Serializable {
         this.id = id;
     }
 
-    public String getEmployee_Account() {
+    public String getEmployeeAccount() {
         return employeeAccount;
     }
 
-    public void setEmployee_Account(String employee_account) {
+    public void setEmployeeAccount(String employee_account) {
         this.employeeAccount = employee_account;
     }
 
@@ -124,11 +124,11 @@ public class EmployeeEntity<T> implements Serializable {
         this.password = password;
     }
 
-    public String getEmployee_Name() {
+    public String getEmployeeName() {
         return employeeName;
     }
 
-    public void setEmployee_Name(String employee_name) {
+    public void setEmployeeName(String employee_name) {
         this.employeeName = employee_name;
     }
 

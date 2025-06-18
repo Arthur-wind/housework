@@ -56,12 +56,14 @@ public class EmployerEntity<T> implements Serializable {
 	 * 账号
 	 */
 	@TableField("employer_account")
+	@JsonProperty("employer_account")
 	private String employerAccount; // 改为驼峰命名（推荐）
 
 	/**
 	 * 姓名
 	 */
 	@TableField("employer_name")
+	@JsonProperty("employer_name")
 	private String employerName; // 改为驼峰命名（推荐）
 	
 	/**
@@ -118,13 +120,13 @@ public class EmployerEntity<T> implements Serializable {
 	/**
 	 * 设置：账号
 	 */
-	public void setEmployer_account(String employer_account) {
+	public void setEmployerAccount(String employer_account) {
 		this.employerAccount = employer_account;
 	}
 	/**
 	 * 获取：账号
 	 */
-	public String getEmployer_account() {
+	public String getEmployerAccount() {
 		return employerAccount;
 	}
 	/**
@@ -142,13 +144,13 @@ public class EmployerEntity<T> implements Serializable {
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_name(String employer_name) {
+	public void setEmployerName(String employer_name) {
 		this.employerName = employer_name;
 	}
 	/**
 	 * 获取：姓名
 	 */
-	public String getEmployer_name() {
+	public String getEmployerName() {
 		return employerName;
 	}
 	/**
