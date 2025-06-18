@@ -58,16 +58,26 @@ public class Consult_EmployeeController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Consult_EmployeeEntity consult_employee,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employee")) {
-			consult_employee.setEmployee_account((String)request.getSession().getAttribute("username"));
-		}
-		if(tableName.equals("employer")) {
-			consult_employee.setEmployer_account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 手动处理雇主姓名、雇员姓名、是否审核映射
+        if(params.containsKey("employer_name")) {
+            consult_employee.setEmployerName((String)params.get("employer_name"));
+        }
+        if(params.containsKey("employee_name")) {
+            consult_employee.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            consult_employee.setIsReviewed((String)params.get("is_reviewed"));
+        }
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employee")) {
+            consult_employee.setEmployee_account((String)request.getSession().getAttribute("username"));
+        }
+        if(tableName.equals("employer")) {
+            consult_employee.setEmployer_account((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Consult_EmployeeEntity> ew = new EntityWrapper<Consult_EmployeeEntity>();
-		PageUtils page = consult_employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, consult_employee), params), params));
+        PageUtils page = consult_employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, consult_employee), params), params));
 
         return R.ok().put("data", page);
     }
@@ -78,9 +88,19 @@ public class Consult_EmployeeController {
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Consult_EmployeeEntity consult_employee, 
-		HttpServletRequest request){
+        HttpServletRequest request){
+        // 手动处理雇主姓名、雇员姓名、是否审核映射
+        if(params.containsKey("employer_name")) {
+            consult_employee.setEmployerName((String)params.get("employer_name"));
+        }
+        if(params.containsKey("employee_name")) {
+            consult_employee.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            consult_employee.setIsReviewed((String)params.get("is_reviewed"));
+        }
         EntityWrapper<Consult_EmployeeEntity> ew = new EntityWrapper<Consult_EmployeeEntity>();
-		PageUtils page = consult_employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, consult_employee), params), params));
+        PageUtils page = consult_employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, consult_employee), params), params));
         return R.ok().put("data", page);
     }
 

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.reflect.InvocationTargetException;
 
 import java.io.Serializable;
@@ -54,8 +55,8 @@ public class project_typeEntity<T> implements Serializable {
 	/**
 	 * 项目类型
 	 */
-
-	@TableId("project_type")
+	@TableField("project_type")
+	@JsonProperty("project_type")
 	private String projectType;
 	
 	
@@ -80,13 +81,13 @@ public class project_typeEntity<T> implements Serializable {
 	/**
 	 * 设置：项目类型
 	 */
-	public void setproject_type(String project_type) {
-		this.projectType = project_type;
+	public void setProjectType(String projectType) {
+		this.projectType = projectType;
 	}
 	/**
 	 * 获取：项目类型
 	 */
-	public String getproject_type() {
+	public String getProjectType() {
 		return projectType;
 	}
 

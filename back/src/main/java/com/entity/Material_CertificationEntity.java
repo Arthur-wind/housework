@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.reflect.InvocationTargetException;
 
 import java.io.Serializable;
@@ -30,10 +31,10 @@ import com.baomidou.mybatisplus.enums.IdType;
  */
 @TableName("material_certification")
 public class Material_CertificationEntity<T> implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
-	public Material_CertificationEntity() {
+    public Material_CertificationEntity() {
 		
 	}
 	
@@ -54,55 +55,54 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 雇员账号
 	 */
-
-	@TableId("employee_account")
+    @TableField("employee_account")
+    @JsonProperty("employee_account")
 	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
-
-	@TableId("employee_name")
+    @TableField("employee_name")
+    @JsonProperty("employee_name")
 	private String employeeName;
 	
 	/**
 	 * 联系电话
 	 */
-
-	@TableId("contact_phone")
+    @TableField("contact_phone")
+    @JsonProperty("contact_phone")
 	private String contactPhone;
 	
 	/**
 	 * 身份证
 	 */
-
-	@TableId("id_card")
+    @TableField("id_card")
+    @JsonProperty("id_card")
 	private String idCard;
 	
 	/**
 	 * 资格证书
 	 */
-
-	@TableId("application_certificate")
+    @TableField("application_certificate")
+    @JsonProperty("application_certificate")
 	private String applicationCertificate;
 	
 	/**
 	 * 申请资料
 	 */
-					
+    @TableField("shenqingziliao")
 	private String shenqingziliao;
 	
 	/**
 	 * 申请原因
 	 */
-
-	@TableId("application_reason")
+    @TableField("application_reason")
+    @JsonProperty("application_reason")
 	private String applicationReason;
 	
 	/**
 	 * 申请时间
 	 */
-				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
 	@TableField("application_time")
@@ -111,15 +111,15 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 是否审核
 	 */
+    @TableField("is_reviewed")
+    @JsonProperty("is_reviewed")
+    private String isReviewed;
 
-	@TableId("is_reviewed")
-	private String isReviewed;
-	
-	/**
+    /**
 	 * 审核回复
 	 */
-
-	@TableId("review_comment")
+    @TableField("review_comment")
+    @JsonProperty("review_comment")
 	private String reviewComment;
 	
 	
@@ -144,25 +144,25 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_account(String employee_account) {
+	public void setEmployeeAccount(String employee_account) {
 		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_account() {
+	public String getEmployeeAccount() {
 		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_name(String employee_name) {
+	public void setEmployeeName(String employee_name) {
 		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_name() {
+	public String getEmployeeName() {
 		return employeeName;
 	}
 	/**
@@ -240,15 +240,15 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_reviewed(String is_reviewed) {
-		this.isReviewed = is_reviewed;
-	}
-	/**
+	public void setIsReviewed(String isReviewed) {
+        this.isReviewed = isReviewed;
+    }
+    /**
 	 * 获取：是否审核
 	 */
-	public String getIs_reviewed() {
-		return isReviewed;
-	}
+	public String getIsReviewed() {
+        return isReviewed;
+    }
 	/**
 	 * 设置：审核回复
 	 */

@@ -58,9 +58,13 @@ public class project_typeController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,project_typeEntity project_type,
-		HttpServletRequest request){
+        HttpServletRequest request){
+        // 手动处理 project_type 下划线参数映射
+        if(params.containsKey("project_type")) {
+            project_type.setProjectType((String)params.get("project_type"));
+        }
         EntityWrapper<project_typeEntity> ew = new EntityWrapper<project_typeEntity>();
-		PageUtils page = project_typeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, project_type), params), params));
+        PageUtils page = project_typeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, project_type), params), params));
 
         return R.ok().put("data", page);
     }
@@ -72,6 +76,10 @@ public class project_typeController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,project_typeEntity project_type, 
 		HttpServletRequest request){
+        // 手动处理 project_type 下划线参数映射
+        if(params.containsKey("project_type")) {
+            project_type.setProjectType((String)params.get("project_type"));
+        }
         EntityWrapper<project_typeEntity> ew = new EntityWrapper<project_typeEntity>();
 		PageUtils page = project_typeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, project_type), params), params));
         return R.ok().put("data", page);

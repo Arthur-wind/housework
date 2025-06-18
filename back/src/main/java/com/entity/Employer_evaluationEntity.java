@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.reflect.InvocationTargetException;
 
 import java.io.Serializable;
@@ -54,8 +55,8 @@ public class Employer_evaluationEntity<T> implements Serializable {
 	/**
 	 * 项目名称
 	 */
-
-	@TableId("project_name")
+    @TableField("project_name")
+    @JsonProperty("project_name")
 	private String projectName;
 	
 	/**
@@ -104,8 +105,8 @@ public class Employer_evaluationEntity<T> implements Serializable {
 	/**
 	 * 姓名
 	 */
-
-	@TableId("employer_name")
+    @TableField("employer_name")
+    @JsonProperty("employer_name")
 	private String employerName;
 	
 	/**
@@ -124,8 +125,8 @@ public class Employer_evaluationEntity<T> implements Serializable {
 	/**
 	 * 雇员姓名
 	 */
-
-	@TableId("employee_name")
+    @TableField("employee_name")
+    @JsonProperty("employee_name")
 	private String employeeName;
 	
 	/**
@@ -157,13 +158,13 @@ public class Employer_evaluationEntity<T> implements Serializable {
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_name(String project_name) {
-		this.projectName = project_name;
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_name() {
+	public String getProjectName() {
 		return projectName;
 	}
 	/**
@@ -241,13 +242,13 @@ public class Employer_evaluationEntity<T> implements Serializable {
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_name(String employer_name) {
-		this.employerName = employer_name;
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
 	}
 	/**
-	 * 获取：姓名
+	 * 获取：雇主姓名
 	 */
-	public String getEmployer_name() {
+	public String getEmployerName() {
 		return employerName;
 	}
 	/**
@@ -277,13 +278,13 @@ public class Employer_evaluationEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_name(String employee_name) {
-		this.employeeName = employee_name;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_name() {
+	public String getEmployeeName() {
 		return employeeName;
 	}
 	/**

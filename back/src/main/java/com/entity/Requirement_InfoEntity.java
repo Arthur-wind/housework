@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.reflect.InvocationTargetException;
 
 import java.io.Serializable;
@@ -82,6 +83,7 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	 */
 
 	@TableField("work_location")
+	@JsonProperty("work_location")
 	private String workLocation;
 	
 	/**
@@ -219,13 +221,13 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 设置：工作地点
 	 */
-	public void setWork_location(String work_location) {
-		this.workLocation = work_location;
+	public void setWorkLocation(String workLocation) {
+		this.workLocation = workLocation;
 	}
 	/**
 	 * 获取：工作地点
 	 */
-	public String getWork_location() {
+	public String getWorkLocation() {
 		return workLocation;
 	}
 	/**

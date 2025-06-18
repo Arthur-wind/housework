@@ -58,16 +58,23 @@ public class Electronic_SignatureController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Electronic_SignatureEntity electronic_signature,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employer")) {
-			electronic_signature.setEmployer_account((String)request.getSession().getAttribute("username"));
-		}
-		if(tableName.equals("employee")) {
-			electronic_signature.setEmployee_account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            electronic_signature.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            electronic_signature.setEmployerName((String)params.get("employer_name"));
+        }
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employer")) {
+            electronic_signature.setEmployer_account((String)request.getSession().getAttribute("username"));
+        }
+        if(tableName.equals("employee")) {
+            electronic_signature.setEmployee_account((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Electronic_SignatureEntity> ew = new EntityWrapper<Electronic_SignatureEntity>();
-		PageUtils page = electronic_signatureService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, electronic_signature), params), params));
+        PageUtils page = electronic_signatureService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, electronic_signature), params), params));
 
         return R.ok().put("data", page);
     }
@@ -79,6 +86,13 @@ public class Electronic_SignatureController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Electronic_SignatureEntity electronic_signature,
 		HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            electronic_signature.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            electronic_signature.setEmployerName((String)params.get("employer_name"));
+        }
         EntityWrapper<Electronic_SignatureEntity> ew = new EntityWrapper<Electronic_SignatureEntity>();
 		PageUtils page = electronic_signatureService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, electronic_signature), params), params));
         return R.ok().put("data", page);

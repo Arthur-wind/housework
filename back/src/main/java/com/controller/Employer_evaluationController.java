@@ -58,20 +58,30 @@ public class Employer_evaluationController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Employer_evaluationEntity employer_evaluation,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employer")) {
-			employer_evaluation.setEmployer_account((String)request.getSession().getAttribute("username"));
-		}
-		if(tableName.equals("employee")) {
-			employer_evaluation.setEmployee_account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            employer_evaluation.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            employer_evaluation.setEmployerName((String)params.get("employer_name"));
+        }
+        if(params.containsKey("employee_name")) {
+            employer_evaluation.setEmployeeName((String)params.get("employee_name"));
+        }
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employer")) {
+            employer_evaluation.setEmployer_account((String)request.getSession().getAttribute("username"));
+        }
+        if(tableName.equals("employee")) {
+            employer_evaluation.setEmployee_account((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Employer_evaluationEntity> ew = new EntityWrapper<Employer_evaluationEntity>();
-		PageUtils page = employer_evaluationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer_evaluation), params), params));
+        PageUtils page = employer_evaluationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer_evaluation), params), params));
 
         return R.ok().put("data", page);
     }
-    
+
     /**
      * 前端列表
      */
@@ -79,6 +89,16 @@ public class Employer_evaluationController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Employer_evaluationEntity employer_evaluation,
 		HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            employer_evaluation.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            employer_evaluation.setEmployerName((String)params.get("employer_name"));
+        }
+        if(params.containsKey("employee_name")) {
+            employer_evaluation.setEmployeeName((String)params.get("employee_name"));
+        }
         EntityWrapper<Employer_evaluationEntity> ew = new EntityWrapper<Employer_evaluationEntity>();
 		PageUtils page = employer_evaluationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer_evaluation), params), params));
         return R.ok().put("data", page);

@@ -58,20 +58,33 @@ public class Application_AppointmentController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Application_AppointmentEntity application_appointment,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employer")) {
-			application_appointment.setEmployer_account((String)request.getSession().getAttribute("username"));
-		}
-		if(tableName.equals("employee")) {
-			application_appointment.setEmployee_account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            application_appointment.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            application_appointment.setEmployerName((String)params.get("employer_name"));
+        }
+        if(params.containsKey("employee_name")) {
+            application_appointment.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            application_appointment.setIsReviewed((String)params.get("is_reviewed"));
+        }
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employer")) {
+            application_appointment.setEmployerAccount((String)request.getSession().getAttribute("username"));
+        }
+        if(tableName.equals("employee")) {
+            application_appointment.setEmployeeAccount((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Application_AppointmentEntity> ew = new EntityWrapper<Application_AppointmentEntity>();
-		PageUtils page = application_appointmentService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, application_appointment), params), params));
+        PageUtils page = application_appointmentService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, application_appointment), params), params));
 
         return R.ok().put("data", page);
     }
-    
+
     /**
      * 前端列表
      */
@@ -79,6 +92,19 @@ public class Application_AppointmentController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Application_AppointmentEntity application_appointment, 
 		HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            application_appointment.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            application_appointment.setEmployerName((String)params.get("employer_name"));
+        }
+        if(params.containsKey("employee_name")) {
+            application_appointment.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            application_appointment.setIsReviewed((String)params.get("is_reviewed"));
+        }
         EntityWrapper<Application_AppointmentEntity> ew = new EntityWrapper<Application_AppointmentEntity>();
 		PageUtils page = application_appointmentService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, application_appointment), params), params));
         return R.ok().put("data", page);

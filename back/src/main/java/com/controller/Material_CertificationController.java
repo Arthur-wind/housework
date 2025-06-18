@@ -58,17 +58,28 @@ public class Material_CertificationController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Material_CertificationEntity material_certification,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employee")) {
-			material_certification.setEmployee_account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 处理 employee_account、employee_name、is_reviewed 的手动映射
+        if(params.containsKey("employee_account")) {
+            material_certification.setEmployeeAccount((String)params.get("employee_account"));
+        }
+        if(params.containsKey("employee_name")) {
+            material_certification.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            material_certification.setIsReviewed((String)params.get("is_reviewed"));
+        }
+
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employee")) {
+            material_certification.setEmployeeAccount((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Material_CertificationEntity> ew = new EntityWrapper<Material_CertificationEntity>();
-		PageUtils page = material_certificationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, material_certification), params), params));
+        PageUtils page = material_certificationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, material_certification), params), params));
 
         return R.ok().put("data", page);
     }
-    
+
     /**
      * 前端列表
      */
@@ -76,6 +87,17 @@ public class Material_CertificationController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Material_CertificationEntity material_certification, 
 		HttpServletRequest request){
+        // 处理 employee_account、employee_name、is_reviewed 的手动映射
+        if(params.containsKey("employee_account")) {
+            material_certification.setEmployeeAccount((String)params.get("employee_account"));
+        }
+        if(params.containsKey("employee_name")) {
+            material_certification.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            material_certification.setIsReviewed((String)params.get("is_reviewed"));
+        }
+
         EntityWrapper<Material_CertificationEntity> ew = new EntityWrapper<Material_CertificationEntity>();
 		PageUtils page = material_certificationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, material_certification), params), params));
         return R.ok().put("data", page);

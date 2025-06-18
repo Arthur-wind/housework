@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.reflect.InvocationTargetException;
 
 import java.io.Serializable;
@@ -61,7 +62,8 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 * 项目名称
 	 */
 
-	@TableId("project_name")
+	@TableField("project_name")
+	@JsonProperty("project_name")
 	private String projectName;
 	
 	/**
@@ -90,6 +92,7 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 */
 
 	@TableField("employer_account")
+	@JsonProperty("employer_account")
 	private String employerAccount;
 	
 	/**
@@ -97,6 +100,7 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 */
 
 	@TableField("employer_name")
+	@JsonProperty("employer_name")
 	private String employerName;
 	
 	/**
@@ -110,6 +114,7 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 */
 
 	@TableField("employee_account")
+	@JsonProperty("employee_account")
 	private String employeeAccount;
 	
 	/**
@@ -117,6 +122,7 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 */
 
 	@TableField("employee_name")
+	@JsonProperty("employee_name")
 	private String employeeName;
 	
 	/**
@@ -128,8 +134,9 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 是否审核
 	 */
-					
-	private String is_reviewed;
+	@TableField("is_reviewed")
+	@JsonProperty("is_reviewed")
+	private String isReviewed;
 	
 	/**
 	 * 审核回复
@@ -178,13 +185,13 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_name(String project_name) {
+	public void setProjectName(String project_name) {
 		this.projectName = project_name;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_name() {
+	public String getProjectName() {
 		return projectName;
 	}
 	/**
@@ -226,25 +233,25 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 设置：账号
 	 */
-	public void setEmployer_account(String employer_account) {
+	public void setEmployerAccount(String employer_account) {
 		this.employerAccount = employer_account;
 	}
 	/**
 	 * 获取：账号
 	 */
-	public String getEmployer_account() {
+	public String getEmployerAccount() {
 		return employerAccount;
 	}
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_name(String employer_name) {
+	public void setEmployerName(String employer_name) {
 		this.employerName = employer_name;
 	}
 	/**
 	 * 获取：姓名
 	 */
-	public String getEmployer_name() {
+	public String getEmployerName() {
 		return employerName;
 	}
 	/**
@@ -262,25 +269,25 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_account(String employee_account) {
+	public void setEmployeeAccount(String employee_account) {
 		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_account() {
+	public String getEmployeeAccount() {
 		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_name(String employee_name) {
+	public void setEmployeeName(String employee_name) {
 		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_name() {
+	public String getEmployeeName() {
 		return employeeName;
 	}
 	/**
@@ -298,14 +305,14 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_reviewed(String is_reviewed) {
-		this.is_reviewed = is_reviewed;
+	public void setIsReviewed(String isReviewed) {
+		this.isReviewed = isReviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_reviewed() {
-		return is_reviewed;
+	public String getIsReviewed() {
+		return isReviewed;
 	}
 	/**
 	 * 设置：审核回复

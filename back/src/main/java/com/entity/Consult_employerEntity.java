@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.reflect.InvocationTargetException;
 
 import java.io.Serializable;
@@ -82,8 +83,8 @@ public class Consult_employerEntity<T> implements Serializable {
 	/**
 	 * 雇员姓名
 	 */
-
 	@TableField("employee_name")
+	@JsonProperty("employee_name")
 	private String employeeName;
 
 	/**
@@ -94,17 +95,17 @@ public class Consult_employerEntity<T> implements Serializable {
 	private String employerAccount;
 
 	/**
-	 * 姓名
+	 * 雇主姓名
 	 */
-
-	@TableId("employer_name")
+	@TableField("employer_name")
+	@JsonProperty("employer_name")
 	private String employerName;
 
 	/**
 	 * 是否审核
 	 */
-
-	@TableId("is_reviewed")
+	@TableField("is_reviewed")
+	@JsonProperty("is_reviewed")
 	private String isReviewed;
 
 	/**
@@ -184,13 +185,13 @@ public class Consult_employerEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_name(String employee_name) {
-		this.employeeName = employee_name;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_name() {
+	public String getEmployeeName() {
 		return employeeName;
 	}
 	/**
@@ -206,27 +207,27 @@ public class Consult_employerEntity<T> implements Serializable {
 		return employerAccount;
 	}
 	/**
-	 * 设置：姓名
+	 * 设置：雇主姓名
 	 */
-	public void setEmployer_name(String employer_name) {
-		this.employerName = employer_name;
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
 	}
 	/**
-	 * 获取：姓名
+	 * 获取：雇主姓名
 	 */
-	public String getEmployer_name() {
+	public String getEmployerName() {
 		return employerName;
 	}
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_reviewed(String is_reviewed) {
-		this.isReviewed = is_reviewed;
+	public void setIsReviewed(String isReviewed) {
+		this.isReviewed = isReviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_reviewed() {
+	public String getIsReviewed() {
 		return isReviewed;
 	}
 	/**

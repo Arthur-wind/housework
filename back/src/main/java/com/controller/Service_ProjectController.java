@@ -62,26 +62,60 @@ public class Service_ProjectController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Service_ProjectEntity service_project,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employee")) {
-			service_project.setEmployee_account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 手动处理下划线参数映射
+        if(params.containsKey("project_name")) {
+            service_project.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("project_type")) {
+            service_project.setProjectType((String)params.get("project_type"));
+        }
+        if(params.containsKey("status")) {
+            service_project.setStatus((String)params.get("status"));
+        }
+        if(params.containsKey("employee_name")) {
+            service_project.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            service_project.setIsReviewed((String)params.get("is_reviewed"));
+        }
+
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employee")) {
+            service_project.setEmployeeAccount((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Service_ProjectEntity> ew = new EntityWrapper<Service_ProjectEntity>();
-		PageUtils page = service_projectService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_project), params), params));
+        PageUtils page = service_projectService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_project), params), params));
 
         return R.ok().put("data", page);
     }
-    
+
     /**
      * 前端列表
      */
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Service_ProjectEntity service_project, 
-		HttpServletRequest request){
+        HttpServletRequest request){
+        // 手动处理下划线参数映射
+        if(params.containsKey("project_name")) {
+            service_project.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("project_type")) {
+            service_project.setProjectType((String)params.get("project_type"));
+        }
+        if(params.containsKey("status")) {
+            service_project.setStatus((String)params.get("status"));
+        }
+        if(params.containsKey("employee_name")) {
+            service_project.setEmployeeName((String)params.get("employee_name"));
+        }
+        if(params.containsKey("is_reviewed")) {
+            service_project.setIsReviewed((String)params.get("is_reviewed"));
+        }
+
         EntityWrapper<Service_ProjectEntity> ew = new EntityWrapper<Service_ProjectEntity>();
-		PageUtils page = service_projectService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_project), params), params));
+        PageUtils page = service_projectService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_project), params), params));
         return R.ok().put("data", page);
     }
 

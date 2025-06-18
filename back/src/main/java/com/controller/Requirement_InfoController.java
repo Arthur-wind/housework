@@ -58,26 +58,34 @@ public class Requirement_InfoController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Requirement_InfoEntity requirement_info,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employer")) {
-			requirement_info.setEmployer_Account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 手动处理工作地点映射
+        if(params.containsKey("work_location")) {
+            requirement_info.setWorkLocation((String)params.get("work_location"));
+        }
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employer")) {
+            requirement_info.setEmployer_Account((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Requirement_InfoEntity> ew = new EntityWrapper<Requirement_InfoEntity>();
-		PageUtils page = requirement_infoService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, requirement_info), params), params));
+        PageUtils page = requirement_infoService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, requirement_info), params), params));
 
         return R.ok().put("data", page);
     }
-    
+
     /**
      * 前端列表
      */
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Requirement_InfoEntity requirement_info, 
-		HttpServletRequest request){
+        HttpServletRequest request){
+        // 手动处理工作地点映射
+        if(params.containsKey("work_location")) {
+            requirement_info.setWorkLocation((String)params.get("work_location"));
+        }
         EntityWrapper<Requirement_InfoEntity> ew = new EntityWrapper<Requirement_InfoEntity>();
-		PageUtils page = requirement_infoService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, requirement_info), params), params));
+        PageUtils page = requirement_infoService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, requirement_info), params), params));
         return R.ok().put("data", page);
     }
 

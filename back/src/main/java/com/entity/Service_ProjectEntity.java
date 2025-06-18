@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.beanutils.BeanUtils;
@@ -54,15 +55,15 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 项目名称
 	 */
-
-	@TableId("project_name")
+    @TableField("project_name")
+    @JsonProperty("project_name")
 	private String projectName;
 	
 	/**
 	 * 项目类型
 	 */
-
-	@TableId("project_type")
+    @TableField("project_type")
+    @JsonProperty("project_type")
 	private String projectType;
 	
 	/**
@@ -81,7 +82,8 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 状态
 	 */
-					
+    @TableField("status")
+    @JsonProperty("status")
 	private String status;
 	
 	/**
@@ -100,8 +102,8 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 雇员姓名
 	 */
-
-	@TableId("employee_name")
+    @TableField("employee_name")
+    @JsonProperty("employee_name")
 	private String employeeName;
 	
 	/**
@@ -114,9 +116,9 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 是否审核
 	 */
-
-	@TableId("is_reviewed")
-	private String isReviewed;
+    @TableField("is_reviewed")
+    @JsonProperty("is_reviewed")
+    private String isReviewed;
 	
 	/**
 	 * 审核回复
@@ -177,25 +179,25 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_name(String project_name) {
+	public void setProjectName(String project_name) {
 		this.projectName = project_name;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_name() {
+	public String getProjectName() {
 		return projectName;
 	}
 	/**
 	 * 设置：项目类型
 	 */
-	public void setproject_type(String project_type) {
+	public void setProjectType(String project_type) {
 		this.projectType = project_type;
 	}
 	/**
 	 * 获取：项目类型
 	 */
-	public String getproject_type() {
+	public String getProjectType() {
 		return projectType;
 	}
 	/**
@@ -249,25 +251,25 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_account(String employee_account) {
+	public void setEmployeeAccount(String employee_account) {
 		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_account() {
+	public String getEmployeeAccount() {
 		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_name(String employee_name) {
+	public void setEmployeeName(String employee_name) {
 		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_name() {
+	public String getEmployeeName() {
 		return employeeName;
 	}
 	/**
@@ -285,13 +287,13 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_reviewed(String is_reviewed) {
-		this.isReviewed = is_reviewed;
+	public void setIsReviewed(String isReviewed) {
+		this.isReviewed = isReviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_reviewed() {
+	public String getIsReviewed() {
 		return isReviewed;
 	}
 	/**

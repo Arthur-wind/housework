@@ -58,29 +58,43 @@ public class Contract_SigningController {
      */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Contract_SigningEntity contract_signing,
-		HttpServletRequest request){
-		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("employer")) {
-			contract_signing.setEmployer_account((String)request.getSession().getAttribute("username"));
-		}
-		if(tableName.equals("employee")) {
-			contract_signing.setEmployee_account((String)request.getSession().getAttribute("username"));
-		}
+        HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            contract_signing.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            contract_signing.setEmployerName((String)params.get("employer_name"));
+        }
+        String tableName = request.getSession().getAttribute("tableName").toString();
+        if(tableName.equals("employer")) {
+            contract_signing.setEmployer_account((String)request.getSession().getAttribute("username"));
+        }
+        if(tableName.equals("employee")) {
+            contract_signing.setEmployee_account((String)request.getSession().getAttribute("username"));
+        }
         EntityWrapper<Contract_SigningEntity> ew = new EntityWrapper<Contract_SigningEntity>();
-		PageUtils page = contract_signingService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, contract_signing), params), params));
+        PageUtils page = contract_signingService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, contract_signing), params), params));
 
         return R.ok().put("data", page);
     }
-    
+
     /**
      * 前端列表
      */
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Contract_SigningEntity contract_signing, 
-		HttpServletRequest request){
+        HttpServletRequest request){
+        // 手动处理映射
+        if(params.containsKey("project_name")) {
+            contract_signing.setProjectName((String)params.get("project_name"));
+        }
+        if(params.containsKey("employer_name")) {
+            contract_signing.setEmployerName((String)params.get("employer_name"));
+        }
         EntityWrapper<Contract_SigningEntity> ew = new EntityWrapper<Contract_SigningEntity>();
-		PageUtils page = contract_signingService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, contract_signing), params), params));
+        PageUtils page = contract_signingService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, contract_signing), params), params));
         return R.ok().put("data", page);
     }
 
