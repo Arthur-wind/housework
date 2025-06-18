@@ -54,8 +54,9 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	/**
 	 * 项目名称
 	 */
-					
-	private String project_name;
+
+	@TableId("project_name")
+	private String projectName;
 	
 	/**
 	 * 内容
@@ -66,34 +67,39 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	/**
 	 * 电子签名
 	 */
-					
-	private String electronic_signature;
+
+	@TableId("electronic_signature")
+	private String electronicSignature;
 	
 	/**
 	 * 签订日期
 	 */
-				
+
+	@TableId("sign_date")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat 		
-	private Date sign_date;
+	private Date signDate;
 	
 	/**
 	 * 有效期
 	 */
-					
-	private String validity_period;
+
+	@TableId("validity_period")
+	private String validityPeriod;
 	
 	/**
 	 * 账号
 	 */
-					
-	private String employer_account;
+
+	@TableId("employer_account")
+	private String employerAccount;
 	
 	/**
 	 * 姓名
 	 */
-					
-	private String employer_name;
+
+	@TableId("employer_name")
+	private String employerName;
 	
 	/**
 	 * 手机
@@ -104,20 +110,23 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	/**
 	 * 雇员账号
 	 */
-					
-	private String employee_account;
+
+	@TableId("employee_account")
+	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
-					
-	private String employee_name;
+
+	@TableId("employee_name")
+	private String employeeName;
 	
 	/**
 	 * 联系电话
 	 */
-					
-	private String contact_phone;
+
+	@TableId("contact_phone")
+	private String contactPhone;
 	
 	
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
@@ -141,14 +150,14 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_Name(String project_name) {
-		this.project_name = project_name;
+	public void setProject_name(String project_name) {
+		this.projectName = project_name;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_Name() {
-		return project_name;
+	public String getProject_name() {
+		return projectName;
 	}
 	/**
 	 * 设置：内容
@@ -165,62 +174,62 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	/**
 	 * 设置：电子签名
 	 */
-	public void setElectronic_Signature(String electronic_signature) {
-		this.electronic_signature = electronic_signature;
+	public void setElectronic_signature(String electronic_signature) {
+		this.electronicSignature = electronic_signature;
 	}
 	/**
 	 * 获取：电子签名
 	 */
-	public String getElectronic_Signature() {
-		return electronic_signature;
+	public String getElectronic_signature() {
+		return electronicSignature;
 	}
 	/**
 	 * 设置：签订日期
 	 */
-	public void setSign_Date(Date sign_date) {
-		this.sign_date = sign_date;
+	public void setSign_date(Date sign_date) {
+		this.signDate = sign_date;
 	}
 	/**
 	 * 获取：签订日期
 	 */
-	public Date getSign_Date() {
-		return sign_date;
+	public Date getSign_date() {
+		return signDate;
 	}
 	/**
 	 * 设置：有效期
 	 */
-	public void setValidity_Period(String validity_period) {
-		this.validity_period = validity_period;
+	public void setValidity_period(String validity_period) {
+		this.validityPeriod = validity_period;
 	}
 	/**
 	 * 获取：有效期
 	 */
-	public String getValidity_Period() {
-		return validity_period;
+	public String getValidity_period() {
+		return validityPeriod;
 	}
 	/**
 	 * 设置：账号
 	 */
-	public void setEmployer_Account(String employer_account) {
-		this.employer_account = employer_account;
+	public void setEmployer_account(String employer_account) {
+		this.employerAccount = employer_account;
 	}
 	/**
 	 * 获取：账号
 	 */
-	public String getEmployer_Account() {
-		return employer_account;
+	public String getEmployer_account() {
+		return employerAccount;
 	}
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_Name(String employer_name) {
-		this.employer_name = employer_name;
+	public void setEmployer_name(String employer_name) {
+		this.employerName = employer_name;
 	}
 	/**
 	 * 获取：姓名
 	 */
-	public String getEmployer_Name() {
-		return employer_name;
+	public String getEmployer_name() {
+		return employerName;
 	}
 	/**
 	 * 设置：手机
@@ -237,38 +246,38 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_Account(String employee_account) {
-		this.employee_account = employee_account;
+	public void setEmployee_account(String employee_account) {
+		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_Account() {
-		return employee_account;
+	public String getEmployee_account() {
+		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_Name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployee_name(String employee_name) {
+		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_Name() {
-		return employee_name;
+	public String getEmployee_name() {
+		return employeeName;
 	}
 	/**
 	 * 设置：联系电话
 	 */
-	public void setContact_Phone(String contact_phone) {
-		this.contact_phone = contact_phone;
+	public void setContact_phone(String contact_phone) {
+		this.contactPhone = contact_phone;
 	}
 	/**
 	 * 获取：联系电话
 	 */
-	public String getContact_Phone() {
-		return contact_phone;
+	public String getContact_phone() {
+		return contactPhone;
 	}
 
 }

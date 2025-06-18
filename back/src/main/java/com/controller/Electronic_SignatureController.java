@@ -61,10 +61,10 @@ public class Electronic_SignatureController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("employer")) {
-			electronic_signature.setEmployer_Account((String)request.getSession().getAttribute("username"));
+			electronic_signature.setEmployer_account((String)request.getSession().getAttribute("username"));
 		}
 		if(tableName.equals("employee")) {
-			electronic_signature.setEmployee_Account((String)request.getSession().getAttribute("username"));
+			electronic_signature.setEmployee_account((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<Electronic_SignatureEntity> ew = new EntityWrapper<Electronic_SignatureEntity>();
 		PageUtils page = electronic_signatureService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, electronic_signature), params), params));

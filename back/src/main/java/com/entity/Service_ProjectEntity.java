@@ -54,14 +54,16 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 项目名称
 	 */
-					
-	private String project_name;
+
+	@TableId("project_name")
+	private String projectName;
 	
 	/**
 	 * 项目类型
 	 */
-					
-	private String project_type;
+
+	@TableId("project_type")
+	private String projectType;
 	
 	/**
 	 * 价格
@@ -72,8 +74,9 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 封面
 	 */
-					
-	private String cover_image;
+
+	@TableId("cover_image")
+	private String coverImage;
 	
 	/**
 	 * 状态
@@ -90,58 +93,67 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 雇员账号
 	 */
-					
-	private String employee_account;
+
+	@TableId("employee_account")
+	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
-					
-	private String employee_name;
+
+	@TableId("employee_name")
+	private String employeeName;
 	
 	/**
 	 * 联系电话
 	 */
-					
-	private String contact_phone;
+
+	@TableId("contact_phone")
+	private String contactPhone;
 	
 	/**
 	 * 是否审核
 	 */
-					
-	private String is_reviewed;
+
+	@TableId("is_reviewed")
+	private String isReviewed;
 	
 	/**
 	 * 审核回复
 	 */
-					
-	private String review_comment;
+
+	@TableId("review_comment")
+	private String reviewComment;
 	
 	/**
 	 * 赞
 	 */
-					
-	private Integer thumbs_up;
+
+	@TableId("thumbs_up")
+	private Integer thumbsUp;
 	
 	/**
 	 * 踩
 	 */
-					
-	private Integer thumbs_down;
+
+	@TableId("thumbs_down")
+	private Integer thumbsDown;
 	
 	/**
 	 * 最近点击时间
 	 */
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
-	private Date last_click_time;
+	@DateTimeFormat
+	@TableField("last_click_time")
+	private Date last_clickTime;
 	
 	/**
 	 * 点击次数
 	 */
-					
-	private Integer click_count;
+
+	@TableId("click_count")
+	private Integer clickCount;
 	
 	
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
@@ -165,26 +177,26 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_Name(String project_name) {
-		this.project_name = project_name;
+	public void setProject_name(String project_name) {
+		this.projectName = project_name;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_Name() {
-		return project_name;
+	public String getProject_name() {
+		return projectName;
 	}
 	/**
 	 * 设置：项目类型
 	 */
 	public void setproject_type(String project_type) {
-		this.project_type = project_type;
+		this.projectType = project_type;
 	}
 	/**
 	 * 获取：项目类型
 	 */
 	public String getproject_type() {
-		return project_type;
+		return projectType;
 	}
 	/**
 	 * 设置：价格
@@ -201,14 +213,14 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 设置：封面
 	 */
-	public void setCover_Image(String cover_image) {
-		this.cover_image = cover_image;
+	public void setCover_image(String cover_image) {
+		this.coverImage = cover_image;
 	}
 	/**
 	 * 获取：封面
 	 */
-	public String getCover_Image() {
-		return cover_image;
+	public String getCover_image() {
+		return coverImage;
 	}
 	/**
 	 * 设置：状态
@@ -237,110 +249,110 @@ public class Service_ProjectEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_Account(String employee_account) {
-		this.employee_account = employee_account;
+	public void setEmployee_account(String employee_account) {
+		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_Account() {
-		return employee_account;
+	public String getEmployee_account() {
+		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_Name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployee_name(String employee_name) {
+		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_Name() {
-		return employee_name;
+	public String getEmployee_name() {
+		return employeeName;
 	}
 	/**
 	 * 设置：联系电话
 	 */
-	public void setContact_Phone(String contact_phone) {
-		this.contact_phone = contact_phone;
+	public void setContact_phone(String contact_phone) {
+		this.contactPhone = contact_phone;
 	}
 	/**
 	 * 获取：联系电话
 	 */
-	public String getContact_Phone() {
-		return contact_phone;
+	public String getContact_phone() {
+		return contactPhone;
 	}
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_Reviewed(String is_reviewed) {
-		this.is_reviewed = is_reviewed;
+	public void setIs_reviewed(String is_reviewed) {
+		this.isReviewed = is_reviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_Reviewed() {
-		return is_reviewed;
+	public String getIs_reviewed() {
+		return isReviewed;
 	}
 	/**
 	 * 设置：审核回复
 	 */
-	public void setReview_Comment(String review_comment) {
-		this.review_comment = review_comment;
+	public void setReview_comment(String review_comment) {
+		this.reviewComment = review_comment;
 	}
 	/**
 	 * 获取：审核回复
 	 */
-	public String getReview_Comment() {
-		return review_comment;
+	public String getReview_comment() {
+		return reviewComment;
 	}
 	/**
 	 * 设置：赞
 	 */
-	public void setThumbs_Up(Integer thumbs_up) {
-		this.thumbs_up = thumbs_up;
+	public void setThumbs_up(Integer thumbs_up) {
+		this.thumbsUp = thumbs_up;
 	}
 	/**
 	 * 获取：赞
 	 */
-	public Integer getThumbs_Up() {
-		return thumbs_up;
+	public Integer getThumbs_up() {
+		return thumbsUp;
 	}
 	/**
 	 * 设置：踩
 	 */
-	public void setThumbs_Down(Integer thumbs_down) {
-		this.thumbs_down = thumbs_down;
+	public void setThumbs_down(Integer thumbs_down) {
+		this.thumbsDown = thumbs_down;
 	}
 	/**
 	 * 获取：踩
 	 */
-	public Integer getThumbs_Down() {
-		return thumbs_down;
+	public Integer getThumbs_down() {
+		return thumbsDown;
 	}
 	/**
 	 * 设置：最近点击时间
 	 */
-	public void setLast_Click_Time(Date last_click_time) {
-		this.last_click_time = last_click_time;
+	public void setLast_Click_time(Date last_click_time) {
+		this.last_clickTime = last_click_time;
 	}
 	/**
 	 * 获取：最近点击时间
 	 */
-	public Date getLast_Click_Time() {
-		return last_click_time;
+	public Date getLast_Click_time() {
+		return last_clickTime;
 	}
 	/**
 	 * 设置：点击次数
 	 */
-	public void setClick_Count(Integer click_count) {
-		this.click_count = click_count;
+	public void setClick_count(Integer click_count) {
+		this.clickCount = click_count;
 	}
 	/**
 	 * 获取：点击次数
 	 */
-	public Integer getClick_Count() {
-		return click_count;
+	public Integer getClick_count() {
+		return clickCount;
 	}
 
 }

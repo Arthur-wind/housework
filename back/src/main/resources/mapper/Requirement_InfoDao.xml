@@ -6,19 +6,19 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.Requirement_InfoEntity" id="requirement_infoMap">
         <result property="title" column="title"/>
-        <result property="project_name" column="project_name"/>
+        <result property="projectName" column="project_name"/>
         <result property="salary" column="salary"/>
-        <result property="working_hours" column="working_hours"/>
-        <result property="work_location" column="work_location"/>
+        <result property="workingHours" column="working_hours"/>
+        <result property="workLocation" column="work_location"/>
         <result property="requirements" column="requirements"/>
-        <result property="detailed_description" column="detailed_description"/>
-        <result property="publish_time" column="publish_time"/>
-        <result property="cover_image" column="cover_image"/>
-        <result property="employer_account" column="employer_account"/>
-        <result property="employer_name" column="employer_name"/>
+        <result property="detailedDescription" column="detailed_description"/>
+        <result property="publishTime" column="publish_time"/>
+        <result property="coverImage" column="cover_image"/>
+        <result property="employerAccount" column="employer_account"/>
+        <result property="employerName" column="employer_name"/>
         <result property="phone" column="phone"/>
-        <result property="last_click_time" column="last_click_time"/>
-        <result property="click_count" column="click_count"/>
+        <result property="last_clickTime" column="last_click_time"/>
+        <result property="clickCount" column="click_count"/>
     </resultMap>
 
 	<select id="selectListVO"

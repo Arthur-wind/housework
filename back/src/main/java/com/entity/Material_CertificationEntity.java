@@ -54,32 +54,37 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 雇员账号
 	 */
-					
-	private String employee_account;
+
+	@TableId("employee_account")
+	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
-					
-	private String employee_name;
+
+	@TableId("employee_name")
+	private String employeeName;
 	
 	/**
 	 * 联系电话
 	 */
-					
-	private String contact_phone;
+
+	@TableId("contact_phone")
+	private String contactPhone;
 	
 	/**
 	 * 身份证
 	 */
-					
-	private String id_card;
+
+	@TableId("id_card")
+	private String idCard;
 	
 	/**
 	 * 资格证书
 	 */
-					
-	private String application_certificate;
+
+	@TableId("application_certificate")
+	private String applicationCertificate;
 	
 	/**
 	 * 申请资料
@@ -90,28 +95,32 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 申请原因
 	 */
-					
-	private String application_reason;
+
+	@TableId("application_reason")
+	private String applicationReason;
 	
 	/**
 	 * 申请时间
 	 */
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
-	private Date application_time;
+	@DateTimeFormat
+	@TableField("application_time")
+	private Date applicationTime;
 	
 	/**
 	 * 是否审核
 	 */
-					
-	private String is_reviewed;
+
+	@TableId("is_reviewed")
+	private String isReviewed;
 	
 	/**
 	 * 审核回复
 	 */
-					
-	private String review_comment;
+
+	@TableId("review_comment")
+	private String reviewComment;
 	
 	
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
@@ -135,62 +144,62 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_Account(String employee_account) {
-		this.employee_account = employee_account;
+	public void setEmployee_account(String employee_account) {
+		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_Account() {
-		return employee_account;
+	public String getEmployee_account() {
+		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_Name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployee_name(String employee_name) {
+		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_Name() {
-		return employee_name;
+	public String getEmployee_name() {
+		return employeeName;
 	}
 	/**
 	 * 设置：联系电话
 	 */
-	public void setContact_Phone(String contact_phone) {
-		this.contact_phone = contact_phone;
+	public void setContact_phone(String contact_phone) {
+		this.contactPhone = contact_phone;
 	}
 	/**
 	 * 获取：联系电话
 	 */
-	public String getContact_Phone() {
-		return contact_phone;
+	public String getContact_phone() {
+		return contactPhone;
 	}
 	/**
 	 * 设置：身份证
 	 */
-	public void setId_Card(String id_card) {
-		this.id_card = id_card;
+	public void setId_card(String id_card) {
+		this.idCard = id_card;
 	}
 	/**
 	 * 获取：身份证
 	 */
-	public String getId_Card() {
-		return id_card;
+	public String getId_card() {
+		return idCard;
 	}
 	/**
 	 * 设置：资格证书
 	 */
 	public void setapplication_certificate(String application_certificate) {
-		this.application_certificate = application_certificate;
+		this.applicationCertificate = application_certificate;
 	}
 	/**
 	 * 获取：资格证书
 	 */
 	public String getapplication_certificate() {
-		return application_certificate;
+		return applicationCertificate;
 	}
 	/**
 	 * 设置：申请资料
@@ -207,50 +216,50 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 设置：申请原因
 	 */
-	public void setApplication_Reason(String application_reason) {
-		this.application_reason = application_reason;
+	public void setApplication_reason(String application_reason) {
+		this.applicationReason = application_reason;
 	}
 	/**
 	 * 获取：申请原因
 	 */
-	public String getApplication_Reason() {
-		return application_reason;
+	public String getApplication_reason() {
+		return applicationReason;
 	}
 	/**
 	 * 设置：申请时间
 	 */
-	public void setApplication_Time(Date application_time) {
-		this.application_time = application_time;
+	public void setApplication_time(Date application_time) {
+		this.applicationTime = application_time;
 	}
 	/**
 	 * 获取：申请时间
 	 */
-	public Date getApplication_Time() {
-		return application_time;
+	public Date getApplication_time() {
+		return applicationTime;
 	}
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_Reviewed(String is_reviewed) {
-		this.is_reviewed = is_reviewed;
+	public void setIs_reviewed(String is_reviewed) {
+		this.isReviewed = is_reviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_Reviewed() {
-		return is_reviewed;
+	public String getIs_reviewed() {
+		return isReviewed;
 	}
 	/**
 	 * 设置：审核回复
 	 */
-	public void setReview_Comment(String review_comment) {
-		this.review_comment = review_comment;
+	public void setReview_comment(String review_comment) {
+		this.reviewComment = review_comment;
 	}
 	/**
 	 * 获取：审核回复
 	 */
-	public String getReview_Comment() {
-		return review_comment;
+	public String getReview_comment() {
+		return reviewComment;
 	}
 
 }

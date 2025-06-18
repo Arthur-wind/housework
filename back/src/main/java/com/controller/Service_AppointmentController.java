@@ -61,10 +61,10 @@ public class Service_AppointmentController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("employer")) {
-			service_appointment.setEmployer_Account((String)request.getSession().getAttribute("username"));
+			service_appointment.setEmployer_account((String)request.getSession().getAttribute("username"));
 		}
 		if(tableName.equals("employee")) {
-			service_appointment.setEmployee_Account((String)request.getSession().getAttribute("username"));
+			service_appointment.setEmployee_account((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<Service_AppointmentEntity>();
 		PageUtils page = service_appointmentService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_appointment), params), params));

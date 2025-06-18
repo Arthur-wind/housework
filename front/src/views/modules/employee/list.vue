@@ -5,14 +5,14 @@
       <el-form :inline="true" :model="searchForm" class="form-content">
         <el-row  :gutter="20" class="slt" :style="{justifyContent:contents.searchBoxPosition=='1'?'flex-start':contents.searchBoxPosition=='2'?'center':'flex-end'}">
                 <el-form-item :label="contents.inputTitle == 1 ? '雇员账号' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employee_account" placeholder="雇员账号" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employee_account" placeholder="雇员账号" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employee_account" placeholder="雇员账号" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employeeAccount" placeholder="雇员账号" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employeeAccount" placeholder="雇员账号" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employeeAccount" placeholder="雇员账号" clearable></el-input>
                 </el-form-item>
                 <el-form-item :label="contents.inputTitle == 1 ? '雇员姓名' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employee_name" placeholder="雇员姓名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employee_name" placeholder="雇员姓名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employee_name" placeholder="雇员姓名" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employeeName" placeholder="雇员姓名" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employeeName" placeholder="雇员姓名" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employeeName" placeholder="雇员姓名" clearable></el-input>
                 </el-form-item>
           <el-form-item>
             <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'查询':'' }}</el-button>
@@ -86,6 +86,8 @@
             <el-table-column label="索引" :align="contents.tableAlign"  v-if="contents.tableIndex" type="index" width="50" />
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employee_account"
+
+            
                    :header-align="contents.tableAlign"
 		    label="雇员账号">
 		     <template slot-scope="scope">
@@ -512,11 +514,11 @@ contents: {
         limit: this.pageSize,
         sort: 'id',
       }
-          if(this.searchForm.employee_account!='' && this.searchForm.employee_account!=undefined){
-            params['employee_account'] = '%' + this.searchForm.employee_account + '%'
+          if(this.searchForm.employeeAccount!='' && this.searchForm.employeeAccount!=undefined){
+            params['employeeAccount'] = '%' + this.searchForm.employeeAccount + '%'
           }
-          if(this.searchForm.employee_name!='' && this.searchForm.employee_name!=undefined){
-            params['employee_name'] = '%' + this.searchForm.employee_name + '%'
+          if(this.searchForm.employeeName!='' && this.searchForm.employeeName!=undefined){
+            params['employeeName'] = '%' + this.searchForm.employeeName + '%'
           }
       this.$http({
         url: "employee/page",

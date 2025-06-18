@@ -61,10 +61,10 @@ public class Employer_evaluationController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("employer")) {
-			employer_evaluation.setEmployer_Account((String)request.getSession().getAttribute("username"));
+			employer_evaluation.setEmployer_account((String)request.getSession().getAttribute("username"));
 		}
 		if(tableName.equals("employee")) {
-			employer_evaluation.setEmployee_Account((String)request.getSession().getAttribute("username"));
+			employer_evaluation.setEmployee_account((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<Employer_evaluationEntity> ew = new EntityWrapper<Employer_evaluationEntity>();
 		PageUtils page = employer_evaluationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer_evaluation), params), params));

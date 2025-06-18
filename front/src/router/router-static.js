@@ -26,7 +26,6 @@ import center from '@/views/center'
     import employer from '@/views/modules/employer/list'
     import employee from '@/views/modules/employee/list'
     import electronic_signature from '@/views/modules/electronic_signature/list'
-    import config from '@/views/modules/config/list'
     import service_project_comment from '@/views/modules/service_project_comment/list'
 
 
@@ -131,11 +130,6 @@ const routes = [{
 	path: '/electronic_signature',
         name: '电子签名',
         component: electronic_signature
-      }
-      ,{
-	path: '/config',
-        name: '轮播图管理',
-        component: config
       }
       ,{
 	path: '/service_project_comment',

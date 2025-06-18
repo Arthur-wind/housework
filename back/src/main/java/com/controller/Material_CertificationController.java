@@ -61,7 +61,7 @@ public class Material_CertificationController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("employee")) {
-			material_certification.setEmployee_Account((String)request.getSession().getAttribute("username"));
+			material_certification.setEmployee_account((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<Material_CertificationEntity> ew = new EntityWrapper<Material_CertificationEntity>();
 		PageUtils page = material_certificationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, material_certification), params), params));

@@ -5,18 +5,18 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.Employer_evaluationEntity" id="employer_evaluationMap">
-        <result property="project_name" column="project_name"/>
-        <result property="service_evaluation" column="service_evaluation"/>
-        <result property="project_evaluation" column="project_evaluation"/>
-        <result property="satisfaction_level" column="satisfaction_level"/>
-        <result property="appointment_time" column="appointment_time"/>
+        <result property="projectName" column="project_name"/>
+        <result property="serviceEvaluation" column="service_evaluation"/>
+        <result property="projectEvaluation" column="project_evaluation"/>
+        <result property="satisfactionLevel" column="satisfaction_level"/>
+        <result property="appointmentTime" column="appointment_time"/>
         <result property="comments" column="comments"/>
-        <result property="employer_account" column="employer_account"/>
-        <result property="employer_name" column="employer_name"/>
+        <result property="employerAccount" column="employer_account"/>
+        <result property="employerName" column="employer_name"/>
         <result property="phone" column="phone"/>
-        <result property="employee_account" column="employee_account"/>
-        <result property="employee_name" column="employee_name"/>
-        <result property="contact_phone" column="contact_phone"/>
+        <result property="employeeAccount" column="employee_account"/>
+        <result property="employeeName" column="employee_name"/>
+        <result property="contactPhone" column="contact_phone"/>
     </resultMap>
 
 	<select id="selectListVO"

@@ -108,8 +108,8 @@ public class Requirement_InfoController {
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Requirement_InfoEntity requirement_info = requirement_infoService.selectById(id);
-		requirement_info.setClick_Count(requirement_info.getClick_Count()+1);
-		requirement_info.setLast_Click_Time(new Date());
+		requirement_info.setClick_count(requirement_info.getClick_count()+1);
+		requirement_info.setLast_Click_time(new Date());
 		requirement_infoService.updateById(requirement_info);
         return R.ok().put("data", requirement_info);
     }
@@ -121,8 +121,8 @@ public class Requirement_InfoController {
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
         Requirement_InfoEntity requirement_info = requirement_infoService.selectById(id);
-		requirement_info.setClick_Count(requirement_info.getClick_Count()+1);
-		requirement_info.setLast_Click_Time(new Date());
+		requirement_info.setClick_count(requirement_info.getClick_count()+1);
+		requirement_info.setLast_Click_time(new Date());
 		requirement_infoService.updateById(requirement_info);
         return R.ok().put("data", requirement_info);
     }

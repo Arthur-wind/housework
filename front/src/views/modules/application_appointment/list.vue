@@ -215,7 +215,7 @@
                  :header-align="contents.tableAlign"
                   label="审核状态">
                   <template slot-scope="scope">
-                    <span style="margin-right:10px">{{scope.row.is_reviewed=='是'?'通过':'未通过'}}</span>
+                    <span style="margin-right:10px">{{scope.row.is_reviewed=='是'?'未通过':'通过'}}</span>
                   </template>
               </el-table-column>
               <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign" 

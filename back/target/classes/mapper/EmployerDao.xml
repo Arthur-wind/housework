@@ -5,9 +5,9 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.EmployerEntity" id="employerMap">
-        <result property="employer_account" column="employer_account"/>
-        <result property="password" column="password"/>
-        <result property="employer_name" column="employer_name"/>
+		<result property="employerAccount" column="employer_account"/>
+		<result property="password" column="password"/>
+		<result property="employerName" column="employer_name"/>
         <result property="age" column="age"/>
         <result property="gender" column="gender"/>
         <result property="phone" column="phone"/>

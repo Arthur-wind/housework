@@ -54,8 +54,9 @@ public class project_typeEntity<T> implements Serializable {
 	/**
 	 * 项目类型
 	 */
-					
-	private String project_type;
+
+	@TableId("project_type")
+	private String projectType;
 	
 	
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
@@ -80,13 +81,13 @@ public class project_typeEntity<T> implements Serializable {
 	 * 设置：项目类型
 	 */
 	public void setproject_type(String project_type) {
-		this.project_type = project_type;
+		this.projectType = project_type;
 	}
 	/**
 	 * 获取：项目类型
 	 */
 	public String getproject_type() {
-		return project_type;
+		return projectType;
 	}
 
 }

@@ -65,7 +65,7 @@ public class Service_ProjectController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("employee")) {
-			service_project.setEmployee_Account((String)request.getSession().getAttribute("username"));
+			service_project.setEmployee_account((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<Service_ProjectEntity> ew = new EntityWrapper<Service_ProjectEntity>();
 		PageUtils page = service_projectService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_project), params), params));
@@ -112,8 +112,8 @@ public class Service_ProjectController {
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Service_ProjectEntity service_project = service_projectService.selectById(id);
-		service_project.setClick_Count(service_project.getClick_Count()+1);
-		service_project.setLast_Click_Time(new Date());
+		service_project.setClick_count(service_project.getClick_count()+1);
+		service_project.setLast_Click_time(new Date());
 		service_projectService.updateById(service_project);
         return R.ok().put("data", service_project);
     }
@@ -125,8 +125,8 @@ public class Service_ProjectController {
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
         Service_ProjectEntity service_project = service_projectService.selectById(id);
-		service_project.setClick_Count(service_project.getClick_Count()+1);
-		service_project.setLast_Click_Time(new Date());
+		service_project.setClick_count(service_project.getClick_count()+1);
+		service_project.setLast_Click_time(new Date());
 		service_projectService.updateById(service_project);
         return R.ok().put("data", service_project);
     }
@@ -140,9 +140,9 @@ public class Service_ProjectController {
     public R vote(@PathVariable("id") String id,String type){
         Service_ProjectEntity service_project = service_projectService.selectById(id);
         if(type.equals("1")) {
-        	service_project.setThumbs_Up(service_project.getThumbs_Up()+1);
+        	service_project.setThumbs_up(service_project.getThumbs_up()+1);
         } else {
-        	service_project.setThumbs_Down(service_project.getThumbs_Down()+1);
+        	service_project.setThumbs_down(service_project.getThumbs_down()+1);
         }
         service_projectService.updateById(service_project);
         return R.ok("投票成功");

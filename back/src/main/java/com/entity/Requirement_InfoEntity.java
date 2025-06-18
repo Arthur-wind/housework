@@ -60,8 +60,9 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 项目名称
 	 */
-					
-	private String project_name;
+
+	@TableId("project_name")
+	private String projectName;
 	
 	/**
 	 * 薪资
@@ -72,14 +73,16 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 工作时间
 	 */
-					
-	private String working_hours;
+
+	@TableField("working_hours")
+	private String workingHours;
 	
 	/**
 	 * 工作地点
 	 */
-					
-	private String work_location;
+
+	@TableField("work_location")
+	private String workLocation;
 	
 	/**
 	 * 要求
@@ -90,34 +93,39 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 详细说明
 	 */
-					
-	private String detailed_description;
+
+	@TableField("detailed_description")
+	private String detailedDescription;
 	
 	/**
 	 * 发布时间
 	 */
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
-	@DateTimeFormat 		
-	private Date publish_time;
+	@DateTimeFormat
+	@TableId("publish_time")
+	private Date publishTime;
 	
 	/**
 	 * 封面
 	 */
-					
-	private String cover_image;
+
+	@TableId("cover_image")
+	private String coverImage;
 	
 	/**
 	 * 账号
 	 */
-					
-	private String employer_account;
+
+	@TableId("employer_account")
+	private String employerAccount;
 	
 	/**
 	 * 姓名
 	 */
-					
-	private String employer_name;
+
+	@TableId("employer_name")
+	private String employerName;
 	
 	/**
 	 * 手机
@@ -130,14 +138,16 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	 */
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
-	private Date last_click_time;
+	@DateTimeFormat
+	@TableField("last_click_time")
+	private Date last_clickTime;
 	
 	/**
 	 * 点击次数
 	 */
-					
-	private Integer click_count;
+
+	@TableField("click_count")
+	private Integer clickCount;
 	
 	
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
@@ -173,14 +183,14 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_Name(String project_name) {
-		this.project_name = project_name;
+	public void setProject_name(String project_name) {
+		this.projectName = project_name;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_Name() {
-		return project_name;
+	public String getProject_name() {
+		return projectName;
 	}
 	/**
 	 * 设置：薪资
@@ -197,26 +207,26 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 设置：工作时间
 	 */
-	public void setWorking_Hours(String working_hours) {
-		this.working_hours = working_hours;
+	public void setWorking_hours(String working_hours) {
+		this.workingHours = working_hours;
 	}
 	/**
 	 * 获取：工作时间
 	 */
-	public String getWorking_Hours() {
-		return working_hours;
+	public String getWorking_hours() {
+		return workingHours;
 	}
 	/**
 	 * 设置：工作地点
 	 */
-	public void setWork_Location(String work_location) {
-		this.work_location = work_location;
+	public void setWork_location(String work_location) {
+		this.workLocation = work_location;
 	}
 	/**
 	 * 获取：工作地点
 	 */
-	public String getWork_Location() {
-		return work_location;
+	public String getWork_location() {
+		return workLocation;
 	}
 	/**
 	 * 设置：要求
@@ -233,62 +243,62 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 设置：详细说明
 	 */
-	public void setDetailed_Description(String detailed_description) {
-		this.detailed_description = detailed_description;
+	public void setDetailed_description(String detailed_description) {
+		this.detailedDescription = detailed_description;
 	}
 	/**
 	 * 获取：详细说明
 	 */
-	public String getDetailed_Description() {
-		return detailed_description;
+	public String getDetailed_description() {
+		return detailedDescription;
 	}
 	/**
 	 * 设置：发布时间
 	 */
-	public void setPublish_Time(Date publish_time) {
-		this.publish_time = publish_time;
+	public void setPublish_time(Date publish_time) {
+		this.publishTime = publish_time;
 	}
 	/**
 	 * 获取：发布时间
 	 */
-	public Date getPublish_Time() {
-		return publish_time;
+	public Date getPublish_time() {
+		return publishTime;
 	}
 	/**
 	 * 设置：封面
 	 */
-	public void setCover_Image(String cover_image) {
-		this.cover_image = cover_image;
+	public void setCover_image(String cover_image) {
+		this.coverImage = cover_image;
 	}
 	/**
 	 * 获取：封面
 	 */
-	public String getCover_Image() {
-		return cover_image;
+	public String getCover_image() {
+		return coverImage;
 	}
 	/**
 	 * 设置：账号
 	 */
 	public void setEmployer_Account(String employer_account) {
-		this.employer_account = employer_account;
+		this.employerAccount = employer_account;
 	}
 	/**
 	 * 获取：账号
 	 */
-	public String getEmployer_Account() {
-		return employer_account;
+	public String getEmployer_account() {
+		return employerAccount;
 	}
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_Name(String employer_name) {
-		this.employer_name = employer_name;
+	public void setEmployer_name(String employer_name) {
+		this.employerName = employer_name;
 	}
 	/**
 	 * 获取：姓名
 	 */
-	public String getEmployer_Name() {
-		return employer_name;
+	public String getEmployer_name() {
+		return employerName;
 	}
 	/**
 	 * 设置：手机
@@ -305,26 +315,26 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 设置：最近点击时间
 	 */
-	public void setLast_Click_Time(Date last_click_time) {
-		this.last_click_time = last_click_time;
+	public void setLast_Click_time(Date last_click_time) {
+		this.last_clickTime = last_click_time;
 	}
 	/**
 	 * 获取：最近点击时间
 	 */
-	public Date getLast_Click_Time() {
-		return last_click_time;
+	public Date getLast_Click_time() {
+		return last_clickTime;
 	}
 	/**
 	 * 设置：点击次数
 	 */
-	public void setClick_Count(Integer click_count) {
-		this.click_count = click_count;
+	public void setClick_count(Integer click_count) {
+		this.clickCount = click_count;
 	}
 	/**
 	 * 获取：点击次数
 	 */
-	public Integer getClick_Count() {
-		return click_count;
+	public Integer getClick_count() {
+		return clickCount;
 	}
 
 }

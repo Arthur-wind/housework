@@ -5,7 +5,7 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.project_typeEntity" id="project_typeMap">
-        <result property="project_type" column="project_type"/>
+        <result property="projectType" column="project_type"/>
     </resultMap>
 
 	<select id="selectListVO"

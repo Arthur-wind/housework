@@ -5,16 +5,16 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.Material_CertificationEntity" id="material_certificationMap">
-        <result property="employee_account" column="employee_account"/>
-        <result property="employee_name" column="employee_name"/>
-        <result property="contact_phone" column="contact_phone"/>
-        <result property="id_card" column="id_card"/>
-        <result property="application_certificate" column="application_certificate"/>
+        <result property="employeeAccount" column="employee_account"/>
+        <result property="employeeName" column="employee_name"/>
+        <result property="contactPhone" column="contact_phone"/>
+        <result property="idCard" column="id_card"/>
+        <result property="applicationCertificate" column="application_certificate"/>
         <result property="shenqingziliao" column="shenqingziliao"/>
-        <result property="application_reason" column="application_reason"/>
-        <result property="application_time" column="application_time"/>
-        <result property="is_reviewed" column="is_reviewed"/>
-        <result property="review_comment" column="review_comment"/>
+        <result property="applicationReason" column="application_reason"/>
+        <result property="applicationTime" column="application_time"/>
+        <result property="isReviewed" column="is_reviewed"/>
+        <result property="reviewComment" column="review_comment"/>
     </resultMap>
 
 	<select id="selectListVO"
