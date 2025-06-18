@@ -4,7 +4,7 @@
       <div class="login-panel">
         <el-form :model="rulesForm" class="login-form" label-position="left" :label-width="'0px'">
           <div class="title-container">
-            <h3 class="title">家政服务平台的设计与实现登录</h3>
+            <h3 class="title">家政服务平台的设计与实现登录111</h3>
           </div>
           <el-form-item class="input-item">
           <!-- <span class="svg-container">
@@ -35,7 +35,7 @@
         </el-form>
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 <script>
 import menu from "@/utils/menu";

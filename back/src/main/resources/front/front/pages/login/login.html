@@ -281,6 +281,9 @@
                     });
                     // 登录凭证
                     localStorage.setItem('Token', res.token);
+                    console.log("login中jwttoken是"+res.jwtToken);
+                    localStorage.setItem('jwtToken', res.jwtToken);
+
                     var roleName = "";
                     if(typeof(jquery('#role:checked').attr('title')) == "undefined") {
                     	roleName = vue.roles[0].roleName;
@@ -288,7 +291,11 @@
                     	roleName = jquery('#role:checked').attr('title');
                     }
                     localStorage.setItem('role', roleName);
-                    // 当前登录用户角色
+                    localStorage.setItem('tablename', data.tablename);
+                    localStorage.setItem('username', data.username);
+                    console.log("login中role数组是"+roleName);
+                    console.log("login中role元素是"+data.role);
+
                     localStorage.setItem('userTable', data.role);
                     localStorage.setItem('sessionTable', data.role);
                     // 用户名称
@@ -296,9 +303,9 @@
                     http.request(data.role + '/session', 'get', {}, function(res) {
                         // 用户id
                         localStorage.setItem('userid', res.data.id);
-		    	if(res.data.vip) {
-				localStorage.setItem('vip', res.data.vip);
-		    	}
+                        if(res.data.vip) {
+                            localStorage.setItem('vip', res.data.vip);
+                        }
                         // 路径访问设置
                         window.location.href = '../../index.html';
                     })

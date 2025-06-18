@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import com.entity.TokenEntity;
 import com.utils.ValidatorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,7 @@ public class EmployeeController {
 		if(user==null || !user.getPassword().equals(password)) {
 			return R.error("账号或密码不正确");
 		}
-		
+
 		String token = tokenService.generateToken(user.getId(), username,"employee",  "雇员" );
 		return R.ok().put("token", token);
 	}

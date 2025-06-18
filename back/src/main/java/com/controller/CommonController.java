@@ -46,7 +46,7 @@ public class CommonController{
     
     @Autowired
     private ConfigService configService;    
-	/**
+	/*
 	 * 获取table表中的column列表(联动接口)
 	 * @param table
 	 * @param column
@@ -68,7 +68,7 @@ public class CommonController{
 		return R.ok().put("data", data);
 	}
 	
-	/**
+	/*
 	 * 根据table中的column获取单条记录
 	 * @param table
 	 * @param column
@@ -85,7 +85,7 @@ public class CommonController{
 		return R.ok().put("data", result);
 	}
 	
-	/**
+	/*
 	 * 修改table表的is_reviewed状态
 	 * @param table
 	 * @param map

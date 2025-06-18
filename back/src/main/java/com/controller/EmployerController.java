@@ -11,7 +11,8 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-import com.utils.ValidatorUtils;
+import com.entity.TokenEntity;
+import com.utils.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -64,9 +65,20 @@ public class EmployerController {
 		if(user==null || !user.getPassword().equals(password)) {
 			return R.error("账号或密码不正确");
 		}
-		
+		System.out.println("用户名：" + username + " 密码：" + password);
+
 		String token = tokenService.generateToken(user.getId(), username,"employer",  "雇主" );
-		return R.ok().put("token", token);
+		// 3. 使用 JWT 生成可携带用户信息的 token（用于传递给后台系统）
+		Map<String, Object> claims = new HashMap<>();
+		claims.put("userId", user.getId());
+		claims.put("userName", username);
+		claims.put("role", "employer");
+		claims.put("tableName", "employer");
+		String jwtToken = JwtUtils.generateToken(claims, user.getEmployer_Name());
+
+		return R.ok()
+				.put("token", token)       // 旧逻辑：存入数据库的 token
+				.put("jwtToken", jwtToken);  // 新逻辑：用于页面间跳转的 JWT token
 	}
 	
 	/**
@@ -194,8 +206,9 @@ public class EmployerController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody EmployerEntity employer, HttpServletRequest request){
-    	employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(employer);
+		employer.setId(new Date().getTime() + (long) (Math.floor(Math.random() * 1000)));
+
+		//ValidatorUtils.validateEntity(employer);
     	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_Account()));
 		if(user!=null) {
 			return R.error("用户已存在");
@@ -210,8 +223,9 @@ public class EmployerController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody EmployerEntity employer, HttpServletRequest request){
-    	employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(employer);
+		employer.setId(new Date().getTime() + (long) Math.floor(Math.random() * 1000));
+
+		//ValidatorUtils.validateEntity(employer);
     	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployer_Account()));
 		if(user!=null) {
 			return R.error("用户已存在");
