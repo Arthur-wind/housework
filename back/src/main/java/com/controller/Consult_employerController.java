@@ -61,10 +61,10 @@ public class Consult_employerController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("employee")) {
-			consult_employer.setEmployee_Account((String)request.getSession().getAttribute("username"));
+			consult_employer.setEmployee_account((String)request.getSession().getAttribute("username"));
 		}
 		if(tableName.equals("employer")) {
-			consult_employer.setEmployer_Account((String)request.getSession().getAttribute("username"));
+			consult_employer.setEmployer_account((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<Consult_employerEntity> ew = new EntityWrapper<Consult_employerEntity>();
 		PageUtils page = consult_employerService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, consult_employer), params), params));

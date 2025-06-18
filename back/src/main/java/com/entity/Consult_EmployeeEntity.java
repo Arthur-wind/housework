@@ -75,44 +75,51 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	 */
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
-	private Date consult_time;
+	@DateTimeFormat
+	@TableId("consult_time")
+	private Date consultTime;
 	
 	/**
 	 * 雇员账号
 	 */
-					
-	private String employee_account;
+
+	@TableField("employee_account")
+	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
-					
-	private String employee_name;
+
+	@TableField("employee_name")
+	private String employeeName;
 	
 	/**
 	 * 账号
 	 */
-					
-	private String employer_account;
+
+	@TableId("employer_account")
+	private String employerAccount;
 	
 	/**
 	 * 姓名
 	 */
-					
-	private String employer_name;
+
+	@TableId("employer_name")
+	private String employerName;
 	
 	/**
 	 * 是否审核
 	 */
-					
-	private String is_reviewed;
+
+	@TableId("is_reviewed")
+	private String isReviewed;
 	
 	/**
 	 * 审核回复
 	 */
-					
-	private String review_comment;
+
+	@TableField("review_comment")
+	private String reviewComment;
 	
 	
 
@@ -158,86 +165,86 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	/**
 	 * 设置：咨询时间
 	 */
-	public void setConsult_Time(Date consult_time) {
-		this.consult_time = consult_time;
+	public void setConsult_time(Date consult_time) {
+		this.consultTime = consult_time;
 	}
 	/**
 	 * 获取：咨询时间
 	 */
-	public Date getConsult_Time() {
-		return consult_time;
+	public Date getConsult_time() {
+		return consultTime;
 	}
 	/**
 	 * 设置：雇员账号
 	 */
-	public void setEmployee_Account(String employee_account) {
-		this.employee_account = employee_account;
+	public void setEmployee_account(String employee_account) {
+		this.employeeAccount = employee_account;
 	}
 	/**
 	 * 获取：雇员账号
 	 */
-	public String getEmployee_Account() {
-		return employee_account;
+	public String getEmployee_account() {
+		return employeeAccount;
 	}
 	/**
 	 * 设置：雇员姓名
 	 */
-	public void setEmployee_Name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployee_name(String employee_name) {
+		this.employeeName = employee_name;
 	}
 	/**
 	 * 获取：雇员姓名
 	 */
-	public String getEmployee_Name() {
-		return employee_name;
+	public String getEmployee_name() {
+		return employeeName;
 	}
 	/**
 	 * 设置：账号
 	 */
-	public void setEmployer_Account(String employer_account) {
-		this.employer_account = employer_account;
+	public void setEmployer_account(String employer_account) {
+		this.employerAccount = employer_account;
 	}
 	/**
 	 * 获取：账号
 	 */
-	public String getEmployer_Account() {
-		return employer_account;
+	public String getEmployer_account() {
+		return employerAccount;
 	}
 	/**
 	 * 设置：姓名
 	 */
-	public void setEmployer_Name(String employer_name) {
-		this.employer_name = employer_name;
+	public void setEmployer_name(String employer_name) {
+		this.employerName = employer_name;
 	}
 	/**
 	 * 获取：姓名
 	 */
-	public String getEmployer_Name() {
-		return employer_name;
+	public String getEmployer_name() {
+		return employerName;
 	}
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_Reviewed(String is_reviewed) {
-		this.is_reviewed = is_reviewed;
+	public void setIs_reviewed(String is_reviewed) {
+		this.isReviewed = is_reviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_Reviewed() {
-		return is_reviewed;
+	public String getIs_reviewed() {
+		return isReviewed;
 	}
 	/**
 	 * 设置：审核回复
 	 */
-	public void setReview_Comment(String review_comment) {
-		this.review_comment = review_comment;
+	public void setReview_comment(String review_comment) {
+		this.reviewComment = review_comment;
 	}
 	/**
 	 * 获取：审核回复
 	 */
-	public String getReview_Comment() {
-		return review_comment;
+	public String getReview_comment() {
+		return reviewComment;
 	}
 
 }

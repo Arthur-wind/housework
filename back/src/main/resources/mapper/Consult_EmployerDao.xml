@@ -7,13 +7,13 @@
     <resultMap type="com.entity.Consult_employerEntity" id="consult_employerMap">
         <result property="title" column="title"/>
         <result property="question" column="question"/>
-        <result property="consult_time" column="consult_time"/>
-        <result property="employee_account" column="employee_account"/>
-        <result property="employee_name" column="employee_name"/>
-        <result property="employer_account" column="employer_account"/>
-        <result property="employer_name" column="employer_name"/>
-        <result property="is_reviewed" column="is_reviewed"/>
-        <result property="review_comment" column="review_comment"/>
+        <result property="consultTime" column="consult_time"/>
+        <result property="employeeAccount" column="employee_account"/>
+        <result property="employeeName" column="employee_name"/>
+        <result property="employerAccount" column="employer_account"/>
+        <result property="employerName" column="employer_name"/>
+        <result property="isReviewed" column="is_reviewed"/>
+        <result property="reviewComment" column="review_comment"/>
     </resultMap>
 
 	<select id="selectListVO"
