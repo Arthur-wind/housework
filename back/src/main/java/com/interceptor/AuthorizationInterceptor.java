@@ -42,7 +42,15 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 	// 跨域时会首先发送一个OPTIONS请求，这里我们给OPTIONS请求直接返回正常状态
         System.out.println("==> 进入拦截器方法，Method = " + request.getMethod());
+
+        if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
+            // 设置响应头，防止预检失败
+            response.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+            response.setHeader("Access-Control-Allow-Methods", "*");
             response.setHeader("Access-Control-Allow-Headers", "*");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setStatus(HttpServletResponse.SC_OK);
+            return false; // ⚠️ 注意要 return false，直接结束处理链，不让它继续走
         }
         
         IgnoreAuth annotation;
