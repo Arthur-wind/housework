@@ -44,7 +44,7 @@ import java.io.IOException;
  * @date 2022-04-18 19:23:55
  */
 @RestController
-@RequestMapping("/service_project_comment")
+@RequestMapping(value = {"/service_project_comment","/discussservice_project"})
 public class Service_Project_CommentController {
     @Autowired
     private Service_Project_CommentService service_project_commentService;
@@ -204,12 +204,5 @@ public class Service_Project_CommentController {
 		int count = service_project_commentService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
-
-
-
-
-
-
 
 }
