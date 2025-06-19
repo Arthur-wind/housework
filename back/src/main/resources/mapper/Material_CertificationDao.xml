@@ -10,7 +10,7 @@
         <result property="contactPhone" column="contact_phone"/>
         <result property="idCard" column="id_card"/>
         <result property="applicationCertificate" column="application_certificate"/>
-        <result property="shenqingziliao" column="shenqingziliao"/>
+        <result property="applicationMaterials" column="application_materials"/>
         <result property="applicationReason" column="application_reason"/>
         <result property="applicationTime" column="application_time"/>
         <result property="isReviewed" column="is_reviewed"/>

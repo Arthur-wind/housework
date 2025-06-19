@@ -118,28 +118,32 @@
                        {{scope.row.contact_phone}}
                      </template>
                 </el-table-column>
-                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="id_card"
-                   :header-align="contents.tableAlign"
-                    width="200"
-                    label="身份证">
+                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  
+                      prop="id_card_image"
+                      :header-align="contents.tableAlign"
+                      width="200"
+                      label="身份证">
                     <template slot-scope="scope">
-                      <div v-if="scope.row.id_card">
-                        <img :src="$base.url+scope.row.id_card.split(',')[0]" width="100" height="100">
+                      <div v-if="scope.row.id_card_image">
+                        <img :src="$base.url + scope.row.id_card_image.split(',')[0]" width="100" height="100" />
                       </div>
                       <div v-else>无图片</div>
                     </template>
                   </el-table-column>
-                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="application_certificate"
-                   :header-align="contents.tableAlign"
-                    width="200"
-                    label="资格证书">
+
+                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  
+                      prop="qualification_certificate"
+                      :header-align="contents.tableAlign"
+                      width="200"
+                      label="资格证书">
                     <template slot-scope="scope">
-                      <div v-if="scope.row.application_certificate">
-                        <img :src="$base.url+scope.row.application_certificate.split(',')[0]" width="100" height="100">
+                      <div v-if="scope.row.qualification_certificate">
+                        <img :src="$base.url + scope.row.qualification_certificate.split(',')[0]" width="100" height="100" />
                       </div>
                       <div v-else>无图片</div>
                     </template>
                   </el-table-column>
+
                   <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="qualification_certificate"
                    :header-align="contents.tableAlign"
                     label="申请资料">

@@ -76,22 +76,23 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 身份证
 	 */
-    @TableField("id_card")
-    @JsonProperty("id_card")
-	private String idCard;
+	@TableField("id_card_image")
+	@JsonProperty("id_card_image")
+	private String idCardImage;
 	
 	/**
 	 * 资格证书
 	 */
-    @TableField("application_certificate")
-    @JsonProperty("application_certificate")
-	private String applicationCertificate;
+// 资格证书图片
+	@TableField("qualification_certificate")
+	@JsonProperty("qualification_certificate")
+	private String qualificationCertificate;
 	
 	/**
 	 * 申请资料
 	 */
-    @TableField("shenqingziliao")
-	private String shenqingziliao;
+    @TableField("application_materials")
+	private String applicationMaterials;
 	
 	/**
 	 * 申请原因
@@ -182,38 +183,33 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 设置：身份证
 	 */
-	public void setId_card(String id_card) {
-		this.idCard = id_card;
+	public String getIdCardImage() {
+		return idCardImage;
 	}
-	/**
-	 * 获取：身份证
-	 */
-	public String getId_card() {
-		return idCard;
+	public void setIdCardImage(String idCardImage) {
+		this.idCardImage = idCardImage;
 	}
 	/**
 	 * 设置：资格证书
 	 */
-	public void setapplication_certificate(String application_certificate) {
-		this.applicationCertificate = application_certificate;
+
+	public String getQualificationCertificate() {
+		return qualificationCertificate;
 	}
-	/**
-	 * 获取：资格证书
-	 */
-	public String getapplication_certificate() {
-		return applicationCertificate;
+	public void setQualificationCertificate(String qualificationCertificate) {
+		this.qualificationCertificate = qualificationCertificate;
 	}
 	/**
 	 * 设置：申请资料
 	 */
-	public void setShenqingziliao(String shenqingziliao) {
-		this.shenqingziliao = shenqingziliao;
+	public void setapplicationMaterials(String shenqingziliao) {
+		this.applicationMaterials = shenqingziliao;
 	}
 	/**
 	 * 获取：申请资料
 	 */
-	public String getShenqingziliao() {
-		return shenqingziliao;
+	public String getapplicationMaterials() {
+		return applicationMaterials;
 	}
 	/**
 	 * 设置：申请原因
