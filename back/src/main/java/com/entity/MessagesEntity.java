@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.beanutils.BeanUtils;
@@ -72,8 +73,9 @@ public class MessagesEntity<T> implements Serializable {
 	/**
 	 * 留言图片
 	 */
-					
-	private String content_picture;
+
+	@JsonProperty("content_picture")
+	private String contentPicture;
 	
 	/**
 	 * 回复内容
@@ -84,8 +86,9 @@ public class MessagesEntity<T> implements Serializable {
 	/**
 	 * 回复图片
 	 */
-					
-	private String reply_picture;
+
+	@JsonProperty("reply_picture")
+	private String replyPicture;
 	
 	
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
@@ -145,14 +148,14 @@ public class MessagesEntity<T> implements Serializable {
 	/**
 	 * 设置：留言图片
 	 */
-	public void setContent_Picture(String content_picture) {
-		this.content_picture = content_picture;
+	public void setContentPicture(String content_picture) {
+		this.contentPicture = content_picture;
 	}
 	/**
 	 * 获取：留言图片
 	 */
-	public String getContent_Picture() {
-		return content_picture;
+	public String getContentPicture() {
+		return contentPicture;
 	}
 	/**
 	 * 设置：回复内容
@@ -169,14 +172,14 @@ public class MessagesEntity<T> implements Serializable {
 	/**
 	 * 设置：回复图片
 	 */
-	public void setReply_Picture(String reply_picture) {
-		this.reply_picture = reply_picture;
+	public void setReplyPicture(String reply_picture) {
+		this.replyPicture = reply_picture;
 	}
 	/**
 	 * 获取：回复图片
 	 */
-	public String getReply_Picture() {
-		return reply_picture;
+	public String getReplyPicture() {
+		return replyPicture;
 	}
 
 }
