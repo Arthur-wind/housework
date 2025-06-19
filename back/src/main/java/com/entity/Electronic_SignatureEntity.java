@@ -78,7 +78,8 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 
 	@TableId("sign_date")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
-	@DateTimeFormat 		
+	@DateTimeFormat
+	@JsonProperty("sign_date")
 	private Date signDate;
 	
 	/**
@@ -187,13 +188,13 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	/**
 	 * 设置：签订日期
 	 */
-	public void setSign_date(Date sign_date) {
+	public void setSignDate(Date sign_date) {
 		this.signDate = sign_date;
 	}
 	/**
 	 * 获取：签订日期
 	 */
-	public Date getSign_date() {
+	public Date getSignDate() {
 		return signDate;
 	}
 	/**
