@@ -140,7 +140,7 @@
                       <div v-else>无图片</div>
                     </template>
                   </el-table-column>
-                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="shenqingziliao"
+                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="qualification_certificate"
                    :header-align="contents.tableAlign"
                     label="申请资料">
                     <template slot-scope="scope">
@@ -689,8 +689,24 @@ export default {
       });
     },
     // 下载
-    download(file){
-      window.open(`${file}`)
+    download(fileUrl) {
+      this.$http({
+        url: fileUrl,
+        method: 'get',
+        responseType: 'blob', // 关键
+        // 如果需要 token，可以加 headers
+        // headers: { Authorization: 'Bearer ' + token }
+      }).then(response => {
+        const blob = new Blob([response.data]);
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        // 自动获取文件名或自定义
+        link.download = fileUrl.split('/').pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(link.href);
+      });
     },
     // 删除
     deleteHandler(id) {

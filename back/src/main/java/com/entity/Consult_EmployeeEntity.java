@@ -56,7 +56,7 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	/**
 	 * 添加时间
 	 */
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	private Date addtime;
 	/**
@@ -75,7 +75,8 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	 * 咨询时间
 	 */
 				
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
+	@JsonProperty("consult_time")
 	@DateTimeFormat
 	@TableId("consult_time")
 	private Date consultTime;

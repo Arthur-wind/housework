@@ -76,9 +76,10 @@ public class Service_AppointmentEntity<T> implements Serializable {
 	 * 预约时间
 	 */
 				
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	@TableField("appointment_time")
+	@JsonProperty("appointment_time")
 	private Date appointmentTime;
 	
 	/**
@@ -154,7 +155,7 @@ public class Service_AppointmentEntity<T> implements Serializable {
 	private String paymentStatus;
 	
 	
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	private Date addtime;
 

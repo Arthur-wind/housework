@@ -105,6 +105,7 @@ public class Requirement_InfoEntity<T> implements Serializable {
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
+	@JsonProperty("publish_time")
 	@TableId("publish_time")
 	private Date publishTime;
 	
@@ -142,6 +143,7 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
 	@TableField("last_click_time")
+	@JsonProperty("last_click_time")
 	private Date last_clickTime;
 	
 	/**

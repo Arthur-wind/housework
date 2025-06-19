@@ -145,7 +145,7 @@ public class Service_ProjectEntity<T> implements Serializable {
 	 * 最近点击时间
 	 */
 				
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	@TableField("last_click_time")
 	private Date last_clickTime;
@@ -158,7 +158,7 @@ public class Service_ProjectEntity<T> implements Serializable {
 	private Integer clickCount;
 	
 	
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	private Date addtime;
 

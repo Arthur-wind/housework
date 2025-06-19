@@ -103,9 +103,10 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 申请时间
 	 */
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	@TableField("application_time")
+	@JsonProperty("application_time")
 	private Date applicationTime;
 	
 	/**
@@ -121,10 +122,11 @@ public class Material_CertificationEntity<T> implements Serializable {
     @TableField("review_comment")
     @JsonProperty("review_comment")
 	private String reviewComment;
-	
-	
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat
+
+
+	// 更完整的写法
+	@JsonFormat(timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")  // 加上pattern保持前后一致
 	private Date addtime;
 
 	public Date getAddtime() {
@@ -228,13 +230,13 @@ public class Material_CertificationEntity<T> implements Serializable {
 	/**
 	 * 设置：申请时间
 	 */
-	public void setApplication_time(Date application_time) {
+	public void setApplicationTime(Date application_time) {
 		this.applicationTime = application_time;
 	}
 	/**
 	 * 获取：申请时间
 	 */
-	public Date getApplication_time() {
+	public Date getApplicationTime() {
 		return applicationTime;
 	}
 	/**

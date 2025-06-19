@@ -77,7 +77,8 @@ public class Contract_SigningEntity<T> implements Serializable {
 				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@TableField("sign_date")
-	@DateTimeFormat 		
+	@DateTimeFormat
+	@JsonProperty("sign_date")
 	private Date signDate;
 	
 	/**
@@ -141,7 +142,7 @@ public class Contract_SigningEntity<T> implements Serializable {
 	private String review_comment;
 	
 	
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	private Date addtime;
 
