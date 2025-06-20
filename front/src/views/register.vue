@@ -4,7 +4,7 @@
       <div class="register-panel">
         <el-form ref="rgsForm" class="register-form" label-position="left" label-width="100px" :model="ruleForm">
           <div class="title-container">
-            <h3 class="title">家政服务平台注册</h3>
+            <h3 class="title">三元一次家政</h3>
           </div>
           
           <!-- 雇主注册表单 -->
