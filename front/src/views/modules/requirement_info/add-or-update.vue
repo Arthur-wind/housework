@@ -111,26 +111,26 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="账号" prop="employer_account">
+        <el-form-item class="input" v-if="type!='info'"  label="雇主账号" prop="employer_account">
           <el-input v-model="ruleForm.employer_account"
-              placeholder="账号" clearable  :readonly="ro.employer_account"></el-input>
+              placeholder="雇主账号" clearable  :readonly="ro.employer_account"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="账号" prop="employer_account">
+          <el-form-item class="input" label="雇主账号" prop="employer_account">
               <el-input v-model="ruleForm.employer_account"
-                placeholder="账号" readonly></el-input>
+                placeholder="雇主账号" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="姓名" prop="employer_name">
+        <el-form-item class="input" v-if="type!='info'"  label="雇主姓名" prop="employer_name">
           <el-input v-model="ruleForm.employer_name"
-              placeholder="姓名" clearable  :readonly="ro.employer_name"></el-input>
+              placeholder="雇主姓名" clearable  :readonly="ro.employer_name"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="姓名" prop="employer_name">
+          <el-form-item class="input" label="雇主姓名" prop="employer_name">
               <el-input v-model="ruleForm.employer_name"
-                placeholder="姓名" readonly></el-input>
+                placeholder="雇主姓名" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>

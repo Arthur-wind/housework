@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-import com.utils.ValidatorUtils;
+import com.utils.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,11 +29,7 @@ import com.entity.view.Service_AppointmentView;
 
 import com.service.Service_AppointmentService;
 import com.service.TokenService;
-import com.utils.PageUtils;
-import com.utils.R;
-import com.utils.MD5Util;
-import com.utils.MPUtil;
-import com.utils.CommonUtil;
+
 import java.io.IOException;
 
 /**
@@ -56,35 +52,109 @@ public class Service_AppointmentController {
     /**
      * 后端列表
      */
+//    @RequestMapping("/page")
+//    public R page(@RequestParam Map<String, Object> params,Service_AppointmentEntity service_appointment,
+//        HttpServletRequest request){
+//        // 手动处理映射
+//        if(params.containsKey("project_name")) {
+//            service_appointment.setProjectName((String)params.get("project_name"));
+//        }
+//        if(params.containsKey("employer_name")) {
+//            service_appointment.setEmployerName((String)params.get("employer_name"));
+//        }
+//        if(params.containsKey("employee_name")) {
+//            service_appointment.setEmployeeName((String)params.get("employee_name"));
+//        }
+//        if(params.containsKey("is_reviewed")) {
+//            service_appointment.setIsReviewed((String)params.get("is_reviewed"));
+//        }
+//        String tableName = request.getSession().getAttribute("tableName").toString();
+//        if(tableName.equals("employer")) {
+//            service_appointment.setEmployerAccount((String)request.getSession().getAttribute("username"));
+//        }
+//        if(tableName.equals("employee")) {
+//            service_appointment.setEmployeeAccount((String)request.getSession().getAttribute("username"));
+//        }
+//        EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<Service_AppointmentEntity>();
+//        PageUtils page = service_appointmentService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_appointment), params), params));
+//// 修复角色判断逻辑
+//        Object userType = request.getSession().getAttribute("tableName");
+//        if (userType != null) {
+////            String tableName = userType.toString();
+//            String username = request.getSession().getAttribute("username").toString();
+//
+////            EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<>();
+//
+//            // 雇主只能看到自己的预约
+//            if ("employer".equals(tableName)) {
+//                ew.eq("employer_account", username);
+//            }
+//            // 雇员只能看到自己的预约
+//            else if ("employee".equals(tableName)) {
+//                ew.eq("employee_account", username);
+//            }
+//            // 管理员不添加条件
+//
+//            // 添加其他查询条件
+////            PageUtils page = service_appointmentService.queryPage(params,
+////                    MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_appointment), params));
+//
+//            return R.ok().put("data", page);
+//        }
+//        return R.error("用户类型未识别");
+////        return R.ok().put("data", page);
+//    }
     @RequestMapping("/page")
-    public R page(@RequestParam Map<String, Object> params,Service_AppointmentEntity service_appointment,
-        HttpServletRequest request){
-        // 手动处理映射
-        if(params.containsKey("project_name")) {
-            service_appointment.setProjectName((String)params.get("project_name"));
-        }
-        if(params.containsKey("employer_name")) {
-            service_appointment.setEmployerName((String)params.get("employer_name"));
-        }
-        if(params.containsKey("employee_name")) {
-            service_appointment.setEmployeeName((String)params.get("employee_name"));
-        }
-        if(params.containsKey("is_reviewed")) {
-            service_appointment.setIsReviewed((String)params.get("is_reviewed"));
-        }
+    public R page(@RequestParam Map<String, Object> params, Service_AppointmentEntity service_appointment,
+                  HttpServletRequest request) {
+
+        // 1. 从 session 直接获取用户信息
+        Map<String, Object> userSession = (Map<String, Object>) request.getSession().getAttribute("data");
         String tableName = request.getSession().getAttribute("tableName").toString();
-        if(tableName.equals("employer")) {
-            service_appointment.setEmployerAccount((String)request.getSession().getAttribute("username"));
+        String username = "";
+
+        // 2. 根据角色类型提取用户名
+        if (userSession != null) {
+            if (tableName.contains("guzhu") || "employer".equals(tableName)) {
+                username = (String) userSession.get("employer_account");
+            } else if (tableName.contains("guyuan") || "employee".equals(tableName)) {
+                username = (String) userSession.get("employee_account");
+            }
         }
-        if(tableName.equals("employee")) {
-            service_appointment.setEmployeeAccount((String)request.getSession().getAttribute("username"));
+
+        // 3. 创建查询条件
+        EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<>();
+
+        // 4. 数据隔离逻辑
+        if (!StringUtils.isEmpty(username)) {
+            if (tableName.contains("guzhu") || "employer".equals(tableName)) {
+                ew.eq("employer_account", username);
+            } else if (tableName.contains("guyuan") || "employee".equals(tableName)) {
+                ew.eq("employee_account", username);
+            }
         }
-        EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<Service_AppointmentEntity>();
-        PageUtils page = service_appointmentService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_appointment), params), params));
+
+        // 5. 添加其他查询条件
+
+        if (service_appointment.getProjectName() != null && !service_appointment.getProjectName().isEmpty()) {
+            ew.like("project_name", service_appointment.getProjectName());
+        }
+        if (service_appointment.getEmployerName() != null && !service_appointment.getEmployerName().isEmpty()) {
+            ew.like("employer_name", service_appointment.getEmployerName());
+        }
+        if (service_appointment.getEmployeeName() != null && !service_appointment.getEmployeeName().isEmpty()) {
+            ew.like("employee_name", service_appointment.getEmployeeName());
+        }
+
+            // 6. 打印最终查询条件
+            System.out.println("===== 最终查询条件 =====");
+            System.out.println(ew.getSqlSegment());
+
+            // 7. 执行查询
+            PageUtils page = service_appointmentService.queryPage(params, ew);
 
         return R.ok().put("data", page);
     }
-
     /**
      * 前端列表
      */

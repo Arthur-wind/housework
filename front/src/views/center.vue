@@ -9,13 +9,13 @@
       <el-row :gutter="24">
         <!-- 雇主信息 -->
         <el-col :span="12">
-          <el-form-item v-if="flag=='employer'" label="账号" prop="employer_account">
-            <el-input v-model="ruleForm.employer_account" readonly placeholder="账号" clearable></el-input>
+          <el-form-item v-if="flag=='employer'" label="雇主账号" prop="employer_account">
+            <el-input v-model="ruleForm.employer_account" readonly placeholder="雇主账号" clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item v-if="flag=='employer'" label="姓名" prop="employer_name">
-            <el-input v-model="ruleForm.employer_name" placeholder="姓名" clearable></el-input>
+          <el-form-item v-if="flag=='employer'" label="雇主姓名" prop="employer_name">
+            <el-input v-model="ruleForm.employer_name" placeholder="雇主姓名" clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -154,7 +154,7 @@ export default {
     },
     onUpdateHandler() {
       if((!this.ruleForm.employer_account)&& 'employer'==this.flag){
-        this.$message.error('账号不能为空');
+        this.$message.error('雇主账号不能为空');
         return
       }
       if((!this.ruleForm.password)&& 'employer'==this.flag){
@@ -162,7 +162,7 @@ export default {
         return
       }
       if((!this.ruleForm.employer_name)&& 'employer'==this.flag){
-        this.$message.error('姓名不能为空');
+        this.$message.error('雇主姓名不能为空');
         return
       }
       if( 'employer' ==this.flag && this.ruleForm.age&&(!isIntNumer(this.ruleForm.age))){

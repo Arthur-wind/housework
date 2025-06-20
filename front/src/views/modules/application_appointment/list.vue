@@ -9,10 +9,10 @@
                   <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.project_name" placeholder="项目名称" clearable></el-input>
                   <el-input v-if="contents.inputIcon == 0" v-model="searchForm.project_name" placeholder="项目名称" clearable></el-input>
                 </el-form-item>
-                <el-form-item :label="contents.inputTitle == 1 ? '姓名' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="姓名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="姓名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employer_name" placeholder="姓名" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? '雇主姓名' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="雇主姓名" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="雇主姓名" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employer_name" placeholder="雇主姓名" clearable></el-input>
                 </el-form-item>
                 <el-form-item :label="contents.inputTitle == 1 ? '雇员姓名' : ''">
                   <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employee_name" placeholder="雇员姓名" clearable></el-input>
@@ -150,7 +150,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employer_account"
                    :header-align="contents.tableAlign"
-		    label="账号">
+		    label="雇主账号">
 		     <template slot-scope="scope">
                        {{scope.row.employer_account}}
                      </template>
@@ -158,7 +158,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employer_name"
                    :header-align="contents.tableAlign"
-		    label="姓名">
+		    label="雇主姓名">
 		     <template slot-scope="scope">
                        {{scope.row.employer_name}}
                      </template>

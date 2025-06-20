@@ -9,8 +9,8 @@
           
           <!-- 雇主注册表单 -->
           <template v-if="tableName=='employer'">
-            <el-form-item label="账号" class="input-item">
-              <el-input v-model="ruleForm.employer_account" autocomplete="off" placeholder="请输入账号" />
+            <el-form-item label="雇主账号" class="input-item">
+              <el-input v-model="ruleForm.employer_account" autocomplete="off" placeholder="请输入雇主账号" />
             </el-form-item>
             
             <el-form-item label="密码" class="input-item">
@@ -21,8 +21,8 @@
               <el-input v-model="ruleForm.password2" autocomplete="off" placeholder="请再次输入密码" type="password" show-password />
             </el-form-item>
             
-            <el-form-item label="姓名" class="input-item">
-              <el-input v-model="ruleForm.employer_name" autocomplete="off" placeholder="请输入姓名" />
+            <el-form-item label="雇主姓名" class="input-item">
+              <el-input v-model="ruleForm.employer_name" autocomplete="off" placeholder="请输入雇主姓名" />
             </el-form-item>
             
             <el-form-item label="年龄" class="input-item">

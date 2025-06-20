@@ -9,10 +9,10 @@
                   <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.project_name" placeholder="项目名称" clearable></el-input>
                   <el-input v-if="contents.inputIcon == 0" v-model="searchForm.project_name" placeholder="项目名称" clearable></el-input>
                 </el-form-item>
-                <el-form-item :label="contents.inputTitle == 1 ? '姓名' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="姓名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="姓名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employer_name" placeholder="姓名" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? '雇主姓名' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="雇主姓名" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.employer_name" placeholder="雇主姓名" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.employer_name" placeholder="雇主姓名" clearable></el-input>
                 </el-form-item>
                 <el-form-item :label="contents.inputTitle == 1 ? '雇员姓名' : ''">
                   <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.employee_name" placeholder="雇员姓名" clearable></el-input>
@@ -150,7 +150,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employer_account"
                    :header-align="contents.tableAlign"
-		    label="账号">
+		    label="雇主账号">
 		     <template slot-scope="scope">
                        {{scope.row.employer_account}}
                      </template>
@@ -158,7 +158,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employer_name"
                    :header-align="contents.tableAlign"
-		    label="姓名">
+		    label="雇主姓名">
 		     <template slot-scope="scope">
                        {{scope.row.employer_name}}
                      </template>
@@ -747,14 +747,39 @@ contents: {
 
     // 获取数据列表
     getDataList() {
+      
       this.dataListLoading = true;
-      let params = {
-        page: this.pageIndex,
-        limit: this.pageSize,
-        sort: 'id',
-      }
-          if(this.searchForm.is_reviewed!='' && this.searchForm.is_reviewed!=undefined){
-            params['is_reviewed'] = this.searchForm.is_reviewed
+  
+  // 获取当前用户完整信息
+  const userInfo = this.$storage.getObj('data') || {};
+  
+  // 动态获取用户名（根据角色类型）
+  let username = '';
+  const sessionTable = this.$storage.get('sessionTable');
+  
+  if (sessionTable === 'guzhu' || sessionTable === 'employer') {
+    username = userInfo.employer_account || '';
+  } else if (sessionTable === 'guyuan' || sessionTable === 'employee') {
+    username = userInfo.employee_account || '';
+  }
+  
+  let params = {
+    page: this.pageIndex,
+    limit: this.pageSize,
+    sort: 'id',
+    tableName: sessionTable,
+    username: username
+  }
+  
+  console.log('请求参数:', JSON.stringify(params, null, 2));
+  // 调试输出当前用户信息和使用的用户名
+     
+      // 添加角色隔离参数
+      params['tableName'] = this.$storage.get('sessionTable'); // 添加角色标识
+      params['username'] = this.$storage.get('username');     // 添加用户名
+
+      if (this.searchForm.is_reviewed != '' && this.searchForm.is_reviewed != undefined) {
+        params['is_reviewed'] = this.searchForm.is_reviewed
           }
           if(this.searchForm.project_name!='' && this.searchForm.project_name!=undefined){
             params['project_name'] = '%' + this.searchForm.project_name + '%'
@@ -771,11 +796,11 @@ contents: {
           if(this.searchForm.employee_name!='' && this.searchForm.employee_name!=undefined){
             params['employee_name'] = '%' + this.searchForm.employee_name + '%'
           }
-      this.$http({
-        url: "service_appointment/page",
-        method: "get",
-        params: params
-      }).then(({ data }) => {
+     this.$http({
+    url: "service_appointment/page",
+    method: "get",
+    params: params
+  }).then(({ data }) =>{
         if (data && data.code === 0) {
           this.dataList = data.data.list;
           this.totalPage = data.data.total;

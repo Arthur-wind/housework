@@ -146,7 +146,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employer_account"
                    :header-align="contents.tableAlign"
-		    label="账号">
+		    label="雇主账号">
 		     <template slot-scope="scope">
                        {{scope.row.employer_account}}
                      </template>
@@ -154,7 +154,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employer_name"
                    :header-align="contents.tableAlign"
-		    label="姓名">
+		    label="雇主姓名">
 		     <template slot-scope="scope">
                        {{scope.row.employer_name}}
                      </template>
