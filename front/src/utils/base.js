@@ -9,7 +9,7 @@ const base = {
     },
     getProjectName(){
         return {
-            projectName: "家政服务平台的设计与实现"
+            projectName: "三元一次家政"
         } 
     }
 }

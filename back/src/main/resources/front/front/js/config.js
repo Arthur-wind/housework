@@ -1,5 +1,5 @@
 
-var projectName = '家政服务平台的设计与实现';
+var projectName = '三元一次家政';
 /**
  * 轮播图配置
  */

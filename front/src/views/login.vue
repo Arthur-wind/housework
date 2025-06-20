@@ -4,7 +4,7 @@
       <div class="login-panel">
         <el-form :model="rulesForm" class="login-form" label-position="left" label-width="80px">
           <div class="title-container">
-            <h3 class="title">家政服务平台的设计与实现登录</h3>
+            <h3 class="title">三元一次家政登录</h3>
           </div>
           <el-form-item label="用户名" class="input-item">
           <!-- <span class="svg-container">
