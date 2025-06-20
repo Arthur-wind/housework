@@ -97,6 +97,7 @@ public class Service_ProjectEntity<T> implements Serializable {
 	 */
 
 	@TableId("employee_account")
+	@JsonProperty("employee_account")
 	private String employeeAccount;
 	
 	/**
@@ -125,6 +126,8 @@ public class Service_ProjectEntity<T> implements Serializable {
 	 */
 
 	@TableId("review_comment")
+	@JsonProperty("review_comment")
+
 	private String reviewComment;
 	
 	/**
