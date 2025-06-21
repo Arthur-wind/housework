@@ -746,71 +746,116 @@ contents: {
     },
 
     // 获取数据列表
-    getDataList() {
-      
-      this.dataListLoading = true;
+//    getDataList() {
+//   this.dataListLoading = true;
   
-  // 获取当前用户完整信息
+//   // 获取当前用户信息
+//   const userInfo = this.$storage.getObj('data') || {};
+//   const sessionTable = this.$storage.get('sessionTable');
+  
+//   console.log('用户信息:', JSON.stringify(userInfo, null, 2));
+//   console.log('用户角色:', sessionTable);
+  
+//   // 根据角色获取用户名 - 修复点
+//   let username = '';
+//   if (sessionTable === 'guzhu' || sessionTable === 'employer') {
+//     username = userInfo.employer_account || '';
+//   } else if (sessionTable === 'guyuan' || sessionTable === 'employee') {
+//     username = userInfo.employee_account || '';
+//   }
+  
+//   console.log('用户名:', username);
+
+//   // 构建参数对象
+//   let params = {
+//     page: this.pageIndex,
+//     limit: this.pageSize,
+//     sort: 'id',
+//     // 角色隔离参数
+//     tableName: sessionTable,
+//     username: username,
+    
+//     // 搜索参数
+//     ...(this.searchForm.project_name && { 
+//       project_name: `%${this.searchForm.project_name}%` 
+//     }),
+//     ...(this.searchForm.employer_name && { 
+//       employer_name: `%${this.searchForm.employer_name}%` 
+//     }),
+//     ...(this.searchForm.employee_name && { 
+//       employee_name: `%${this.searchForm.employee_name}%` 
+//     }),
+//     ...(this.searchForm.is_reviewed && { 
+//       is_reviewed: this.searchForm.is_reviewed 
+//     })
+//   };
+
+//   console.log('请求参数:', JSON.stringify(params, null, 2));
+  
+//   this.$http({
+//     url: "service_appointment/page",
+//     method: "get",
+//     params: params
+//   }).then(({ data }) => {
+//     if (data && data.code === 0) {
+//       this.dataList = data.data.list;
+//       this.totalPage = data.data.total;
+//     } else {
+//       this.dataList = [];
+//       this.totalPage = 0;
+//     }
+//     this.dataListLoading = false;
+//   });
+// },
+// 在getDataList方法中添加参数传递逻辑
+getDataList() {
+  this.dataListLoading = true;
+  
+  // 获取当前用户信息
   const userInfo = this.$storage.getObj('data') || {};
-  
-  // 动态获取用户名（根据角色类型）
-  let username = '';
   const sessionTable = this.$storage.get('sessionTable');
   
+  // 根据角色获取用户名
+  let username = '';
   if (sessionTable === 'guzhu' || sessionTable === 'employer') {
     username = userInfo.employer_account || '';
   } else if (sessionTable === 'guyuan' || sessionTable === 'employee') {
     username = userInfo.employee_account || '';
   }
-  
+
+  // 构建完整的参数对象（包含搜索条件）
   let params = {
     page: this.pageIndex,
     limit: this.pageSize,
     sort: 'id',
-    tableName: sessionTable,
-    username: username
-  }
-  
-  console.log('请求参数:', JSON.stringify(params, null, 2));
-  // 调试输出当前用户信息和使用的用户名
-     
-      // 添加角色隔离参数
-      params['tableName'] = this.$storage.get('sessionTable'); // 添加角色标识
-      params['username'] = this.$storage.get('username');     // 添加用户名
+    tableName: sessionTable,  // 添加tableName参数
+    username: username,       // 添加username参数
+    
+    // 添加搜索表单参数
+    project_name: this.searchForm.project_name,
+    employer_name: this.searchForm.employer_name,
+    employee_name: this.searchForm.employee_name,
+    is_reviewed: this.searchForm.is_reviewed
+  };
 
-      if (this.searchForm.is_reviewed != '' && this.searchForm.is_reviewed != undefined) {
-        params['is_reviewed'] = this.searchForm.is_reviewed
-          }
-          if(this.searchForm.project_name!='' && this.searchForm.project_name!=undefined){
-            params['project_name'] = '%' + this.searchForm.project_name + '%'
-          }
-          if(this.searchForm.is_reviewed!='' && this.searchForm.is_reviewed!=undefined){
-            params['is_reviewed'] = this.searchForm.is_reviewed
-          }
-          if(this.searchForm.employer_name!='' && this.searchForm.employer_name!=undefined){
-            params['employer_name'] = '%' + this.searchForm.employer_name + '%'
-          }
-          if(this.searchForm.is_reviewed!='' && this.searchForm.is_reviewed!=undefined){
-            params['is_reviewed'] = this.searchForm.is_reviewed
-          }
-          if(this.searchForm.employee_name!='' && this.searchForm.employee_name!=undefined){
-            params['employee_name'] = '%' + this.searchForm.employee_name + '%'
-          }
-     this.$http({
+  console.log("请求参数:", JSON.stringify(params, null, 2)); // 调试日志
+
+  // 发送请求
+  this.$http({
     url: "service_appointment/page",
     method: "get",
     params: params
-  }).then(({ data }) =>{
-        if (data && data.code === 0) {
-          this.dataList = data.data.list;
-          this.totalPage = data.data.total;
-        } else {
-          this.dataList = [];
-          this.totalPage = 0;
-        }
-        this.dataListLoading = false;
-      });
-    },
+  }).then(({ data }) => {
+    if (data && data.code === 0) {
+      this.dataList = data.data.list;
+      this.totalPage = data.data.total;
+    } else {
+      this.dataList = [];
+      this.totalPage = 0;
+    }
+    this.dataListLoading = false;
+  });
+},
     // 每页数
     sizeChangeHandle(val) {
       this.pageSize = val;
