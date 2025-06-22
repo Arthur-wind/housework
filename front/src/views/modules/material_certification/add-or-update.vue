@@ -46,53 +46,53 @@
         </div>
       </el-col>
       <el-col :span="24">  
-        <el-form-item class="upload" v-if="type!='info' && !ro.id_card" label="身份证" prop="id_card">
+        <el-form-item class="upload" v-if="type!='info' && !ro.id_card_image" label="身份证" prop="id_card_image">
           <file-upload
           tip="点击上传身份证"
           action="file/upload"
           :limit="3"
           :multiple="true"
-          :fileUrls="ruleForm.id_card?ruleForm.id_card:''"
+          :fileUrls="ruleForm.id_card_image?ruleForm.id_card_image:''"
           @change="id_cardUploadChange"
           ></file-upload>
         </el-form-item>
         <div v-else>
-          <el-form-item v-if="ruleForm.id_card" label="身份证" prop="id_card">
-            <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.id_card.split(',')" :src="$base.url+item" width="100" height="100">
+          <el-form-item v-if="ruleForm.id_card_image" label="身份证" prop="id_card_image">
+            <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.id_card_image.split(',')" :src="$base.url+item" width="100" height="100">
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="24">  
-        <el-form-item class="upload" v-if="type!='info' && !ro.application_certificate" label="资格证书" prop="application_certificate">
+        <el-form-item class="upload" v-if="type!='info' && !ro.qualification_certificate" label="资格证书" prop="qualification_certificate">
           <file-upload
           tip="点击上传资格证书"
           action="file/upload"
           :limit="3"
           :multiple="true"
-          :fileUrls="ruleForm.application_certificate?ruleForm.application_certificate:''"
-          @change="application_certificateUploadChange"
+          :fileUrls="ruleForm.qualification_certificate?ruleForm.qualification_certificate:''"
+          @change="qualification_certificateUploadChange"
           ></file-upload>
         </el-form-item>
         <div v-else>
-          <el-form-item v-if="ruleForm.application_certificate" label="资格证书" prop="application_certificate">
-            <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.application_certificate.split(',')" :src="$base.url+item" width="100" height="100">
+          <el-form-item v-if="ruleForm.qualification_certificate" label="资格证书" prop="qualification_certificate">
+            <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.qualification_certificate.split(',')" :src="$base.url+item" width="100" height="100">
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="24">  
-        <el-form-item class="upload" v-if="type!='info'&& !ro.shenqingziliao" label="申请资料" prop="shenqingziliao">
+        <el-form-item class="upload" v-if="type!='info'&& !ro.application_materials" label="申请资料" prop="application_materials">
           <file-upload
           tip="点击上传申请资料"
           action="file/upload"
           :limit="1"
           :multiple="true"
-          :fileUrls="ruleForm.shenqingziliao?ruleForm.shenqingziliao:''"
-          @change="shenqingziliaoUploadChange"
+          :fileUrls="ruleForm.application_materials?ruleForm.application_materials:''"
+          @change="application_materialsUploadChange"
           ></file-upload>
         </el-form-item>  
         <div v-else>
-          <el-form-item v-if="ruleForm.shenqingziliao" label="申请资料" prop="shenqingziliao">
-            <el-button type="text" size="small" @click="download($base.url+ruleForm.shenqingziliao)">下载</el-button>
+          <el-form-item v-if="ruleForm.application_materials" label="申请资料" prop="application_materials">
+            <el-button type="text" size="small" @click="download($base.url+ruleForm.application_materials)">下载</el-button>
           </el-form-item>
         </div>    
       </el-col>      
@@ -218,9 +218,9 @@ export default {
 	employee_account : false,
 	employee_name : false,
 	contact_phone : false,
-	id_card : false,
-	application_certificate : false,
-	shenqingziliao : false,
+	id_card_image : false,
+	qualification_certificate : false,
+	application_materials : false,
 	application_reason : false,
 	application_time : false,
 	is_reviewed : false,
@@ -230,9 +230,9 @@ export default {
         employee_account: '',
         employee_name: '',
         contact_phone: '',
-        id_card: '',
-        application_certificate: '',
-        shenqingziliao: '',
+        id_card_image: '',
+        qualification_certificate: '',
+        application_materials: '',
         application_reason: '',
         application_time: '',
         review_comment: '',
@@ -244,11 +244,11 @@ export default {
           ],
           contact_phone: [
           ],
-          id_card: [
+          id_card_image: [
           ],
-          application_certificate: [
+          qualification_certificate: [
           ],
-          shenqingziliao: [
+          application_materials: [
           ],
           application_reason: [
           ],
@@ -308,18 +308,18 @@ export default {
             continue;
           }
           if(o=='id_card'){
-            this.ruleForm.id_card = obj[o];
-	    this.ro.id_card = true;
+            this.ruleForm.id_card_image = obj[o];
+	    this.ro.id_card_image = true;
             continue;
           }
-          if(o=='application_certificate'){
-            this.ruleForm.application_certificate = obj[o];
-	    this.ro.application_certificate = true;
+          if(o=='qualification_certificate'){
+            this.ruleForm.qualification_certificate = obj[o];
+	    this.ro.qualification_certificate = true;
             continue;
           }
-          if(o=='shenqingziliao'){
-            this.ruleForm.shenqingziliao = obj[o];
-	    this.ro.shenqingziliao = true;
+          if(o=='application_materials'){
+            this.ruleForm.application_materials = obj[o];
+	    this.ro.application_materials = true;
             continue;
           }
           if(o=='application_reason'){
@@ -386,18 +386,18 @@ export default {
 
 
 
-	if(this.ruleForm.id_card!=null) {
-		this.ruleForm.id_card = this.ruleForm.id_card.replace(new RegExp(this.$base.url,"g"),"");
+	if(this.ruleForm.id_card_image!=null) {
+		this.ruleForm.id_card_image = this.ruleForm.id_card_image.replace(new RegExp(this.$base.url,"g"),"");
 	}
 
 
-	if(this.ruleForm.application_certificate!=null) {
-		this.ruleForm.application_certificate = this.ruleForm.application_certificate.replace(new RegExp(this.$base.url,"g"),"");
+	if(this.ruleForm.qualification_certificate!=null) {
+		this.ruleForm.qualification_certificate = this.ruleForm.qualification_certificate.replace(new RegExp(this.$base.url,"g"),"");
 	}
 
 
-	if(this.ruleForm.shenqingziliao!=null) {
-		this.ruleForm.shenqingziliao = this.ruleForm.shenqingziliao.replace(new RegExp(this.$base.url,"g"),"");
+	if(this.ruleForm.application_materials!=null) {
+		this.ruleForm.application_materials = this.ruleForm.application_materials.replace(new RegExp(this.$base.url,"g"),"");
 	}
 
 
@@ -528,15 +528,15 @@ var objcross = this.$storage.getObj('crossObj');
       this.parent.contentStyleChange();
     },
     id_cardUploadChange(fileUrls) {
-	this.ruleForm.id_card = fileUrls;
+	this.ruleForm.id_card_image = fileUrls;
 	this.addEditUploadStyleChange()
     },
-    application_certificateUploadChange(fileUrls) {
-	this.ruleForm.application_certificate = fileUrls;
+    qualification_certificateUploadChange(fileUrls) {
+	this.ruleForm.qualification_certificate = fileUrls;
 	this.addEditUploadStyleChange()
     },
-    shenqingziliaoUploadChange(fileUrls) {
-	this.ruleForm.shenqingziliao = fileUrls;
+    application_materialsUploadChange(fileUrls) {
+	this.ruleForm.application_materials = fileUrls;
 	this.addEditUploadStyleChange()
     },
 	addEditStyleChange() {

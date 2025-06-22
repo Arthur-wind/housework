@@ -148,7 +148,7 @@
                    :header-align="contents.tableAlign"
                     label="申请资料">
                     <template slot-scope="scope">
-                      <el-button type="text" size="small" @click="download($base.url+scope.row.shenqingziliao)">下载</el-button>
+                      <el-button type="text" size="small" @click="download($base.url+scope.row.application_materials)">下载</el-button>
                     </template>
                   </el-table-column>
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
@@ -654,8 +654,8 @@ export default {
           employee_name: row.employee_name,
           contact_phone: row.contact_phone,
           id_card: row.id_card,
-          application_certificate: row.application_certificate,
-          shenqingziliao: row.shenqingziliao,
+          qualification_certificate: row.qualification_certificate,
+          application_materials: row.application_materials,
           application_reason: row.application_reason,
           application_time: row.application_time,
           is_reviewed: row.is_reviewed,
