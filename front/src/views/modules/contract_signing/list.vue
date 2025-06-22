@@ -117,14 +117,7 @@
                        {{scope.row.sign_date}}
                      </template>
                 </el-table-column>
-                <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
-                    prop="validity_period"
-                   :header-align="contents.tableAlign"
-		    label="有效期">
-		     <template slot-scope="scope">
-                       {{scope.row.validity_period}}
-                     </template>
-                </el-table-column>
+              
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="employer_account"
                    :header-align="contents.tableAlign"

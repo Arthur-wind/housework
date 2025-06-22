@@ -56,18 +56,7 @@
           </el-form-item>
         </div>
       </el-col>
-      <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="有效期" prop="validity_period">
-          <el-input v-model="ruleForm.validity_period"
-              placeholder="有效期" clearable  :readonly="ro.validity_period"></el-input>
-        </el-form-item>
-        <div v-else>
-          <el-form-item class="input" label="有效期" prop="validity_period">
-              <el-input v-model="ruleForm.validity_period"
-                placeholder="有效期" readonly></el-input>
-          </el-form-item>
-        </div>
-      </el-col>
+      
       <el-col :span="12">
         <el-form-item class="input" v-if="type!='info'"  label="雇主账号" prop="employer_account">
           <el-input v-model="ruleForm.employer_account"
