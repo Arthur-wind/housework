@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import com.entity.Requirement_InfoEntity;
 import com.utils.ValidatorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,31 +58,50 @@ public class Consult_EmployeeController {
      * 后端列表
      */
     @RequestMapping("/page")
-    public R page(@RequestParam Map<String, Object> params,Consult_EmployeeEntity consult_employee,
-        HttpServletRequest request){
-        // 手动处理雇主姓名、雇员姓名、是否审核映射
-        if(params.containsKey("employer_name")) {
-            consult_employee.setEmployerName((String)params.get("employer_name"));
-        }
-        if(params.containsKey("employee_name")) {
-            consult_employee.setEmployeeName((String)params.get("employee_name"));
-        }
-        if(params.containsKey("is_reviewed")) {
-            consult_employee.setIsReviewed((String)params.get("is_reviewed"));
-        }
+    public R page(@RequestParam Map<String, Object> params,
+                  Consult_EmployeeEntity requirement_info,
+                  HttpServletRequest request) {
+
+        // 1. 从session获取当前用户信息
         String tableName = request.getSession().getAttribute("tableName").toString();
-        if(tableName.equals("employee")) {
-            consult_employee.setEmployee_account((String)request.getSession().getAttribute("username"));
+        String username = (String) request.getSession().getAttribute("username");
+
+        // 2. 根据用户类型设置隔离条件
+        EntityWrapper<Consult_EmployeeEntity> ew = new EntityWrapper<>();
+
+        if ("employer".equals(tableName)) {
+            // 雇主只能查看自己发布的需求
+            ew.eq("employer_account", username);
         }
-        if(tableName.equals("employer")) {
-            consult_employee.setEmployer_account((String)request.getSession().getAttribute("username"));
+        else if ("employee".equals(tableName)) {
+            // 雇员可能查看所有需求，或按业务需要添加限制
+             ew.eq("employee_account", username); // 如果需要限制雇员查看范围
         }
-        EntityWrapper<Consult_EmployeeEntity> ew = new EntityWrapper<Consult_EmployeeEntity>();
-        PageUtils page = consult_employeeService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, consult_employee), params), params));
+
+        // 3. 添加查询条件（安全方式）
+        if (params.containsKey("work_location") && !params.get("work_location").toString().isEmpty()) {
+            ew.like("work_location", params.get("work_location").toString());
+        }
+        if (params.containsKey("project_name") && !params.get("project_name").toString().isEmpty()) {
+            ew.like("project_name", params.get("project_name").toString());
+        }
+        if (params.containsKey("employer_name") && !params.get("employer_name").toString().isEmpty()) {
+            ew.like("employer_name", params.get("employer_name").toString());
+        }
+        if (params.containsKey("employee_name") && !params.get("employee_name").toString().isEmpty()) {
+            ew.like("employee_name", params.get("employee_name").toString());
+        }
+
+        // 4. 执行查询
+        PageUtils page = consult_employeeService.queryPage(
+                params,
+                MPUtil.sort(MPUtil.between(ew, params), params)
+        );
 
         return R.ok().put("data", page);
     }
-    
+
+
     /**
      * 前端列表
      */

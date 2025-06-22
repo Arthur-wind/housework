@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import com.entity.Contract_SigningEntity;
 import com.utils.ValidatorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,29 +57,67 @@ public class Electronic_SignatureController {
     /**
      * 后端列表
      */
+//    @RequestMapping("/page")
+//    public R page(@RequestParam Map<String, Object> params,Electronic_SignatureEntity electronic_signature,
+//        HttpServletRequest request){
+//        // 手动处理映射
+//        if(params.containsKey("project_name")) {
+//            electronic_signature.setProjectName((String)params.get("project_name"));
+//        }
+//        if(params.containsKey("employer_name")) {
+//            electronic_signature.setEmployerName((String)params.get("employer_name"));
+//        }
+//        String tableName = request.getSession().getAttribute("tableName").toString();
+//        if(tableName.equals("employer")) {
+//            electronic_signature.setEmployer_account((String)request.getSession().getAttribute("username"));
+//        }
+//        if(tableName.equals("employee")) {
+//            electronic_signature.setEmployee_account((String)request.getSession().getAttribute("username"));
+//        }
+//        EntityWrapper<Electronic_SignatureEntity> ew = new EntityWrapper<Electronic_SignatureEntity>();
+//        PageUtils page = electronic_signatureService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, electronic_signature), params), params));
+//
+//        return R.ok().put("data", page);
+//    }
     @RequestMapping("/page")
-    public R page(@RequestParam Map<String, Object> params,Electronic_SignatureEntity electronic_signature,
-        HttpServletRequest request){
-        // 手动处理映射
-        if(params.containsKey("project_name")) {
-            electronic_signature.setProjectName((String)params.get("project_name"));
-        }
-        if(params.containsKey("employer_name")) {
-            electronic_signature.setEmployerName((String)params.get("employer_name"));
-        }
+    public R page(@RequestParam Map<String, Object> params,
+                  Electronic_SignatureEntity contract_signing,
+                  HttpServletRequest request) {
+
+        // 1. 从 session 获取用户身份信息
         String tableName = request.getSession().getAttribute("tableName").toString();
-        if(tableName.equals("employer")) {
-            electronic_signature.setEmployer_account((String)request.getSession().getAttribute("username"));
+        String username = (String) request.getSession().getAttribute("username");
+
+        // 2. 创建查询包装器
+        EntityWrapper<Electronic_SignatureEntity> ew = new EntityWrapper<>();
+
+        // 3. 根据用户类型添加数据隔离条件
+        if ("employer".equals(tableName)) {
+            ew.eq("employer_account", username);  // 雇主只能看到自己的签名
+        } else if ("employee".equals(tableName)) {
+            ew.eq("employee_account", username);  // 雇员只能看到自己的签名
         }
-        if(tableName.equals("employee")) {
-            electronic_signature.setEmployee_account((String)request.getSession().getAttribute("username"));
+
+        // 4. 添加前端查询参数（安全过滤）
+        if (params.containsKey("project_name") && !params.get("project_name").toString().isEmpty()) {
+            ew.like("project_name", params.get("project_name").toString());
         }
-        EntityWrapper<Electronic_SignatureEntity> ew = new EntityWrapper<Electronic_SignatureEntity>();
-        PageUtils page = electronic_signatureService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, electronic_signature), params), params));
+        if (params.containsKey("employer_name") && !params.get("employer_name").toString().isEmpty()) {
+            ew.like("employer_name", params.get("employer_name").toString());
+        }
+        if (params.containsKey("employee_name") && !params.get("employee_name").toString().isEmpty()) {
+            ew.like("employee_name", params.get("employee_name").toString());
+        }
+
+        // 5. 执行分页查询
+        PageUtils page = electronic_signatureService.queryPage(
+                params,
+                MPUtil.sort(MPUtil.between(ew, params),
+                        params
+                ));
 
         return R.ok().put("data", page);
     }
-    
     /**
      * 前端列表
      */

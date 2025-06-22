@@ -85,14 +85,16 @@ public class Contract_SigningEntity<T> implements Serializable {
 	 * 有效期
 	 */
 
-	@TableId("validity_period")
+	@TableField("validity_period")
 	private String validityPeriod;
 	
 	/**
 	 * 账号
 	 */
 
-	@TableId("employer_account")
+//	@TableId("employer_account")
+	@TableField("employer_account")
+	@JsonProperty("employer_account")
 	private String employerAccount;
 	
 	/**
@@ -112,21 +114,25 @@ public class Contract_SigningEntity<T> implements Serializable {
 	 * 雇员账号
 	 */
 
-	@TableId("employee_account")
+//	@TableId("employee_account")
+	@TableField("employee_account")
+	@JsonProperty("employee_account")
 	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
 
-	@TableId("employee_name")
+//	@TableId("employee_name")
+	@TableField("employee_name")
+	@JsonProperty("employee_name")
 	private String employeeName;
 	
 	/**
 	 * 联系电话
 	 */
 
-	@TableId("contact_phone")
+	@TableField("contact_phone")
 	private String contactPhone;
 	
 	/**

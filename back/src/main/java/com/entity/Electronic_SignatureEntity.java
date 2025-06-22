@@ -69,14 +69,14 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	 * 电子签名
 	 */
 
-	@TableId("electronic_signature")
+	@TableField("electronic_signature")
 	private String electronicSignature;
 	
 	/**
 	 * 签订日期
 	 */
 
-	@TableId("sign_date")
+	@TableField("sign_date")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	@JsonProperty("sign_date")
@@ -86,14 +86,15 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	 * 有效期
 	 */
 
-	@TableId("validity_period")
+	@TableField("validity_period")
 	private String validityPeriod;
 	
 	/**
 	 * 账号
 	 */
 
-	@TableId("employer_account")
+	@TableField("employer_account")
+	@JsonProperty("employer_account")
 	private String employerAccount;
 	
 	/**
@@ -113,21 +114,23 @@ public class Electronic_SignatureEntity<T> implements Serializable {
 	 * 雇员账号
 	 */
 
-	@TableId("employee_account")
+	@TableField("employee_account")
+	@JsonProperty("employee_account")
 	private String employeeAccount;
 	
 	/**
 	 * 雇员姓名
 	 */
 
-	@TableId("employee_name")
+	@TableField("employee_name")
+	@JsonProperty("employee_name")
 	private String employeeName;
 	
 	/**
 	 * 联系电话
 	 */
 
-	@TableId("contact_phone")
+	@TableField("contact_phone")
 	private String contactPhone;
 	
 	

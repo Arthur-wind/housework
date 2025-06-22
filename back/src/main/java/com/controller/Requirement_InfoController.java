@@ -57,18 +57,39 @@ public class Requirement_InfoController {
      * 后端列表
      */
     @RequestMapping("/page")
-    public R page(@RequestParam Map<String, Object> params,Requirement_InfoEntity requirement_info,
-        HttpServletRequest request){
-        // 手动处理工作地点映射
-        if(params.containsKey("work_location")) {
-            requirement_info.setWorkLocation((String)params.get("work_location"));
-        }
+    public R page(@RequestParam Map<String, Object> params,
+                  Requirement_InfoEntity requirement_info,
+                  HttpServletRequest request) {
+
+        // 1. 从session获取当前用户信息
         String tableName = request.getSession().getAttribute("tableName").toString();
-        if(tableName.equals("employer")) {
-            requirement_info.setEmployer_Account((String)request.getSession().getAttribute("username"));
+        String username = (String) request.getSession().getAttribute("username");
+
+        // 2. 根据用户类型设置隔离条件
+        EntityWrapper<Requirement_InfoEntity> ew = new EntityWrapper<>();
+
+        if ("employer".equals(tableName)) {
+            // 雇主只能查看自己发布的需求
+            ew.eq("employer_account", username);
         }
-        EntityWrapper<Requirement_InfoEntity> ew = new EntityWrapper<Requirement_InfoEntity>();
-        PageUtils page = requirement_infoService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, requirement_info), params), params));
+        else if ("employee".equals(tableName)) {
+            // 雇员可能查看所有需求，或按业务需要添加限制
+            // ew.eq("employee_account", username); // 如果需要限制雇员查看范围
+        }
+
+        // 3. 添加查询条件（安全方式）
+        if (params.containsKey("work_location") && !params.get("work_location").toString().isEmpty()) {
+            ew.like("work_location", params.get("work_location").toString());
+        }
+        if (params.containsKey("project_name") && !params.get("project_name").toString().isEmpty()) {
+            ew.like("project_name", params.get("project_name").toString());
+        }
+
+        // 4. 执行查询
+        PageUtils page = requirement_infoService.queryPage(
+                params,
+                MPUtil.sort(MPUtil.between(ew, params), params)
+        );
 
         return R.ok().put("data", page);
     }

@@ -62,7 +62,7 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	 * 项目名称
 	 */
 
-	@TableId("project_name")
+	@TableField("project_name")
 	private String projectName;
 	
 	/**
@@ -106,28 +106,32 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@DateTimeFormat
 	@JsonProperty("publish_time")
-	@TableId("publish_time")
+	@TableField("publish_time")
 	private Date publishTime;
 	
 	/**
 	 * 封面
 	 */
 
-	@TableId("cover_image")
+	@TableField("cover_image")
 	private String coverImage;
 	
 	/**
 	 * 账号
 	 */
 
-	@TableId("employer_account")
+//	@TableId("employer_account")
+	@TableField("employer_account")
+	@JsonProperty("employer_account")
 	private String employerAccount;
 	
 	/**
 	 * 姓名
 	 */
 
-	@TableId("employer_name")
+//	@TableId("employer_name")
+	@TableField("employer_name")
+	@JsonProperty("employer_name")
 	private String employerName;
 	
 	/**

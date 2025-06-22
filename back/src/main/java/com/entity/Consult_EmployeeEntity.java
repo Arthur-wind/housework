@@ -86,6 +86,7 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	 */
 
 	@TableField("employee_account")
+	@JsonProperty("employee_account")
 	private String employeeAccount;
 	
 	/**
@@ -100,7 +101,8 @@ public class Consult_EmployeeEntity<T> implements Serializable {
 	 * 雇主账号
 	 */
 
-	@TableId("employer_account")
+	@TableField("employer_account")
+	@JsonProperty("employer_account")
 	private String employerAccount;
 	
 	/**
