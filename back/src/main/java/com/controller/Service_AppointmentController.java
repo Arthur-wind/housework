@@ -52,164 +52,49 @@ public class Service_AppointmentController {
     /**
      * 后端列表
      */
-//    @RequestMapping("/page")
-//    public R page(@RequestParam Map<String, Object> params,Service_AppointmentEntity service_appointment,
-//        HttpServletRequest request){
-//        // 手动处理映射
-//        if(params.containsKey("project_name")) {
-//            service_appointment.setProjectName((String)params.get("project_name"));
-//        }
-//        if(params.containsKey("employer_name")) {
-//            service_appointment.setEmployerName((String)params.get("employer_name"));
-//        }
-//        if(params.containsKey("employee_name")) {
-//            service_appointment.setEmployeeName((String)params.get("employee_name"));
-//        }
-//        if(params.containsKey("is_reviewed")) {
-//            service_appointment.setIsReviewed((String)params.get("is_reviewed"));
-//        }
-//        String tableName = request.getSession().getAttribute("tableName").toString();
-//        if(tableName.equals("employer")) {
-//            service_appointment.setEmployerAccount((String)request.getSession().getAttribute("username"));
-//        }
-//        if(tableName.equals("employee")) {
-//            service_appointment.setEmployeeAccount((String)request.getSession().getAttribute("username"));
-//        }
-//        EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<Service_AppointmentEntity>();
-//        PageUtils page = service_appointmentService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_appointment), params), params));
-//// 修复角色判断逻辑
-//        Object userType = request.getSession().getAttribute("tableName");
-//        if (userType != null) {
-////            String tableName = userType.toString();
-//            String username = request.getSession().getAttribute("username").toString();
-//
-////            EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<>();
-//
-//            // 雇主只能看到自己的预约
-//            if ("employer".equals(tableName)) {
-//                ew.eq("employer_account", username);
-//            }
-//            // 雇员只能看到自己的预约
-//            else if ("employee".equals(tableName)) {
-//                ew.eq("employee_account", username);
-//            }
-//            // 管理员不添加条件
-//
-//            // 添加其他查询条件
-////            PageUtils page = service_appointmentService.queryPage(params,
-////                    MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, service_appointment), params));
-//
-//            return R.ok().put("data", page);
-//        }
-//        return R.error("用户类型未识别");
-////        return R.ok().put("data", page);
-//    }
-//    @RequestMapping("/page")
-//    public R page(@RequestParam Map<String, Object> params, Service_AppointmentEntity service_appointment,
-//                  HttpServletRequest request) {
-//
-//        // 1. 从session获取用户信息
-//        Map<String, Object> userSession = (Map<String, Object>) request.getSession().getAttribute("data");
-//        String tableName = request.getSession().getAttribute("tableName").toString();
-//        String username = "";
-//
-//        // 2. 根据角色提取用户名（关键修复）
-//        if (userSession != null) {
-//            if (tableName.equals("guzhu") || tableName.equals("employer")) {
-//                username = (String) userSession.get("employer_account");
-//            } else if (tableName.equals("guyuan") || tableName.equals("employee")) {
-//                username = (String) userSession.get("employee_account");
-//            }
-//        }
-//
-//        // 3. 创建查询条件（使用正确的字段名）
-//        EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<>();
-//
-//        // 4. 数据隔离逻辑（关键修复）
-//        if (!StringUtils.isEmpty(username)) {
-//            if (tableName.equals("guzhu") || tableName.equals("employer")) {
-//                ew.eq("employer_account", username); // 使用正确的数据库字段名
-//            } else if (tableName.equals("guyuan") || tableName.equals("employee")) {
-//                ew.eq("employee_account", username); // 使用正确的数据库字段名
-//            }
-//        }
-//
-//        // 5. 添加其他查询条件
-//        if (StringUtils.isNotBlank(service_appointment.getProjectName())) {
-//            ew.like("project_name", service_appointment.getProjectName());
-//        }
-//        if (StringUtils.isNotBlank(service_appointment.getEmployerName())) {
-//            ew.like("employer_name", service_appointment.getEmployerName());
-//        }
-//        if (StringUtils.isNotBlank(service_appointment.getEmployeeName())) {
-//            ew.like("employee_name", service_appointment.getEmployeeName());
-//        }
-//        if (StringUtils.isNotBlank(service_appointment.getIsReviewed())) {
-//            ew.eq("is_reviewed", service_appointment.getIsReviewed());
-//        }
-//
-//        // 6. 执行查询
-//        PageUtils page = service_appointmentService.queryPage(params, ew);
-//
-//        System.out.println("===== 前端参数 =====");
-//        params.forEach((k, v) -> System.out.println(k + ": " + v));
-//
-//        System.out.println("===== 最终查询条件 =====");
-//        System.out.println(ew.getSqlSegment());
-//
-//        return R.ok().put("data", page);
-//
-//    }
-//
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,
                   Service_AppointmentEntity service_appointment,
                   HttpServletRequest request) {
 
-        // 1. 获取参数
-        String tableName = (String) params.get("tableName");
-        String username = (String) params.get("username");
+        // 从后端Session获取当前登录用户信息，实现安全隔离
+        String tableName = (String) request.getSession().getAttribute("tableName");
+        String username = (String) request.getSession().getAttribute("username");
 
-        // 2. 调试日志
-        System.out.println("===== 前端参数 =====");
-        System.out.println("tableName: " + tableName);
-        System.out.println("username: " + username);
+        if(tableName == null || username == null) {
+            return R.error("未登录或登录信息失效");
+        }
 
-        // 3. 构建查询条件
         EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<>();
 
-        // 4. 数据隔离 - 只有当username不为空时才添加条件
-        if (StringUtils.isNotBlank(username)) {
-            if ("guzhu".equalsIgnoreCase(tableName) || "employer".equalsIgnoreCase(tableName)) {
-                ew.eq("employer_account", username);
-            }
-            else if ("guyuan".equalsIgnoreCase(tableName) || "employee".equalsIgnoreCase(tableName)) {
-                ew.eq("employee_account", username);
-            }
+        // 数据隔离，确保用户只看到自己相关数据
+        if ("guzhu".equalsIgnoreCase(tableName) || "employer".equalsIgnoreCase(tableName)) {
+            ew.eq("employer_account", username);
+        } else if ("guyuan".equalsIgnoreCase(tableName) || "employee".equalsIgnoreCase(tableName)) {
+            ew.eq("employee_account", username);
         } else {
-            System.out.println("警告：username为空，跳过数据隔离");
+            // 管理员等角色可见全部或根据需求增加其它判断
         }
 
-        // 5. 添加其他查询条件（从params获取）
-        if (StringUtils.isNotBlank((String) params.get("project_name"))) {
-            ew.like("project_name", (String) params.get("project_name"));
+        // 其他查询条件
+        if (StringUtils.isNotBlank(service_appointment.getProjectName())) {
+            ew.like("project_name", service_appointment.getProjectName());
         }
-        if (StringUtils.isNotBlank((String) params.get("employer_name"))) {
-            ew.like("employer_name", (String) params.get("employer_name"));
+        if (StringUtils.isNotBlank(service_appointment.getEmployerName())) {
+            ew.like("employer_name", service_appointment.getEmployerName());
         }
-        if (StringUtils.isNotBlank((String) params.get("employee_name"))) {
-            ew.like("employee_name", (String) params.get("employee_name"));
+        if (StringUtils.isNotBlank(service_appointment.getEmployeeName())) {
+            ew.like("employee_name", service_appointment.getEmployeeName());
         }
-        if (StringUtils.isNotBlank((String) params.get("is_reviewed"))) {
-            ew.eq("is_reviewed", (String) params.get("is_reviewed"));
+        if (StringUtils.isNotBlank(service_appointment.getIsReviewed())) {
+            ew.eq("is_reviewed", service_appointment.getIsReviewed());
         }
 
-        // 6. 执行查询
         PageUtils page = service_appointmentService.queryPage(params, ew);
-        System.out.println("===== 最终查询条件 =====");
-        System.out.println(ew.getSqlSegment());
+
         return R.ok().put("data", page);
     }
+
 
     /**
      * 前端列表
