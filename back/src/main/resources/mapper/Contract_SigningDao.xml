@@ -16,8 +16,8 @@
         <result property="employeeAccount" column="employee_account"/>
         <result property="employeeName" column="employee_name"/>
         <result property="contactPhone" column="contact_phone"/>
-        <result property="is_reviewed" column="is_reviewed"/>
-        <result property="review_comment" column="review_comment"/>
+        <result property="isReviewed" column="is_reviewed"/>
+        <result property="reviewComment" column="review_comment"/>
     </resultMap>
 
 	<select id="selectListVO"
