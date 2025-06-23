@@ -50,9 +50,6 @@ public class Requirement_InfoController {
     private Requirement_InfoService requirement_infoService;
 
 
-    
-
-
     /**
      * 后端列表
      */
@@ -81,8 +78,8 @@ public class Requirement_InfoController {
         if (params.containsKey("work_location") && !params.get("work_location").toString().isEmpty()) {
             ew.like("work_location", params.get("work_location").toString());
         }
-        if (params.containsKey("project_name") && !params.get("project_name").toString().isEmpty()) {
-            ew.like("project_name", params.get("project_name").toString());
+        if (params.containsKey("project_type") && !params.get("project_type").toString().isEmpty()) {
+            ew.like("project_type", params.get("project_type").toString());
         }
 
         // 4. 执行查询
@@ -156,8 +153,6 @@ public class Requirement_InfoController {
         return R.ok().put("data", requirement_info);
     }
     
-
-
 
     /**
      * 后端保存

@@ -6,7 +6,7 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.entity.Requirement_InfoEntity" id="requirement_infoMap">
         <result property="title" column="title"/>
-        <result property="projectName" column="project_name"/>
+        <result property="projectType" column="project_type"/>
         <result property="salary" column="salary"/>
         <result property="workingHours" column="working_hours"/>
         <result property="workLocation" column="work_location"/>

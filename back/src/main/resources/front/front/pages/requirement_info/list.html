@@ -310,7 +310,7 @@
       data: {
         swiperList: [],
 	categoryList: [],
-	project_nameOptions: [],
+	project_typeOptions: [],
         dataList: [],
 	baseurl:'',
 	swiperIndex: '-1'
@@ -383,8 +383,8 @@
           // });
         }
       });
-	http.request(`option/service_project/project_name`,'get',{},(res)=>{
-		vue.project_nameOptions = res.data
+	http.request(`option/project_type/project_type`,'get',{},(res)=>{
+		vue.project_typeOptions = res.data
 	});
 
 
@@ -398,7 +398,7 @@
 
       function categoryList() {
           // 获取列表数据
-          http.request('option/service_project/project_name', 'get', {}, function(res) {
+          http.request('option/project_type/project_type', 'get', {}, function(res) {
             vue.categoryList = res.data
           })
 
@@ -428,7 +428,7 @@
              }
         }
         if(vCategory!='' && category!='全部') {
-        	param['project_name'] = category;
+        	param['project_type'] = category;
         }
 
 

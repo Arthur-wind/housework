@@ -62,8 +62,8 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	 * 项目名称
 	 */
 
-	@TableField("project_name")
-	private String projectName;
+	@TableField("project_type")
+	private String projectType;
 	
 	/**
 	 * 薪资
@@ -191,14 +191,14 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	/**
 	 * 设置：项目名称
 	 */
-	public void setProject_name(String project_name) {
-		this.projectName = project_name;
+	public void setProjectType(String project_type) {
+		this.projectType = project_type;
 	}
 	/**
 	 * 获取：项目名称
 	 */
-	public String getProject_name() {
-		return projectName;
+	public String getProjectType() {
+		return projectType;
 	}
 	/**
 	 * 设置：薪资
