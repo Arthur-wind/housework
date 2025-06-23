@@ -230,7 +230,7 @@ public R register(@RequestBody EmployeeEntity employee) {
      */
     @RequestMapping("/save")
     public R save(@RequestBody EmployeeEntity employee, HttpServletRequest request){
-    	employee.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	employee.setId(new Date().getTime() + (long) (Math.floor(Math.random() * 1000)));
     	//ValidatorUtils.validateEntity(employee);
     	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployee_Account()));
 		if(user!=null) {
@@ -246,7 +246,7 @@ public R register(@RequestBody EmployeeEntity employee) {
      */
     @RequestMapping("/add")
     public R add(@RequestBody EmployeeEntity employee, HttpServletRequest request){
-    	employee.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	employee.setId(new Date().getTime() + (long) Math.floor(Math.random() * 1000));
     	//ValidatorUtils.validateEntity(employee);
     	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployee_Account()));
 		if(user!=null) {
