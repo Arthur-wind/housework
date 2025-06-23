@@ -147,14 +147,13 @@ export default {
       this.$router.push({ path: "/login" });
     },
     handleAvatarSuccess(res) {
-      if(res.code === 0) {
-        this.ruleForm.avatar = 'upload/' + (res.file || '');
-        // 可打印辅助调试
-        console.log('上传后头像保存路径:', this.ruleForm.avatar);
-      } else {
-        this.$message.error("头像上传失败");
-      }
-    },
+  if(res.code === 0) {
+    this.ruleForm.avatar = res.file || '';
+    console.log('上传后头像文件名:', this.ruleForm.avatar);
+  } else {
+    this.$message.error("头像上传失败");
+  }
+},
     beforeAvatarUpload(file) {
       const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
       const isLt2M = file.size / 1024 / 1024 < 2;
@@ -167,42 +166,42 @@ export default {
       return isJPG && isLt2M;
     },
     login() {
-      if (!this.ruleForm.password || !this.ruleForm.password2) {
-        this.$message.error("请输入密码和确认密码");
-        return;
-      }
-      if (this.ruleForm.password !== this.ruleForm.password2) {
-        this.$message.error("两次密码输入不一致，请重新输入");
-        this.ruleForm.password = '';
-        this.ruleForm.password2 = '';
-        return;
-      }
-      var url = this.tableName + "/register";
-      if (this.ruleForm.avatar) {
-        this.ruleForm.photo = this.ruleForm.avatar;
-      }
-      this.$http({
-        url: url,
-        method: "post",
-        data: {
-          ...this.ruleForm,
-          password2: undefined
-        },
-      }).then(({ data }) => {
-        if (data && data.code === 0) {
-          this.$message({
-            message: "注册成功",
-            type: "success",
-            duration: 1500,
-            onClose: () => {
-              this.$router.replace({ path: "/login" });
-            }
-          });
-        } else {
-          this.$message.error(data.msg);
+  if (!this.ruleForm.password || !this.ruleForm.password2) {
+    this.$message.error("请输入密码和确认密码");
+    return;
+  }
+  if (this.ruleForm.password !== this.ruleForm.password2) {
+    this.$message.error("两次密码输入不一致，请重新输入");
+    this.ruleForm.password = '';
+    this.ruleForm.password2 = '';
+    return;
+  }
+  var url = this.tableName + "/register";
+  if (this.ruleForm.avatar) {
+    this.ruleForm.photo = 'upload/' + this.ruleForm.avatar;  // 这里拼接前缀提交数据库
+  }
+  this.$http({
+    url: url,
+    method: "post",
+    data: {
+      ...this.ruleForm,
+      password2: undefined
+    },
+  }).then(({ data }) => {
+    if (data && data.code === 0) {
+      this.$message({
+        message: "注册成功",
+        type: "success",
+        duration: 1500,
+        onClose: () => {
+          this.$router.replace({ path: "/login" });
         }
       });
+    } else {
+      this.$message.error(data.msg);
     }
+  });
+}
   }
 };
 </script>
