@@ -8,6 +8,7 @@
     <meta name="author" content="order by mobanxiu.cn"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="../../layui/css/layui.css">
     <link rel="stylesheet" href="../../css/swiper.min.css">
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="../../xznstatic/css/style.css"/>
     <script src="../../xznstatic/js/jquery-1.11.3.min.js"></script>
     <script src="../../xznstatic/js/jquery.SuperSlide.2.1.1.js"></script>
+
 </head>
 <style>
     html::after {
@@ -971,16 +973,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="bd">
-          <ul>
-            <li v-for="(item,index) in swiperList" v-bind:key="index"><img style="width: 1920px;height: 492px;" :src="item.img" /></li>
-          </ul>
-          <div class="hd">
-            <ul>
-              <li v-for="(item,index) in swiperList" v-bind:key="index"></li>
-            </ul>
-          </div>
-        </div> -->
     </div>
 
 
@@ -1418,42 +1410,7 @@
 <script src="../../modules/config.js"></script>
 <script src="../../js/utils.js"></script>
 <script type="text/javascript">
-    // var vue = new Vue({
-    //     el: '#app',
-    //     data: {
-    //
-    //         service_projectRecommend: [],
-    //         requirement_infoRecommend: [],
-    //
-    //         swiperList: [],
-    //         // 网站公告
-    //         newsList: [],
-    //         leftNewsList: [],
-    //         rightNewsList: [],
-    //         baseurl: ''
-    //     },
-    //     filters: {
-    //         newsDesc: function (val) {
-    //             if (val) {
-    //                 val = val.replace(/<[^<>]+>/g, '').replace(/undefined/g, '');
-    //                 if (val.length > 60) {
-    //                     val = val.substring(0, 60);
-    //                 }
-    //
-    //                 return val;
-    //             }
-    //             return '';
-    //         }
-    //     },
-    //     methods: {
-    //         methods: {
-    //             jump(url) {
-    //                 window.location.href = url;
-    //             }
-    //         }
-    //
-    //     }
-    // });
+
 
     var vue = new Vue({
         el: '#app',
@@ -1466,6 +1423,24 @@
             rightNewsList: [],
             baseurl: '',
             loading: true  // 添加加载状态
+        },
+        watch: {
+            swiperList(newVal) {
+                if (newVal.length > 0) {
+                    this.$nextTick(() => {
+                        layui.carousel.render({
+                            elem: '#test1',
+                            width: '100%',
+                            height: '400px',
+                            arrow: 'hover',
+                            anim: 'default',
+                            autoplay: true,
+                            interval: 3000,
+                            indicator: 'inside'
+                        });
+                    });
+                }
+            }
         },
         filters: {
             newsDesc: function (val) {
@@ -1533,9 +1508,6 @@
 
                 })
 
-                // vue.$nextTick(()=>{
-                //   window.xznSlide();
-                // });
             }
         });
 
@@ -1616,16 +1588,14 @@
         // 获取推荐信息
         var autoSortUrl = "service_project/autoSort";
         http.request(autoSortUrl, 'get', {
-                is_reviewed: '是',
-                page: 1,
-            },
-            function (res) {
-                console.log("接口返回的数据：", res); // 🔍 添加这个查看内容
-                if (!vue.service_projectRecommend || vue.service_projectRecommend.length === 0) {
-                    console.warn("service_projectRecommend 数据为空，不执行 Swiper");
-                    return; // 直接返回，不再执行下面逻辑
-                }
-                vue.service_projectRecommend = res.data.list
+            is_reviewed: '是',
+            page: 1,
+        }, function (res) {
+            if (!res.data.list || res.data.list.length === 0) {
+                console.warn("service_projectRecommend 数据为空，不执行 Swiper");
+                return; // 数据为空时直接退出
+            }
+            vue.service_projectRecommend = res.data.list;
                 let flag = 7;
                 let options = {
                     "navigation": {"nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev"},
