@@ -138,14 +138,17 @@ public class Contract_SigningEntity<T> implements Serializable {
 	/**
 	 * 是否审核
 	 */
-					
-	private String is_reviewed;
+
+	@TableField("is_reviewed")
+	@JsonProperty("is_reviewed")
+	private String isReviewed;
 	
 	/**
 	 * 审核回复
 	 */
-					
-	private String review_comment;
+
+	@TableField("review_comment")
+	private String reviewComment;
 	
 	
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
@@ -301,26 +304,26 @@ public class Contract_SigningEntity<T> implements Serializable {
 	/**
 	 * 设置：是否审核
 	 */
-	public void setIs_reviewed(String is_reviewed) {
-		this.is_reviewed = is_reviewed;
+	public void setIsReviewed(String is_reviewed) {
+		this.isReviewed = is_reviewed;
 	}
 	/**
 	 * 获取：是否审核
 	 */
-	public String getIs_reviewed() {
-		return is_reviewed;
+	public String getIsReviewed() {
+		return isReviewed;
 	}
 	/**
 	 * 设置：审核回复
 	 */
 	public void setReview_comment(String review_comment) {
-		this.review_comment = review_comment;
+		this.reviewComment = review_comment;
 	}
 	/**
 	 * 获取：审核回复
 	 */
 	public String getReview_comment() {
-		return review_comment;
+		return reviewComment;
 	}
 
 }
