@@ -35,6 +35,14 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
     
 	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 支持 @IgnoreAuth 注解放行
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            IgnoreAuth ignoreAuth = handlerMethod.getMethodAnnotation(IgnoreAuth.class);
+            if (ignoreAuth != null) {
+                return true; // 有注解直接放行
+            }
+        }
 
 		//支持跨域请求
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");

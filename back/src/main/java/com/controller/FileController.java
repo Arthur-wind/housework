@@ -45,6 +45,7 @@ public class FileController{
 	/**
 	 * 上传文件
 	 */
+	@IgnoreAuth // 加上这行，允许未登录访问
 	@RequestMapping("/upload")
 	public R upload(@RequestParam("file") MultipartFile file,String type) throws Exception {
 		if (file.isEmpty()) {
@@ -62,24 +63,20 @@ public class FileController{
 		String fileName = new Date().getTime()+"."+fileExt;
 		File dest = new File(upload.getAbsolutePath()+"/"+fileName);
 		file.transferTo(dest);
-		/**
-		 * 如果使用idea或者eclipse重启项目，发现之前上传的图片或者文件丢失，将下面一行代码注释打开
-		 * 请将以下的"D:\\springbootq33sd\\src\\main\\resources\\static\\upload"替换成你本地项目的upload路径，
-		 * 并且项目路径不能存在中文、空格等特殊字符
-		 */
-		FileUtils.copyFile(dest, new File("C:\\Users\\asus\\Desktop\\housework-master\\back\\src\\main\\resources\\upload"+"/"+fileName)); /**修改了路径以后请将该行最前面的//注释去掉**/
-		if(StringUtils.isNotBlank(type) && type.equals("1")) {
-			ConfigEntity configEntity = configService.selectOne(new EntityWrapper<ConfigEntity>().eq("name", "faceFile"));
-			if(configEntity==null) {
-				configEntity = new ConfigEntity();
-				configEntity.setName("faceFile");
-				configEntity.setValue(fileName);
-			} else {
-				configEntity.setValue(fileName);
-			}
-			configService.insertOrUpdate(configEntity);
-		}
-		return R.ok().put("file", fileName);
+        // 删除或注释掉下面这行，不要再复制到桌面upload文件夹
+        // FileUtils.copyFile(dest, new File("C:\\Users\\yzfen\\Desktop\\HomeServicePlatform-main\\upload"+"/"+fileName));
+        if(StringUtils.isNotBlank(type) && type.equals("1")) {
+            ConfigEntity configEntity = configService.selectOne(new EntityWrapper<ConfigEntity>().eq("name", "faceFile"));
+            if(configEntity==null) {
+                configEntity = new ConfigEntity();
+                configEntity.setName("faceFile");
+                configEntity.setValue(fileName);
+            } else {
+                configEntity.setValue(fileName);
+            }
+            configService.insertOrUpdate(configEntity);
+        }
+        return R.ok().put("file", fileName);
 	}
 
 	/**
