@@ -221,12 +221,17 @@
 					chatFlag: chatFlag,
 					projectName: projectName,
 				},
-				mounted(){  const token = this.$route.query.token;
+				mounted() {
+					// 原本的 token 获取逻辑
+					const token = this.$route?.query?.token;
 					if (token) {
 						localStorage.setItem("token", token);
 						console.log("接收到前台传来的 token 并存储:", token);
-					}},
-				mounted: function() {
+					}
+
+
+
+					// 原有函数调用
 					this.bindClickOnLi();
 				},
 				created() {
@@ -249,15 +254,66 @@
 					},
 					goToAdmin() {
 						let token = localStorage.getItem("jwtToken");
+						let Ticket= localStorage.getItem("Ticket");
 						console.log("index中jwttoken:", token);
+						console.log("index中ticket:", Ticket);
 						if (!token) {
 							alert("请先登录");
 							return;
 						}
 						// 假设后台页面地址
-						let adminUrl = "http://localhost:8081/#/login?token=" + encodeURIComponent(token);
+						let adminUrl = "http://localhost:8081/#/login?ticket=" + encodeURIComponent(Ticket);
 						window.open(adminUrl, '_blank');
-					}
+					},
+					validateTicket(ticket) {
+						fetch(`/springbootc90g5/auth/verify-ticket?ticket=${encodeURIComponent(ticket)}`, {
+							method: 'GET',
+							credentials: 'include'
+						})
+								.then(res => res.json())
+								.then(data => {
+									if (data.code === 0) {
+										console.log(" ticket 验证通过，用户信息：", data);
+										localStorage.setItem("Token", data.data.token);
+
+
+										if(data.data.role==="employer"){
+											localStorage.setItem("role", "雇主");
+										}else{
+											localStorage.setItem("role", "雇员");
+										}
+
+										localStorage.setItem("sessionTable", data.data.tableName);
+										localStorage.setItem("adminName", data.data.userName);
+										localStorage.setItem("userId", data.data.userId); // 可选
+										localStorage.setItem('userTable', data.role);
+
+
+										console.log(" 直接跳：");
+										let role = localStorage.getItem("role")
+										let token = localStorage.getItem("Token");
+										let sessionTable = localStorage.getItem("sessionTable");
+										let adminName = localStorage.getItem("adminName");
+										console.log('role:', role);
+										console.log('token:', token);
+										console.log('sessionTable:', sessionTable);
+										console.log('adminName:', adminName);
+
+
+										// this.$router.replace({ path: "/index/"});
+									} else {
+										console.log(data);
+										console.error("ticket 无效或已过期", ticket);
+
+										alert("登录失败，请重新登录");
+										// window.location.href = '/login';
+									}
+								})
+								.catch(err => {
+									console.error(" 请求失败：", err);
+								});
+
+					},
 				}
 			});
 
@@ -276,7 +332,7 @@
 						content: './pages/chat/chat.html'
 					});
 				} else {
-					window.location.href = './pages/login/login.html'
+					// window.location.href = './pages/login/login.html'
 				}
 			}
 
@@ -294,7 +350,7 @@
 					localStorage.setItem('iframeUrl', './pages/' + userTable + '/center.html');
 					document.getElementById('iframe').src = './pages/' + userTable + '/center.html';
 				} else {
-					window.location.href = './pages/login/login.html'
+					// window.location.href = './pages/login/login.html'
 				}
 			}
 

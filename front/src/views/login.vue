@@ -101,13 +101,14 @@ export default {
     // 使用 URLSearchParams 解析
     const params = new URLSearchParams(queryString);
     const token = params.get('token');
+    const ticket = params.get('ticket');
 
-    if (token) {
-      console.log(" 成功获取 token：", token);
-      localStorage.setItem("token", token);
-      this.validateToken(token); // 发起验证请求
+    if (ticket) {
+      console.log(" 成功获取 ticket：", ticket);
+      localStorage.setItem("ticket", ticket);
+      this.validateTicket(ticket); // 发起验证请求
     } else {
-      console.error(" 无法从 URL 中获取 token");
+      console.error(" 无法从 URL 中获取 ticket");
     }
 
 
@@ -124,27 +125,48 @@ export default {
     this.getRandCode();
   },
   methods: {
-    validateToken(token) {
-      fetch('/springbootc90g5/auth/verify-token', {
+    validateTicket(ticket) {
+      fetch(`/springbootc90g5/auth/verify-ticket?ticket=${encodeURIComponent(ticket)}`, {
         method: 'GET',
-        headers: {
-          'Authorization': 'Bearer ' + token
-        },
-        credentials: 'include' // 如果后端需要 cookie 或 session 支持
+        credentials: 'include'
       })
           .then(res => res.json())
           .then(data => {
             if (data.code === 0) {
-              console.log(" Token 验证通过，用户信息：", data);
-              const user = {
-                userId: data.userId,
-                username: data.username,
-                tableName: data.tableName,
-                role: data.role
-              };
-              localStorage.setItem("user", JSON.stringify(data.data));
+              console.log(" ticket 验证通过，用户信息：", data);
+              this.$storage.set("Token", data.data.token);
+
+              if(data.data.role==="employer"){
+                this.$storage.set("role", "雇主");
+              }else{
+                this.$storage.set("role", "雇员");
+              }
+
+              this.$storage.set("sessionTable", data.data.tableName);
+              this.$storage.set("ticket", ticket);
+
+              this.$storage.set("adminName", data.data.userName);
+              this.$storage.set("userId", data.data.userId); // 可选
+
+
+              console.log(" 直接跳：");
+              let role = this.$storage.get("role")
+              let token = this.$storage.get("Token");
+              let sessionTable = this.$storage.get("sessionTable");
+              let adminName = this.$storage.get("adminName");
+              let ticket1=this.$storage.get("ticket");
+              console.log('role:', role);
+              console.log('ticket:', ticket1);
+              console.log('token:', token);
+              console.log('sessionTable:', sessionTable);
+              console.log('adminName:', adminName);
+
+
+              this.$router.replace({ path: "/index/"});
             } else {
-              console.error("Token 无效或已过期",token);
+              console.log(data);
+              console.error("ticket 无效或已过期", ticket);
+
               alert("登录失败，请重新登录");
               // window.location.href = '/login';
             }
@@ -152,6 +174,7 @@ export default {
           .catch(err => {
             console.error(" 请求失败：", err);
           });
+
     },
 
 
@@ -193,7 +216,8 @@ export default {
             this.tableName = menus[i].tableName;
           }
         }
-      } else {
+      }
+      else {
         this.tableName = this.roles[0].tableName;
         this.rulesForm.role = this.roles[0].roleName;
       }
@@ -207,6 +231,19 @@ export default {
           this.$storage.set("role", this.rulesForm.role);
           this.$storage.set("sessionTable", this.tableName);
           this.$storage.set("adminName", this.rulesForm.username);
+          this.$storage.set("ticket", data.enTicket);
+
+
+          console.log('正常');
+          let role = this.$storage.get("role")
+          let token = this.$storage.get("Token");
+          let sessionTable = this.$storage.get("sessionTable");
+          let adminName = this.$storage.get("adminName");
+          console.log('role:', role);
+          console.log('token:', token);
+          console.log('sessionTable:', sessionTable);
+          console.log('adminName:', adminName);
+
           this.$router.replace({path: "/index/"});
         } else {
           this.$message.error(data.msg);
@@ -218,14 +255,14 @@ export default {
     },
     randomString(len = 4) {
       let chars = [
-          "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
-          "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
-          "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G",
-          "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-          "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2",
-          "3", "4", "5", "6", "7", "8", "9"
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+        "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+        "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G",
+        "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+        "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2",
+        "3", "4", "5", "6", "7", "8", "9"
       ]
-      let colors = ["0", "1", "2","3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
+      let colors = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
       let sizes = ['14', '15', '16', '17', '18']
 
       let output = [];
@@ -251,7 +288,7 @@ export default {
       }
     },
   }
-  
+
 };
 </script>
 <style lang="scss" scoped>

@@ -1,41 +1,20 @@
 package com.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Date;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
-import com.entity.TokenEntity;
-import com.utils.*;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.annotation.IgnoreAuth;
-
 import com.entity.EmployerEntity;
 import com.entity.view.EmployerView;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.EmployerService;
 import com.service.TokenService;
-import com.utils.PageUtils;
-import com.utils.R;
-import com.utils.MD5Util;
-import com.utils.MPUtil;
-import com.utils.CommonUtil;
-import java.io.IOException;
+import com.utils.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 雇主
@@ -74,11 +53,30 @@ public class EmployerController {
 		claims.put("userName", username);
 		claims.put("role", "employer");
 		claims.put("tableName", "employer");
+		claims.put("token", token);
 		String jwtToken = JwtUtils.generateToken(claims, user.getEmployer_Name());
+		String enTicket;
+
+		try {
+			// 把 claims 转成 JSON 字符串（这里用 Jackson ObjectMapper，确保你pom依赖了）
+			ObjectMapper objectMapper = new ObjectMapper();
+			String json = objectMapper.writeValueAsString(claims);
+
+			// AES密钥，和AESUtil中保持一致
+			String aesSecret = "1234567890123456"; // 16位密钥，示例
+
+			enTicket = AESUtil.encrypt(json, aesSecret);
+			System.out.println("ticket: " + enTicket);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.error("生成 ticket 失败");
+		}
 
 		return R.ok()
+				.put("enTicket", enTicket)		//加密ticket
 				.put("token", token)       // 旧逻辑：存入数据库的 token
-				.put("jwtToken", jwtToken);  // 新逻辑：用于页面间跳转的 JWT token
+				.put("jwtToken", jwtToken);	// 新逻辑：用于页面间跳转的 JWT token
+
 	}
 	
 	/**
