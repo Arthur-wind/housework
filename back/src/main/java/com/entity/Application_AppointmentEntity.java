@@ -85,6 +85,7 @@ public class Application_AppointmentEntity<T> implements Serializable {
 	 * 申请备注
 	 */
 
+	@JsonProperty("application_notes")
 	@TableField("application_notes")
 	private String applicationNotes;
 	
@@ -340,4 +341,10 @@ public class Application_AppointmentEntity<T> implements Serializable {
 		return payment_status;
 	}
 
+	public void setApplicationNotes(String application_notes) {
+		this.applicationNotes = application_notes;
+	}
+	public String getApplicationNotes() {
+		return applicationNotes;
+	}
 }
