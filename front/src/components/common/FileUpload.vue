@@ -49,21 +49,18 @@ export default {
   },
   watch: {
     fileUrls: function(val, oldVal) {
-      //   console.log("new: %s, old: %s", val, oldVal);
       this.init();
     }
   },
   computed: {
     // 计算属性的 getter
     getActionUrl: function() {
-      // return base.url + this.action + "?token=" + storage.get("token");
       return `/${this.$base.name}/` + this.action;
     }
   },
   methods: {
     // 初始化
     init() {
-      //   console.log(this.fileUrls);
       if (this.fileUrls) {
         this.fileUrlList = this.fileUrls.split(",");
         let fileArray = [];
@@ -114,7 +111,6 @@ export default {
     setFileList(fileList) {
       var fileArray = [];
       var fileUrlArray = [];
-      // 有些图片不是公开的，所以需要携带token信息做权限校验
       var token = storage.get("token");
       let _this = this;
       fileList.forEach(function(item, index) {

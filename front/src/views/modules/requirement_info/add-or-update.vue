@@ -22,10 +22,10 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="select" v-if="type!='info'"  label="项目名称" prop="project_name">
-          <el-select :disabled="ro.project_name" v-model="ruleForm.project_name" placeholder="请选择项目名称">
+        <el-form-item class="select" v-if="type!='info'"  label="项目名称" prop="projectType">
+          <el-select :disabled="ro.projectType" v-model="ruleForm.projectType" placeholder="请选择项目名称">
             <el-option
-                v-for="(item,index) in project_nameOptions"
+                v-for="(item,index) in projectTypeOptions"
                 v-bind:key="index"
                 :label="item"
                 :value="item">
@@ -33,8 +33,8 @@
           </el-select>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="项目名称" prop="project_name">
-	      <el-input v-model="ruleForm.project_name"
+          <el-form-item class="input" label="项目名称" prop="projectType">
+	      <el-input v-model="ruleForm.projectType"
                 placeholder="项目名称" readonly></el-input>
           </el-form-item>
         </div>
@@ -267,7 +267,7 @@ export default {
       type: '',
       ro:{
 	title : false,
-	project_name : false,
+	projectType : false,
 	salary : false,
 	working_hours : false,
 	work_location : false,
@@ -283,7 +283,7 @@ export default {
       },
       ruleForm: {
         title: '',
-        project_name: '',
+        projectType: '',
         salary: '',
         working_hours: '',
         work_location: '',
@@ -296,11 +296,11 @@ export default {
         phone: '',
         last_click_time: '',
       },
-          project_nameOptions: [],
+          projectTypeOptions: [],
       rules: {
           title: [
           ],
-          project_name: [
+          projectType: [
           ],
           salary: [
                 { validator: validateNumber, trigger: 'blur' },
@@ -366,9 +366,9 @@ export default {
 	    this.ro.title = true;
             continue;
           }
-          if(o=='project_name'){
-            this.ruleForm.project_name = obj[o];
-	    this.ro.project_name = true;
+          if(o=='projectType'){
+            this.ruleForm.projectType = obj[o];
+	    this.ro.projectType = true;
             continue;
           }
           if(o=='salary'){
@@ -461,7 +461,7 @@ export default {
               method: "get"
             }).then(({ data }) => {
               if (data && data.code === 0) {
-                this.project_nameOptions = data.data;
+                this.projectTypeOptions = data.data;
               } else {
                 this.$message.error(data.msg);
               }
@@ -488,36 +488,11 @@ export default {
 
     // 提交
     onSubmit() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 
 	if(this.ruleForm.cover_image!=null) {
 		this.ruleForm.cover_image = this.ruleForm.cover_image.replace(new RegExp(this.$base.url,"g"),"");
 	}
-
-
-
-
-
-
-
-
-
 
 
 var objcross = this.$storage.getObj('crossObj');

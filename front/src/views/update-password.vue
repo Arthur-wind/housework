@@ -81,8 +81,11 @@ export default {
           } else if (this.user.password) {
             password = this.user.password;
           }
+
           if (this.ruleForm.password != password) {
             this.$message.error("原密码错误");
+            console.log(this.ruleForm.password);
+            console.log(password);
             return;
           }
           if (this.ruleForm.newpassword != this.ruleForm.repassword) {
@@ -114,5 +117,6 @@ export default {
   }
 };
 </script>
+
 <style lang="scss" scoped>
 </style>

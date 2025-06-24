@@ -87,21 +87,12 @@ export default {
                   this.quill.format("image", false);
                 }
               }
-              // link: function(value) {
-              //   if (value) {
-              //     var href = prompt('请输入url');
-              //     this.quill.format("link", href);
-              //   } else {
-              //     this.quill.format("link", false);
-              //   }
-              // },
+              
             }
           }
         }
       },
-      // serverUrl: `${base.url}sys/storage/uploadSwiper?token=${storage.get('token')}`, // 这里写你要上传的图片服务器地址
       header: {
-        // token: sessionStorage.token
        'Token': this.$storage.get("Token")
       } // 有的图片服务器要求请求头需要有token
     };
@@ -109,7 +100,6 @@ export default {
   computed: {
     // 计算属性的 getter
     getActionUrl: function() {
-      // return this.$base.url + this.action + "?token=" + this.$storage.get("token");
       return `/${this.$base.name}/` + this.action;
     }
   },

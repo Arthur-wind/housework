@@ -22,22 +22,8 @@ export function isAuth(tableName,key) {
             }
         }
     }
-    // for(let i=0;i<menus.length;i++){
-    //     if(menus[i].roleName==role){
-    //         for(let j=0;j<menus[i].backMenu.length;j++){
-    //             if(menus[i].backMenu[j].tableName==tableName){
-    //                 let buttons = menus[i].backMenu[j].child[0].buttons.join(',');
-    //                 return buttons.indexOf(key) !== -1 || false
-    //             }
-    //         }
-    //     }
-    // }
     return false;
 }
-
-/**
- *  * 获取当前时间（yyyy-MM-dd hh:mm:ss）
- *   */
 export function getCurDateTime() {
     let currentTime = new Date(),
     year = currentTime.getFullYear(),
@@ -49,9 +35,7 @@ export function getCurDateTime() {
     return year + "-" + month + "-" + day + " " +hour +":" +minute+":"+second;
 }
 
-/**
- *  * 获取当前日期（yyyy-MM-dd）
- *   */
+
 export function getCurDate() {
     let currentTime = new Date(),
     year = currentTime.getFullYear(),

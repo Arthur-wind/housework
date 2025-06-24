@@ -93,11 +93,11 @@
                      </template>
                 </el-table-column>
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
-                    prop="project_name"
+                    prop="projectType"
                    :header-align="contents.tableAlign"
 		    label="项目名称">
 		     <template slot-scope="scope">
-                       {{scope.row.project_name}}
+                       {{scope.row.projectType}}
                      </template>
                 </el-table-column>
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 

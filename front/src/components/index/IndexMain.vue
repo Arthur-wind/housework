@@ -34,9 +34,7 @@
 		methods: {
 			init(){
 				this.$nextTick(()=>{
-					// let h = document.getElementsByClassName('el-aside')[0].clientHeight
-					// document.getElementsByClassName('el-main')[0].style.minHeight = "calc(100vh - 58px - " + h+'px)'
-				})
+					})
 			},
 			menuHandler(menu) {
 				this.$router.push({

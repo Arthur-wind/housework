@@ -15,3 +15,8 @@ const base = {
     }
 }
 export default base
+
+// 全局基础配置。
+
+// 提供后端基础 URL、项目名、首页链接等信息。
+// 通过 get() 和 getProjectName() 方法获取这些配置，便于全局调用和修改。

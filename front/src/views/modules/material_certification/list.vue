@@ -144,13 +144,13 @@
                     </template>
                   </el-table-column>
 
-                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="qualification_certificate"
+                  <!-- <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="qualification_certificate"
                    :header-align="contents.tableAlign"
                     label="申请资料">
                     <template slot-scope="scope">
                       <el-button type="text" size="small" @click="download($base.url+scope.row.application_materials)">下载</el-button>
                     </template>
-                  </el-table-column>
+                  </el-table-column> -->
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="application_time"
                    :header-align="contents.tableAlign"

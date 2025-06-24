@@ -102,13 +102,13 @@
                        {{scope.row.project_name}}
                      </template>
                 </el-table-column>
-                  <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="document"
+                  <!-- <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="document"
                    :header-align="contents.tableAlign"
                     label="文件">
                     <template slot-scope="scope">
                       <el-button type="text" size="small" @click="download($base.url+scope.row.document)">下载</el-button>
                     </template>
-                  </el-table-column>
+                  </el-table-column> -->
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="sign_date"
                    :header-align="contents.tableAlign"

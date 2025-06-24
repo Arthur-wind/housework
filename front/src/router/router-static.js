@@ -1,5 +1,21 @@
 import Vue from 'vue';
-//配置路由
+//配置路由，用于配置你整个前端项目的页面路由跳转规则。
+//   引入页面组件
+// 文件顶部通过 import 引入了所有页面组件（如首页、登录、注册、各业务模块的 list 页面等）。
+
+// 定义路由表
+// 用 const routes = [...] 定义了所有页面的路由规则，包括路径（path）、名称（name）、对应组件（component）、元信息（meta）等。
+
+// 配置嵌套路由
+// /index 下有很多子路由（children），比如 /center、/news、/material_certification 等，都是主页面下的二级页面。
+
+// 特殊路由
+
+// /login、/register：登录和注册页面。
+// /：默认重定向到 /index。
+// *：404页面，匹配所有未定义路由。
+// 实例化并导出路由对象
+// 用 new VueRouter({ ... }) 创建路由实例，并导出，供主入口文件（如 main.js）使用。
 import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 //1.创建组件

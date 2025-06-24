@@ -1,3 +1,5 @@
+// 引入并全局注册各种插件、组件
+
 import Vue from 'vue'
 import App from '@/App.vue'
 // element ui 完全引入

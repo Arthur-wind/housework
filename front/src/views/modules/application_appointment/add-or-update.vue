@@ -22,13 +22,13 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="项目名称" prop="project_name">
-          <el-input v-model="ruleForm.project_name"
-              placeholder="项目名称" clearable  :readonly="ro.project_name"></el-input>
+        <el-form-item class="input" v-if="type!='info'"  label="项目名称" prop="projectType">
+          <el-input v-model="ruleForm.projectType"
+              placeholder="项目名称" clearable  :readonly="ro.projectType"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="项目名称" prop="project_name">
-              <el-input v-model="ruleForm.project_name"
+          <el-form-item class="input" label="项目名称" prop="projectType">
+              <el-input v-model="ruleForm.projectType"
                 placeholder="项目名称" readonly></el-input>
           </el-form-item>
         </div>
@@ -237,7 +237,7 @@ export default {
       type: '',
       ro:{
 	appointment_no : false,
-	project_name : false,
+	projectType : false,
 	salary : false,
 	application_time : false,
 	application_notes : false,
@@ -253,7 +253,7 @@ export default {
       },
       ruleForm: {
         appointment_no: this.getUUID(),
-        project_name: '',
+        projectType: '',
         salary: '',
         application_time: '',
         application_notes: '',
@@ -268,7 +268,7 @@ export default {
       rules: {
           appointment_no: [
           ],
-          project_name: [
+          projectType: [
           ],
           salary: [
                 { validator: validateNumber, trigger: 'blur' },
@@ -334,9 +334,9 @@ export default {
 	    this.ro.appointment_no = true;
             continue;
           }
-          if(o=='project_name'){
-            this.ruleForm.project_name = obj[o];
-	    this.ro.project_name = true;
+          if(o=='projectType'){
+            this.ruleForm.projectType = obj[o];
+	    this.ro.projectType = true;
             continue;
           }
           if(o=='salary'){
