@@ -82,9 +82,7 @@ public class AuthController {
             Map<String, Object> claims = new ObjectMapper().readValue(json, Map.class);
             String username = (String) claims.get("userName");
             System.out.println("解析后"+username);
-            int userId = (Integer) claims.get("userId");
-            String role = (String) claims.get("role");
-            String tablename = (String) claims.get("tableName");
+
 
 
             return R.ok().put("data", claims);

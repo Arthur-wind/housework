@@ -21,16 +21,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .headers().frameOptions().sameOrigin() // ✅ 允许 iframe 加载同源页面
+                .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
+                .formLogin().disable()
+                .logout().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(
+                        "/springbootc90g5/front/**",
                         "/login", "/logout", "/register",
-                        "/static/**", "/css/**", "/js/**", "/img/**",
                         "/favicon.ico"
                 ).permitAll()
                 .anyRequest().permitAll();
     }
+
+
 }

@@ -19,16 +19,16 @@
             <el-input placeholder="请输入密码" name="password" type="password" v-model="rulesForm.password" />
           </el-form-item>
           <el-form-item label="验证码" class="input-item" v-if="1 == '1'">
-            <span class="svg-container">
-              <svg-icon icon-class="code" />
-            </span>
+<!--            <span class="svg-container">-->
+<!--              <svg-icon icon-class="code" />-->
+<!--            </span>-->
             <el-input placeholder="请输入验证码" name="code" type="text" v-model="rulesForm.code" />
             <div class="getCodeBt" @click="getRandCode(4)">
               <span v-for="(item, index) in codes" :key="index"
                     :style="{color:'#fff',transform:item.rotate,fontSize:'16px'}">{{ item.num }}</span>
             </div>
           </el-form-item>
-          <el-form-item v-if="roles.length>1" label="角色" prop="loginInRole" class="role-select" label-width="60px">
+          <el-form-item v-if="roles.length>1" label="角色" prop="role" class="role-select">
             <el-radio
                 v-for="item in roles"
                 :key="item.roleName"
@@ -91,11 +91,13 @@ export default {
 
     let menus = menu.list();
     this.menus = menus;
+
     for (let i = 0; i < this.menus.length; i++) {
-      if (this.menus[i].hasBackLogin == '是') {
+      if (this.menus[i].hasBackLogin=='是') {
         this.roles.push(this.menus[i])
       }
     }
+
   },
   created() {
       console.log('rulesForm in created:', this.rulesForm);
@@ -238,32 +240,34 @@ export default {
         "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
         "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2",
         "3", "4", "5", "6", "7", "8", "9"
-      ]
-      let colors = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
-      let sizes = ['14', '15', '16', '17', '18']
+      ];
+      let colors = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+      let sizes = ['14', '15', '16', '17', '18'];
 
       let output = [];
+
       for (let i = 0; i < len; i++) {
         // 随机验证码
-        let key = Math.floor(Math.random() * chars.length)
+        let key = Math.floor(Math.random()*chars.length)
         this.codes[i].num = chars[key]
         // 随机验证码颜色
         let code = '#'
         for (let j = 0; j < 6; j++) {
-          let key = Math.floor(Math.random() * colors.length)
+          let key = Math.floor(Math.random()*colors.length)
           code += colors[key]
         }
         this.codes[i].color = code
         // 随机验证码方向
-        let rotate = Math.floor(Math.random() * 60)
-        let plus = Math.floor(Math.random() * 2)
-        if (plus == 1) rotate = '-' + rotate
-        this.codes[i].rotate = 'rotate(' + rotate + 'deg)'
+        let rotate = Math.floor(Math.random()*60)
+        let plus = Math.floor(Math.random()*2)
+        if(plus == 1) rotate = '-'+rotate
+        this.codes[i].rotate = 'rotate('+rotate+'deg)'
         // 随机验证码字体大小
-        let size = Math.floor(Math.random() * sizes.length)
-        this.codes[i].size = sizes[size] + 'px'
+        let size = Math.floor(Math.random()*sizes.length)
+        this.codes[i].size = sizes[size]+'px'
       }
-    },
+    }
+
   }
 };
 </script>

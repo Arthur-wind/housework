@@ -141,29 +141,31 @@
 			margin-top: 100px;
 		}
 	}
-</style>
-<body>
-<!-- start 顶部导航栏 -->
-<div id="header">
-	<div v-if='true' class="nav-top">
-		<img v-if='false' class="nav-top-img" src='https://www.baidu.com/img/flexible/logo/pc/result@2.png'>
-		<div v-if="true" class="nav-top-title">{{projectName}}</div>
-		<div class="nav-top-tel"></div>
-	</div>
-	<div class="navs">
-		<!-- <div class="logo" style="font-size: 20px;top: 32px;color: #fff;font-weight: bold;margin-left: -200px;width: 240px;" v-text="projectName"></div> -->
-		<div class="title" v-if="false" v-text="projectName"></div>
-		<div class="list">
-			<ul>
-				<li class='current'><a href="javascript:navPage('./pages/home/home.html')" class="menumain"><i v-if="false" class="layui-icon layui-icon-home"></i>首页</a></li>
-				<li v-for="(item,index) in indexNav" v-bind:key="index"><a :href="'javascript:navPage(\''+item.url+'\')'" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon" :class="iconArr[index]"></i>{{item.name}}</a></li>
-				<li><a href="javascript:centerPage();" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>个人中心</a></li>
-				<li><a :href="adminurl" target="_blank" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon layui-icon-link"></i>后台管理</a></li>
-			</ul>
+	</style>
+	<body>
+		<!-- start 顶部导航栏 -->
+		<div id="header">
+			<div v-if='true' class="nav-top">
+			  <img v-if='false' class="nav-top-img" src='https://www.baidu.com/img/flexible/logo/pc/result@2.png'>
+			  <div v-if="true" class="nav-top-title">{{projectName}}</div>
+			  <div class="nav-top-tel"></div>
+			</div>
+			<div class="navs">
+		    	<!-- <div class="logo" style="font-size: 20px;top: 32px;color: #fff;font-weight: bold;margin-left: -200px;width: 240px;" v-text="projectName"></div> -->
+				<div class="title" v-if="false" v-text="projectName"></div>
+				<div class="list">
+					<ul>
+						<li class='current'><a href="javascript:navPage('./pages/home/home.html')" class="menumain"><i v-if="false" class="layui-icon layui-icon-home"></i>首页</a></li>
+						<li v-for="(item,index) in indexNav" v-bind:key="index"><a :href="'javascript:navPage(\''+item.url+'\')'" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon" :class="iconArr[index]"></i>{{item.name}}</a></li>
+						<li><a href="javascript:centerPage();" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>个人中心</a></li>
+						<li>
+							<a href="javascript:void(0);" @click="goToAdmin()" class="menumain" style="cursor: pointer;">后台管理</a>
+						</li>
+					</ul>
+				</div>
+		    </div>
 		</div>
-	</div>
-</div>
-<!-- end 顶部导航栏 -->
+		<!-- end 顶部导航栏 -->
 
 <iframe src="./pages/home/home.html" id="iframe" frameborder="0" scrolling="no" width="100%" onload="changeFrameHeight"></iframe>
 
@@ -346,9 +348,23 @@
 		}
 	};
 
-	window.onresize = function() {
-		changeFrameHeight();
-	}
-</script>
-</body>
+			//  窗口变化时候iframe自适应
+			// function changeFrameHeight() {
+				// var header = document.getElementById('header').scrollHeight;
+    //     let isshow = false
+    //     var tabbar = 0
+    //     if(isshow) {
+    //       tabbar = document.getElementById('tabbar').scrollHeight
+    //     }
+				// var ifm = document.getElementById("iframe");
+				// ifm.height = document.documentElement.clientHeight - header - tabbar;
+				// ifm.width = document.documentElement.clientWidth;
+			// }
+
+			// reasize 事件 窗口大小变化后执行的方法
+			window.onresize = function() {
+				changeFrameHeight();
+			}
+		</script>
+	</body>
 </html>
