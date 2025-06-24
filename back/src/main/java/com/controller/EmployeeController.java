@@ -70,7 +70,10 @@ public class EmployeeController {
         System.out.println("接收到数据：" + password);
         System.out.println("数据库中的密码：" + user.getPassword());
         System.out.println("密码加密后：" + passwordEncoder.encode(password));
-        if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
+//        if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
+//			return R.error("账号或密码不正确");
+//		}
+        if (user == null || !password.equals(user.getPassword())) {
 			return R.error("账号或密码不正确");
 		}
 

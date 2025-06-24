@@ -316,7 +316,8 @@
 					localStorage.setItem('iframeUrl', './pages/' + userTable + '/center.html');
 					document.getElementById('iframe').src = './pages/' + userTable + '/center.html';
 				} else {
-					// window.location.href = './pages/login/login.html'
+					alert("您还未登录，请登陆后尝试查看个人信息");
+					window.location.href = './pages/login/login.html'
 				}
 			}
 

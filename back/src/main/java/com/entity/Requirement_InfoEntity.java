@@ -63,7 +63,7 @@ public class Requirement_InfoEntity<T> implements Serializable {
 	 */
 
 	@TableField("project_type")
-	@JsonProperty("project_type")
+//	@JsonProperty("project_type")
 	private String projectType;
 	
 	/**

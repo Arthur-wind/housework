@@ -64,7 +64,10 @@ public class EmployerController {
 	@RequestMapping(value = "/login")
 	public R login(String username, String password, String captcha, HttpServletRequest request) {
 		EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", username));
-		if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
+//		if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
+//			return R.error("账号或密码不正确");
+//		}
+		if (user == null || !password.equals(user.getPassword())) {
 			return R.error("账号或密码不正确");
 		}
 		System.out.println("用户名：" + username + " 密码：" + password);

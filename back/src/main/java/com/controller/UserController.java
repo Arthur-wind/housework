@@ -44,7 +44,7 @@ public class UserController{
 
 
 	@IgnoreAuth
-	@PostMapping(value = "/login")
+	@RequestMapping(value = "/login")
 	public R login(String username, String password, String captcha, HttpServletRequest request) {
 		UserEntity user = userService.selectOne(new EntityWrapper<UserEntity>().eq("username", username));
 		if(user==null || !user.getPassword().equals(password)) {
