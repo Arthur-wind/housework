@@ -170,7 +170,8 @@ public class Consult_employerController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody Consult_employerEntity consult_employer, HttpServletRequest request){
-    	consult_employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+consult_employer.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(consult_employer);
         consult_employerService.insert(consult_employer);
         return R.ok();
@@ -181,7 +182,8 @@ public class Consult_employerController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody Consult_employerEntity consult_employer, HttpServletRequest request){
-    	consult_employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+consult_employer.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(consult_employer);
         consult_employerService.insert(consult_employer);
         return R.ok();

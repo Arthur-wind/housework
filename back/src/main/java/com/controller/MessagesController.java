@@ -128,7 +128,8 @@ public class MessagesController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody MessagesEntity messages, HttpServletRequest request){
-    	messages.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+messages.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(messages);
         messagesService.insert(messages);
         return R.ok();
@@ -139,7 +140,8 @@ public class MessagesController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody MessagesEntity messages, HttpServletRequest request){
-    	messages.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+messages.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(messages);
         messagesService.insert(messages);
         return R.ok();

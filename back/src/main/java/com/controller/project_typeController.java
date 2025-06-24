@@ -133,7 +133,8 @@ public class project_typeController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody project_typeEntity project_type, HttpServletRequest request){
-    	project_type.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+project_type.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(project_type);
         project_typeService.insert(project_type);
         return R.ok();
@@ -144,7 +145,8 @@ public class project_typeController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody project_typeEntity project_type, HttpServletRequest request){
-    	project_type.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+project_type.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(project_type);
         project_typeService.insert(project_type);
         return R.ok();

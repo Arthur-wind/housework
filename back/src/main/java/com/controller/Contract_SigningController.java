@@ -156,7 +156,8 @@ public class Contract_SigningController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody Contract_SigningEntity contract_signing, HttpServletRequest request){
-    	contract_signing.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+contract_signing.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(contract_signing);
         contract_signingService.insert(contract_signing);
         return R.ok();
@@ -167,7 +168,8 @@ public class Contract_SigningController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody Contract_SigningEntity contract_signing, HttpServletRequest request){
-    	contract_signing.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+contract_signing.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(contract_signing);
         contract_signingService.insert(contract_signing);
         return R.ok();

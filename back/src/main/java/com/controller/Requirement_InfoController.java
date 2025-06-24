@@ -159,7 +159,7 @@ public class Requirement_InfoController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody Requirement_InfoEntity requirement_info, HttpServletRequest request){
-    	requirement_info.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	requirement_info.setId(new Date().getTime()+(long)(Math.random() * 1000));
     	//ValidatorUtils.validateEntity(requirement_info);
         requirement_infoService.insert(requirement_info);
         return R.ok();
@@ -170,7 +170,7 @@ public class Requirement_InfoController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody Requirement_InfoEntity requirement_info, HttpServletRequest request){
-    	requirement_info.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	requirement_info.setId(new Date().getTime()+(long)(Math.random() * 1000));
     	//ValidatorUtils.validateEntity(requirement_info);
         requirement_infoService.insert(requirement_info);
         return R.ok();

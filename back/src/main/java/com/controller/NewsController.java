@@ -125,7 +125,8 @@ public class NewsController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody NewsEntity news, HttpServletRequest request){
-    	news.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+news.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(news);
         newsService.insert(news);
         return R.ok();
@@ -136,7 +137,8 @@ public class NewsController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody NewsEntity news, HttpServletRequest request){
-    	news.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+news.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(news);
         newsService.insert(news);
         return R.ok();

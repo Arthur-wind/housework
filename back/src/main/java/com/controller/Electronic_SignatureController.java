@@ -1,41 +1,23 @@
 package com.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Date;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
-import com.entity.Contract_SigningEntity;
-import com.utils.ValidatorUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.annotation.IgnoreAuth;
-
 import com.entity.Electronic_SignatureEntity;
 import com.entity.view.Electronic_SignatureView;
-
 import com.service.Electronic_SignatureService;
-import com.service.TokenService;
+import com.utils.MPUtil;
 import com.utils.PageUtils;
 import com.utils.R;
-import com.utils.MD5Util;
-import com.utils.MPUtil;
-import com.utils.CommonUtil;
-import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * 电子签名
@@ -185,7 +167,8 @@ public class Electronic_SignatureController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody Electronic_SignatureEntity electronic_signature, HttpServletRequest request){
-    	electronic_signature.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	electronic_signature.setId(new Date().getTime()+(long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(electronic_signature);
         electronic_signatureService.insert(electronic_signature);
         return R.ok();
@@ -196,7 +179,8 @@ public class Electronic_SignatureController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody Electronic_SignatureEntity electronic_signature, HttpServletRequest request){
-    	electronic_signature.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	electronic_signature.setId(new Date().getTime()+(long)(Math.random() * 1000));
+
     	//ValidatorUtils.validateEntity(electronic_signature);
         electronic_signatureService.insert(electronic_signature);
         return R.ok();
