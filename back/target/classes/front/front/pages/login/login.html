@@ -113,11 +113,11 @@
 
     </style>
 </head>
-<body>
+<body style="">
 	    <div id="app" class="login">
-        <form id="loginForm" class="layui-form login-form" :style='{"padding":"20px","boxShadow":"0px 10px 0px 0px rgba(185,205,232,0.8)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"20px","borderWidth":"0","width":"423px","borderStyle":"solid","justifyContent":"center","height":"368px"}'>
-            
-            <div class="msg-warn hide title" v-if="true" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(247, 247, 247, 0)","color":"rgba(0, 0, 0, 1)","isshow":true,"borderRadius":"8px","borderWidth":"0","width":"auto","lineHeight":"40px","fontSize":"20px","borderStyle":"solid"}'>公共场所不建议自动登录，以防账号丢失</div>
+        <form id="loginForm" class="layui-form login-form" :style='{"padding":"20px","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"20px","borderWidth":"0","borderStyle":"solid","justifyContent":"center","height":"400px"}'>
+
+            <div class="msg-warn hide title" v-if="true" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(0,0,0,1)","color":"rgba(0, 0, 0, 1)","isshow":true,"borderRadius":"8px","borderWidth":"0","width":"auto","lineHeight":"40px","fontSize":"20px","borderStyle":"solid"}'>登录</div>
             <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 auto","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","width":"80%","borderStyle":"solid","height":"64px"}' class="form-item">
                 <label v-if="false" :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(0,0,0,0)","backgroundColor":"transparent","color":"#333","borderRadius":"0","textAlign":"right","borderWidth":"0","width":"84px","fontSize":"16px","borderStyle":"solid"}' class="form-label">账号</label>
 				<input :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.5)","borderColor":"#ccc","backgroundColor":"#fff","color":"#333","borderRadius":"8px","textAlign":"left","borderWidth":"0","width":"100%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="text" name="username" required lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">
@@ -129,7 +129,7 @@
             <div class="form-item codes" :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 auto","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","width":"80%","borderStyle":"solid","height":"64px"}'>
               <input style="flex: 1;" type="text" id="code" placeholder="请输入验证码">
               <div class="nums" id="nums" style="display: flex;justify-content: center;align-items: center;">
-                
+
               </div>
             </div>
 
@@ -161,7 +161,7 @@
                         if(this.menu[item].hasFrontLogin=='是') {
                                 this.roles.push(this.menu[item]);
                         }
-                }       
+                }
             },
             methods: {
                 jump(url) {
@@ -199,7 +199,7 @@
             var form = layui.form;
             var http = layui.http;
             var jquery = layui.jquery;
-		
+
 		function randomString() {
 			var len = 4;
 			var chars = [
@@ -212,7 +212,7 @@
 			]
 			var colors = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
 			var sizes = ['14', '15', '16', '17', '18']
-			
+
 			var output = []
 			for (var i = 0; i < len; i++) {
 			  // 随机验证码
@@ -234,7 +234,7 @@
 			  var size = Math.floor(Math.random() * sizes.length)
 			  codes[i].size = sizes[size] + 'px'
 			}
-			
+
 			var str = ''
 			for(var i = 0;i<codes.length;i++) {
 				str += '<span style="color:' + codes[i].color + ';transform:' + codes[i].rotate + ';fontSize:' + codes[i].size + ';padding: 0 3px;display:inline-block">'+codes[i].num+'</span>'
@@ -245,7 +245,7 @@
 		jquery('#nums').click(function(){
 			randomString();
 		})
-		
+
 		randomString();
 
             // 登录
@@ -270,7 +270,7 @@
 			if(arr.join('').toLowerCase() != jquery('#code').val().toLowerCase()) {
 				alert("请输入正确的验证码");
 				randomString()
-				
+
 				return false;
 			}
 		}
@@ -302,7 +302,7 @@
                         // 路径访问设置
                         window.location.href = '../../index.html';
                     })
-                    
+
                 });
                 return false
             });
@@ -317,7 +317,7 @@
             window.location.href = '../' + tablename + '/register.html?tablename=' + tablename;
         }
 
-	
+
 
     </script>
 </body>

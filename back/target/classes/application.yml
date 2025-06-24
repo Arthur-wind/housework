@@ -6,12 +6,19 @@ server:
   servlet:
     context-path: /springbootc90g5
 
+
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/home_service?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
     username: root
-    password: root
+    password: 1111
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
 
 
 
@@ -42,6 +49,7 @@ mybatis-plus:
     #自定义SQL注入器
     sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
   configuration:
+
     map-underscore-to-camel-case: true
     cache-enabled: false
     call-setters-on-nulls: true
