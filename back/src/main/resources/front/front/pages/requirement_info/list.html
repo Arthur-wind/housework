@@ -27,7 +27,6 @@
 		background-attachment: fixed;
 		background-size: cover;
 		background-position: center;
-		background-image: url('your-background-image.jpg'); /* 可选：替换为你自己的背景图 */
 	}
 
 	/* 列表样式 */
@@ -69,7 +68,7 @@
 		box-sizing: border-box;
 		width: 100%;
 		flex-wrap: wrap;
-		background-color: rgba(125, 159, 199, 1);
+		background-color: rgba(90, 143, 123, 0.85);
 		border-radius: 4px;
 		height: 60px;
 		justify-content: flex-end;
@@ -189,12 +188,12 @@
 	<div class="recommend index-pv1" :style='{"padding":"10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0","borderColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","background":"#fff","borderStyle":"solid"}'>
 		<div class="box" style="width: 1100px;">
 			<!-- 标题 -->
-			<div class="title" :style='{"padding":"10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"rgba(255, 255, 255, 1)","borderRadius":"4px","height":"54px"}'>
-				<span :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(255,0,0,1)","backgroundColor":"rgba(0,0,0,0)","color":"#333","borderRadius":"0 0 2px 0","fontSize":"18px"}'>需求信息</span>
+			<div class="title" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(90, 143, 123, 0.85)","backgroundColor":"rgba(255, 255, 255, 1)","borderRadius":"4px","borderWidth":"0 10px 10px","borderStyle":"solid","justifyContent":"center","height":"54px"}'>
+				<span :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(255,0,0,1)","backgroundColor":"rgba(0,0,0,0)","color":"#333","borderRadius":"0 0 2px 0","borderWidth":"0","fontSize":"18px","borderStyle":"solid"}'>需求信息</span>
 			</div>
 
 			<!-- 筛选栏 -->
-			<form class="layui-form filter" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(125, 159, 199, 1)","borderRadius":"4px","alignItems":"center","borderWidth":"0","justifyContent":"flex-end","height":"60px"}'>
+			<form class="layui-form filter" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(90, 143, 123, 0.85)","borderRadius":"4px","alignItems":"center","borderWidth":"0","justifyContent":"flex-end","height":"60px"}'>
 				<div class="item-list">
 					<div class="lable" :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(0,0,0,0)","backgroundColor":"transparent","color":"#fff","borderRadius":"0","textAlign":"right","fontSize":"16px"}'>标题</div>
 					<input type="text" :style='{"boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"#ccc","backgroundColor":"#fff","color":"#333","borderRadius":"8px","textAlign":"center","borderWidth":"2px","width":"140px","fontSize":"14px","height":"44px"}' name="title" id="title" placeholder="标题" autocomplete="off" class="layui-input">
@@ -213,56 +212,48 @@
 
 			<!-- 内容卡片列表 -->
 			<div class="list" style="position: relative;">
-
 				<!-- 左侧分类筛选栏 -->
 				<div v-if="1 == 1" style="position: absolute;left: 0;top: 0;transform: translate3d(-100%, 0, 0);" :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 0 0 -50px","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","width":"84px"}'>
-					<div style="text-align: center;cursor: pointer;" class="category-search" :index="-1" :style='swiperIndex==-1?{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(125, 159, 199, 1)","color":"#fff","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}:{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}'>全部</div>
+					<div style="text-align: center;cursor: pointer;" class="category-search" :index="-1" :style='swiperIndex==-1?{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(90, 143, 123, 0.85)","color":"#fff","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}:{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}'>全部</div>
 					<div v-for="(item,index) in categoryList" :key="index">
-						<div style="text-align: center;cursor: pointer;" :style='swiperIndex==index?{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(125, 159, 199, 1)","color":"#fff","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}:{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}' :index="index" class="category-search">{{ item }}</div>
+						<div style="text-align: center;cursor: pointer;" :style='swiperIndex==index?{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(90, 143, 123, 0.85)","color":"#fff","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}:{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"4px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","width":"100%","lineHeight":"34px","fontSize":"14px"}' :index="index" class="category-search">{{ item }}</div>
 					</div>
 				</div>
 
-				<!-- 卡片列表 -->
-				<template v-for="(item, index) in dataList" :key="index">
-					<div @click="jump('../requirement_info/detail.html?id='+item.id)" class="list-item">
-						<div class="list-item-body animation-box" :style='{"padding":"0 10px 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 5px","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","borderRadius":"30px","borderWidth":"2px","borderStyle":"solid"}'>
-							<img :src="item.cover_image ? baseurl + item.cover_image.split(',')[0] : ''" :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0,0,0,.3)","borderRadius":"0 0 20px 20px","borderWidth":"0","width":"200px","height":"180px"}'>
-							<div class="info">
-								<div v-if="item.price" class="price" :style='{"padding":"10px 0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"red","textAlign":"center","width":"100%","fontSize":"16px"}'>
-									<span :style='{"fontSize":"12px"}'>￥</span>{{ Number(item.price).toFixed(2) }}
-								</div>
-								<div v-if="item.vipprice && item.vipprice > 0" class="price" :style='{"padding":"10px 0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"red","textAlign":"center","width":"100%","fontSize":"16px"}'>
-									<span :style='{"fontSize":"12px"}'>￥</span>{{ Number(item.vipprice).toFixed(2) }} <span :style='{"fontSize":"12px"}'>会员价</span>
-								</div>
-								<div v-if="item.jf" class="price" :style='{"padding":"10px 0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"red","textAlign":"center","width":"100%","fontSize":"16px"}'>
-									{{ Number(item.jf).toFixed(0) }}积分
-								</div>
-								<div class="name" :style='{"padding":"0","margin":"10px 0","backgroundColor":"rgba(0,0,0,0)","color":"#666","textAlign":"center","width":"100%","fontSize":"14px"}'>
-									{{ item.title }}
-								</div>
+				<!-- 实际数据卡片 -->
+				<div v-for="(item, index) in dataList" :key="index" class="list-item" @click="jump('../requirement_info/detail.html?id='+item.id)">
+					<div class="list-item-body animation-box" :style='{"padding":"0 10px 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 5px","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","borderRadius":"30px","borderWidth":"2px","borderStyle":"solid"}'>
+						<img :src="item.cover_image ? baseurl + item.cover_image.split(',')[0] : ''" :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0,0,0,.3)","borderRadius":"0 0 20px 20px","borderWidth":"0","width":"200px","height":"180px"}'>
+						<div class="info">
+							<div v-if="item.price" class="price" :style='{"padding":"10px 0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"red","textAlign":"center","width":"100%","fontSize":"16px"}'>
+								<span :style='{"fontSize":"12px"}'>￥</span>{{ Number(item.price).toFixed(2) }}
+							</div>
+							<div v-if="item.vipprice && item.vipprice > 0" class="price" :style='{"padding":"10px 0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"red","textAlign":"center","width":"100%","fontSize":"16px"}'>
+								<span :style='{"fontSize":"12px"}'>￥</span>{{ Number(item.vipprice).toFixed(2) }} <span :style='{"fontSize":"12px"}'>会员价</span>
+							</div>
+							<div v-if="item.jf" class="price" :style='{"padding":"10px 0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"red","textAlign":"center","width":"100%","fontSize":"16px"}'>
+								{{ Number(item.jf).toFixed(0) }}积分
+							</div>
+							<div class="name" :style='{"padding":"0","margin":"10px 0","backgroundColor":"rgba(0,0,0,0)","color":"#666","textAlign":"center","width":"100%","fontSize":"14px"}'>
+								{{ item.title }}
 							</div>
 						</div>
 					</div>
-				</template>
+				</div>
 
-				<!-- 补齐空位 -->
-				<template v-if="dataList.length < 8">
-					<div v-for="index in (8 - dataList.length)" :key="'empty-'+index" class="list-item">
-						<div class="list-item-body animation-box" :style='{"padding":"0 10px 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 5px","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","borderRadius":"30px","borderWidth":"2px","borderStyle":"solid"}'>
-							<div :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0,0,0,.3)","borderRadius":"0 0 20px 20px","borderWidth":"0","width":"200px","height":"180px","backgroundColor":"#f5f5f5"}'>
-								<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">暂无数据</div>
-							</div>
-							<div class="info">
-								<div class="price" :style='{"padding":"10px 0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"#999","textAlign":"center","width":"100%","fontSize":"16px"}'>--</div>
-								<div class="name" :style='{"padding":"0","margin":"10px 0","backgroundColor":"rgba(0,0,0,0)","color":"#999","textAlign":"center","width":"100%","fontSize":"14px"}'>暂无数据</div>
-							</div>
-						</div>
+				<!-- 空白占位卡片（确保始终保留8个位置） -->
+				<div v-for="index in (8 - Math.min(dataList.length, 8))" :key="'empty-'+index" class="list-item">
+					<div class="list-item-body" :style='{"padding":"0 10px 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 5px","borderColor":"rgba(0, 0, 0, 0)","backgroundColor":"transparent","borderRadius":"30px","borderWidth":"2px","borderStyle":"solid"}'>
+						<!-- 透明空白内容 -->
+						<div :style='{"width":"200px","height":"180px","visibility":"hidden"}'> </div>
 					</div>
-				</template>
+				</div>
 			</div>
 
-			<!-- 分页 -->
-			<div class="pager" id="pager" :style="{textAlign:2==1?'left':2==2?'center':'right'}"></div>
+			<!-- 固定高度的分页容器 -->
+			<div class="pager-container" :style='{"minHeight":"50px","position":"relative","margin":"20px 0"}'>
+				<div class="pager" id="pager" :style='{"position":"absolute","left":"0","right":"0","textAlign":2==1?"left":2==2?"center":"right"}'></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -413,7 +404,6 @@
 					limit: limit,
 					groups: 5,
 					layout: ["prev","page","next"],
-					theme: '#7D9FC7',
 					jump: function(obj, first) {
 						param.page = obj.curr;
 						//首次不执行
