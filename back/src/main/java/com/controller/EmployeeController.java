@@ -83,7 +83,7 @@ public class EmployeeController {
 		claims.put("tableName", "employee");
 		claims.put("token", token);
 
-		String jwtToken = JwtUtils.generateToken(claims, user.getEmployee_Name());
+		String jwtToken = JwtUtils.generateToken(claims, user.getEmployeeName());
 		String enTicket;
 
 		try {
