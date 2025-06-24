@@ -10,7 +10,7 @@
         <!-- 雇主信息 -->
         <el-col :span="12">
           <el-form-item v-if="flag=='employer'" label="雇主账号" prop="employer_account">
-            <el-input v-model="ruleForm.employer_account" readonly placeholder="雇主账号" clearable></el-input>
+            <el-input v-model="ruleForm.employer_account" placeholder="雇主账号" clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -55,7 +55,7 @@
         <!-- 雇员信息 -->
         <el-col :span="12">
           <el-form-item v-if="flag=='employee'" label="雇员账号" prop="employee_account">
-            <el-input v-model="ruleForm.employee_account" readonly placeholder="雇员账号" clearable></el-input>
+            <el-input v-model="ruleForm.employee_account" placeholder="雇员账号" clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
