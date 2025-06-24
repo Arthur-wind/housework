@@ -77,7 +77,7 @@
 
 	#loginForm .codes {
 	}
-	
+
 	#loginForm .codes input {
 		width: calc(100% - 84px);
 		height: 44px;
@@ -93,7 +93,7 @@
 		box-shadow: 0 0 6px rgba(30, 144, 255, 0);
 		outline: none;
 	}
-	
+
 	#loginForm .codes .nums {
 		width: 84px;
 		height: 44px;
@@ -113,11 +113,11 @@
 
     </style>
 </head>
-<body style="">
+<body>
 	    <div id="app" class="login">
-        <form id="loginForm" class="layui-form login-form" :style='{"padding":"20px","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"20px","borderWidth":"0","borderStyle":"solid","justifyContent":"center","height":"400px"}'>
+        <form id="loginForm" class="layui-form login-form" :style='{"padding":"20px","boxShadow":"0px 10px 0px 0px rgba(185,205,232,0.8)","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"20px","borderWidth":"0","width":"423px","borderStyle":"solid","justifyContent":"center","height":"368px"}'>
 
-            <div class="msg-warn hide title" v-if="true" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(0,0,0,1)","color":"rgba(0, 0, 0, 1)","isshow":true,"borderRadius":"8px","borderWidth":"0","width":"auto","lineHeight":"40px","fontSize":"20px","borderStyle":"solid"}'>登录</div>
+            <div class="msg-warn hide title" v-if="true" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(247, 247, 247, 0)","color":"rgba(0, 0, 0, 1)","isshow":true,"borderRadius":"8px","borderWidth":"0","width":"auto","lineHeight":"40px","fontSize":"20px","borderStyle":"solid"}'>公共场所不建议自动登录，以防账号丢失</div>
             <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 auto","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","width":"80%","borderStyle":"solid","height":"64px"}' class="form-item">
                 <label v-if="false" :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(0,0,0,0)","backgroundColor":"transparent","color":"#333","borderRadius":"0","textAlign":"right","borderWidth":"0","width":"84px","fontSize":"16px","borderStyle":"solid"}' class="form-label">账号</label>
 				<input :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.5)","borderColor":"#ccc","backgroundColor":"#fff","color":"#333","borderRadius":"8px","textAlign":"left","borderWidth":"0","width":"100%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="text" name="username" required lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">
