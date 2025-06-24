@@ -19,6 +19,7 @@
 
 </head>
 <style>
+    /* 主背景 - 提高透明度 */
     html::after {
         position: fixed;
         top: 0;
@@ -27,9 +28,95 @@
         bottom: 0;
         content: '';
         display: block;
-        background-attachment: fixed;
+        background:
+                linear-gradient(rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.85)),
+                url('https://images.unsplash.com/photo-1600566752227-8f3e7a3d8359?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
         background-size: cover;
         background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+
+    /* 服务项目推荐 - 提高透明度 */
+    .recommend.index-pv1 {
+        background:
+                linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        border-radius: 16px;
+        margin: 20px auto !important;
+        box-shadow: 0 4px 12px rgba(0, 75, 63, 0.08);
+        border: 1px solid rgba(0, 150, 136, 0.1);
+    }
+
+    /* 需求信息推荐 - 提高透明度 */
+    .recommend.index-pv1 + .recommend.index-pv1 {
+        background:
+                linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        border-radius: 16px;
+        margin: 20px auto !important;
+        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.08);
+        border: 1px solid rgba(33, 150, 243, 0.1);
+    }
+
+    /* 网站公告 - 提高透明度 */
+    .news.index-pv2 {
+        background:
+                linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        border-radius: 16px;
+        margin: 20px auto !important;
+        box-shadow: 0 4px 12px rgba(103, 58, 183, 0.08);
+        border: 1px solid rgba(103, 58, 183, 0.1);
+    }
+
+    /* 增强文字可读性 */
+    .recommend .box .title span,
+    .news .box .title span,
+    .lists .box .title span {
+        background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);
+        color: white !important;
+        padding: 14px 36px;
+        border-radius: 50px;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
+        display: inline-block;
+        margin: 20px 0;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* 卡片设计优化 */
+    .recommend .box .list .list-item-body {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 20px;
+    }
+
+    .recommend .box .list .list-item-body:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 1);
+    }
+
+    /* 文字内容增强 */
+    .recommend .box .list .name {
+        color: #2d3748;
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        margin: 15px 0 10px;
+        line-height: 1.4;
     }
 
     #test1 {
@@ -39,99 +126,109 @@
     #test1 .layui-carousel-ind li {
         width: 16px;
         height: 10px;
-        border-width: 0;
-        border-style: solid;
-        border-color: rgba(0, 0, 0, .3);
         border-radius: 10px;
-        background-color: #f7f7f7;
-        box-shadow: 0 0 6px #bebebe;
+        background-color: #e9ecef;
+        transition: all 0.3s ease;
     }
 
     #test1 .layui-carousel-ind li.layui-this {
         width: 34px;
         height: 10px;
-        border-width: 0;
-        border-style: solid;
-        border-color: rgba(0, 0, 0, .3);
-        border-radius: 10px;
-        background-color: rgba(52, 101, 159, 1);
-        box-shadow: 0 0 6px #bebebe;
+        background-color: #4a89dc;
     }
 
-    .recommend {
-        padding: 10px 0;
+    .recommend, .news, .lists {
+        padding: 30px 0;
         display: flex;
         justify-content: center;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
+        background-color: #fff;
     }
 
-    .recommend .box {
+    .recommend .box, .news .box, .lists .box {
         width: 1014px;
+        max-width: 90%;
     }
 
-    .recommend .box .title {
-        padding: 10px 5px;
+    .recommend .box .title,
+    .news .box .title,
+    .lists .box .title {
+        padding: 20px 5px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
 
-    .recommend .box .title span {
+    .recommend .box .title span,
+    .news .box .title span,
+    .lists .box .title span {
         padding: 0 10px;
         line-height: 1.4;
+        color: #495057;
+        font-size: 24px;
+        font-weight: 500;
+        text-align: center;
+        width: 100%;
     }
 
-    .recommend .box .list {
+    .recommend .box .list,
+    .news .box .list {
         display: flex;
         flex-wrap: wrap;
+        margin: 0 -10px;
+        justify-content: center;
     }
 
     .index-pv1 .box .list .list-item {
-        flex: 0 0 ${var1}%;
-        padding: 0 5px;
+        flex: 0 0 30%;
+        padding: 10px;
         box-sizing: border-box;
     }
 
     .recommend .box .list .list-item-body {
-        border: 1px solid rgba(0, 0, 0, 3);
-        padding: 5px;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 15px;
         box-sizing: border-box;
         cursor: pointer;
+        transition: all 0.3s ease;
+        background: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .recommend .box .list .list-item-body:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .recommend .box .list img {
         width: 100%;
-        height: 100px;
+        height: 200px;
         display: block;
         margin: 0 auto;
         object-fit: cover;
         max-width: 100%;
+        border-radius: 4px;
     }
 
     .recommend .box .list .name {
-        padding-top: 5px;
-        color: red;
-        font-size: 14px;
+        padding-top: 15px;
+        color: #343a40;
+        font-size: 16px;
         text-align: center;
         box-sizing: border-box;
+        font-weight: 500;
+        margin-top: auto;
     }
 
-    .recommend .box .list .list-item3 {
-        flex: 0 0 33.33%;
-    }
-
-    .recommend .box .list .list-item5 {
-        flex: 0 0 20%;
-    }
-
-    /* 商品推荐-样式4-开始 */
+    /* 商品推荐-样式4 */
     .recommend .list-4 {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        margin: -10px;
     }
 
     .recommend .list-4 .list-4-body {
@@ -142,40 +239,10 @@
     .recommend .list-4 .list-4-item {
         position: relative;
         z-index: 1;
-    }
-
-    .recommend .list-4 .list-4-item.item-1 {
-        width: 400px;
-        height: 400px;
-        margin-right: 20px;
-    }
-
-    .recommend .list-4 .list-4-item.item-2 {
-        width: 220px;
-        height: 190px;
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
-
-    .recommend .list-4 .list-4-item.item-3 {
-        width: 220px;
-        height: 190px;
-        margin-right: 20px;
-        margin-bottom: 0;
-    }
-
-    .recommend .list-4 .list-4-item.item-4 {
-        width: 190px;
-        height: 190px;
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .recommend .list-4 .list-4-item.item-5 {
-        width: 190px;
-        height: 190px;
-        margin-right: 0;
-        margin-bottom: 0;
+        margin: 10px;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .recommend .list-4 .list-4-item img {
@@ -183,6 +250,11 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .recommend .list-4 .list-4-item:hover img {
+        transform: scale(1.05);
     }
 
     .recommend .list-4 .list-4-item .list-4-item-center {
@@ -193,107 +265,41 @@
         height: auto;
         display: flex;
         flex-wrap: wrap;
-        background-color: rgba(0, 0, 0, .3);
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
     }
 
-    .recommend .list-4 .list-4-item .list-4-item-center .list-4-item-title {
-        width: 50%;
-        text-align: left;
-        line-height: 44px;
-        color: #fff;
-        font-size: 14px;
-        padding: 0 6px;
-    }
-
+    .recommend .list-4 .list-4-item .list-4-item-center .list-4-item-title,
     .recommend .list-4 .list-4-item .list-4-item-center .list-4-item-price {
         width: 50%;
-        text-align: right;
-        line-height: 44px;
+        line-height: 1.4;
         color: #fff;
         font-size: 14px;
-        padding: 0 6px;
-    }
-
-    /* 商品推荐-样式4-结束 */
-    /* 商品推荐-样式5-开始 */
-    .recommend #recommend-five-swiper.swiper-container-horizontal > .swiper-pagination-bullets {
-        line-height: 1;
-    }
-
-    .recommend #recommend-five-swiper .swiper-slide.swiper-slide-prev {
-        z-index: 5;
-    }
-
-    .recommend #recommend-five-swiper .swiper-slide.swiper-slide-next {
-        z-index: 5;
-    }
-
-    .recommend #recommend-five-swiper .swiper-slide.swiper-slide-active {
-        z-index: 9;
-    }
-
-    .recommend #lists-five-swiper.swiper-container-horizontal > .swiper-pagination-bullets {
-        line-height: 1;
-    }
-
-    .recommend #lists-five-swiper .swiper-slide.swiper-slide-prev {
-        z-index: 5;
-    }
-
-    .recommend #lists-five-swiper .swiper-slide.swiper-slide-next {
-        z-index: 5;
-    }
-
-    .recommend #lists-five-swiper .swiper-slide.swiper-slide-active {
-        z-index: 9;
-    }
-
-    /* 商品推荐-样式5-结束 */
-
-    .news {
-        padding: 10px 0;
-        display: flex;
-        justify-content: center;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        width: 100%;
-    }
-
-    .news .box {
-        width: 1014px;
-    }
-
-    .news .box .title {
-        padding: 10px 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .news .box .title span {
         padding: 0 10px;
-        line-height: 1.4;
     }
 
-    .news .box .list {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
+    /* 新闻样式 */
     .index-pv2 .box .list .list-item {
         flex: 0 0 ${var2}%;
-        padding: 0 10px;
+        padding: 10px;
         box-sizing: border-box;
     }
 
     .news .box .list .list-item .list-item-body {
-        border: 1px solid rgba(0, 0, 0, 3);
-        padding: 10px;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 15px;
         box-sizing: border-box;
         display: flex;
         cursor: pointer;
+        transition: all 0.3s ease;
+        background: #fff;
+        height: 100%;
+    }
+
+    .news .box .list .list-item .list-item-body:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .news .box .list .list-item .list-item-body img {
@@ -303,6 +309,7 @@
         margin: 0 auto;
         object-fit: cover;
         max-width: 100%;
+        border-radius: 4px;
     }
 
     .news .box .list .list-item .list-item-body .item-info {
@@ -310,76 +317,40 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        padding-left: 10px;
+        padding-left: 15px;
         box-sizing: border-box;
     }
 
     .news .box .list .list-item .list-item-body .item-info .name {
-        padding-top: 5px;
-        color: red;
-        font-size: 14px;
-        box-sizing: border-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
+        color: #343a40;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 10px;
     }
 
     .news .box .list .list-item .list-item-body .item-info .time {
-        padding-top: 5px;
-        color: red;
+        color: #6c757d;
         font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
     }
 
-    .news .box .list .list-item1 {
-        flex: 0 0 100%;
-    }
-
-    .news .box .list .list-item3 {
-        flex: 0 0 33.33%;
-    }
-
-    .lists {
-        padding: 10px 0;
-        display: flex;
-        justify-content: center;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-    }
-
-    .lists .box {
-        width: 1014px;
-        overflow: hidden;
-    }
-
-    .lists .box .title {
-        padding: 10px 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .lists .box .title span {
-        padding: 0 10px;
-        line-height: 1.4;
+    /* 列表样式 */
+    .index-pv3 .box .list .list-item {
+        flex: 0 0 ${var3}%;
+        padding: 10px;
+        box-sizing: border-box;
     }
 
     .lists .box .swiper-slide {
         box-sizing: border-box;
         cursor: pointer;
+        padding: 10px;
     }
 
     .lists .box .swiper-slide .img-box {
         width: 100%;
         overflow: hidden;
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .lists .box .swiper-slide .img-box img {
@@ -387,579 +358,130 @@
         height: 100%;
         object-fit: cover;
         max-width: 100%;
+        transition: transform 0.3s ease;
     }
 
-    .index-pv3 .box .list .list-item {
-        flex: 0 0 ${var3}%;
-        padding: 0 10px;
-        box-sizing: border-box;
+    .lists .box .swiper-slide:hover .img-box img {
+        transform: scale(1.05);
     }
 
-    .index-pv1 .animation-box:hover {
-        transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
-        transition: all 0.3s;
-        z-index: 2;
-        position: relative;
-    }
-
-    .index-pv2 .animation-box:hover {
-        transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
-        transition: all 0.3s;
-        z-index: 2;
-        position: relative;
-    }
-
-    .index-pv3 .animation-box:hover {
-        transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
-        transition: all 0.3s;
-        z-index: 2;
-        position: relative;
-    }
-
-    .index-pv1 .animation-box img:hover {
-        transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
-        transition: all 0.3s;
-        z-index: 2;
-        position: relative;
-    }
-
-    .index-pv2 .animation-box img:hover {
-        transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
-        transition: all 0.3s;
-        z-index: 2;
-        position: relative;
-    }
-
-    .index-pv3 .animation-box img:hover {
-        transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
-        transition: all 0.3s;
-        z-index: 2;
-        position: relative;
-    }
-
-
-    #new-list-6 .swiper-wrapper {
-        -webkit-transition-timing-function: linear;
-        -moz-transition-timing-function: linear;
-        -ms-transition-timing-function: linear;
-        -o-transition-timing-function: linear;
-        transition-timing-function: linear;
-    }
-
-    .line1 {
+    /* 文字截断样式 */
+    .line1, .line2, .line3 {
+        overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        overflow: hidden;
+    }
+    .line1 { -webkit-line-clamp: 1; }
+    .line2 { -webkit-line-clamp: 2; }
+    .line3 { -webkit-line-clamp: 3; }
+
+    /* 动画效果 */
+    .animation-box {
+        transition: all 0.3s ease;
+    }
+    .animation-box:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        z-index: 2;
     }
 
-    .line2 {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-    }
-
-    .line3 {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
-    }
-
-    .idea {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .idea div {
+    /* 顶部横幅样式 */
+    .recommendIdea .box1 {
+        width: 100%;
+        height: 110px;
+        background-color: #f1f3f5;
+        border-radius: 6px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-    }
-
-    .recommendIdea .box1 {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 110px;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: url(http://codegen.caihongy.cn/20220126/2456d61482fd44db97190d943e8f0d05.png);
-        background-image: true ?: '';
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box2 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box3 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box4 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box5 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box6 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box7 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box8 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box9 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .recommendIdea .box10 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+        color: #495057;
+        font-size: 18px;
+        font-weight: 500;
     }
 
     .newsIdea .box1 {
-        margin: 0;
-        padding: 0;
         width: 100%;
         height: 55px;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: url(http://codegen.caihongy.cn/20220126/eff4519d0b184ec5b23bf9458f96c4ec.png);
-        background-image: true ?: '';
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        background-color: #f1f3f5;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #495057;
+        font-size: 18px;
+        font-weight: 500;
     }
 
-    .newsIdea .box2 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box3 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box4 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box5 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box6 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box7 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box8 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box9 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .newsIdea .box10 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .listsIdea .box1 {
-        margin: 0 2%;
-        padding: 0;
-        width: 21%;
-        height: 80px;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .listsIdea .box2 {
-        margin: 0 2%;
-        padding: 0;
-        width: 21%;
-        height: 80px;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
-    .listsIdea .box3 {
-        margin: 0 2%;
-        padding: 0;
-        width: 21%;
-        height: 80px;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
-
+    .listsIdea .box1,
+    .listsIdea .box2,
+    .listsIdea .box3,
     .listsIdea .box4 {
-        margin: 0 2%;
-        padding: 0;
-        width: 21%;
+        margin: 0 1%;
+        width: 23%;
         height: 80px;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, .3);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+        background-color: #f1f3f5;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #495057;
+        font-size: 16px;
+        font-weight: 500;
     }
 
-    .listsIdea .box5 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+    /* 新增的"了解更多"按钮样式 */
+    .more-button {
+        display: inline-block;
+        padding: 10px 30px;
+        margin: 30px auto;
+        background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);
+        color: white !important;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
     }
 
-    .listsIdea .box6 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+    .more-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(56, 178, 172, 0.4);
+        background: linear-gradient(135deg, #319795 0%, #2c7a7b 100%);
     }
 
-    .listsIdea .box7 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+    .more-button i {
+        margin-left: 8px;
+        transition: all 0.3s ease;
     }
 
-    .listsIdea .box8 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+    .more-button:hover i {
+        transform: translateX(3px);
     }
 
-    .listsIdea .box9 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
-    }
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+        html::after {
+            background-attachment: scroll;
+        }
 
-    .listsIdea .box10 {
-        margin: 0;
-        padding: 0;
-        width: 0;
-        height: 0;
-        font-size: 14px;
-        color: #FFF;
-        border-radius: 0;
-        border-width: 0;
-        border-style: solid;
-        border-color: #ccc;
-        background-color: rgba(0, 0, 0, 0);
-        background-image: false ?: '';
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+        .recommend.index-pv1,
+        .recommend.index-pv1 + .recommend.index-pv1,
+        .news.index-pv2 {
+            margin: 15px auto !important;
+        }
+
+        .recommend .box .title span,
+        .news .box .title span,
+        .lists .box .title span {
+            font-size: 20px;
+            padding: 12px 28px;
+        }
     }
 </style>
 <body>
@@ -996,7 +518,7 @@
                 </div>
                 <div class="title"
                      :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"-100px 0 50px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(247, 247, 247, 0)","color":"rgba(0, 0, 0, 1)","borderRadius":"0","alignItems":"flex-start","borderWidth":"0","fontSize":"24px","borderStyle":"solid"}'>
-                    <span>Recommend</span><span>服务项目推荐</span>
+                    <span>服务项目推荐</span>
                 </div>
                 <div v-if="true && 1 == 2" class="idea recommendIdea"
                      :style='{"padding":"0","boxShadow":"0 0 0px rgba(0,0,0,0)","margin":"10px 0","borderColor":"#ccc","borderRadius":"0","borderWidth":"0","background":"rgba(0,0,0,.0)","width":"100%","borderStyle":"solid","height":"auto"}'>
@@ -1011,108 +533,19 @@
                     <div class="box9"></div>
                     <div class="box10"></div>
                 </div>
-                <div class="list-4">
-                    <div v-if="service_projectRecommend.length>0" class="list-4-item animation-box item-1"
-                         @click="jump('../service_project/detail.html?id='+service_projectRecommend[0].id)"
-                         :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"350px","borderStyle":"solid","height":"270px"}'>
-                        <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                             :src="service_projectRecommend[0].cover_image?baseurl+service_projectRecommend[0].cover_image.split(',')[0]:''"
-                             alt=""/>
-                        <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                             v-if="true" class="list-4-item-center">
-                            <div class="line1"
-                                 :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                 class="list-4-item-title">{{service_projectRecommend[0].project_name}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-4-body">
-                        <div v-if="service_projectRecommend.length>1"
-                             @click="jump('../service_project/detail.html?id='+service_projectRecommend[1].id)"
-                             class="list-4-item animation-box item-2"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 10px 10px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"260px","borderStyle":"solid","height":"130px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="service_projectRecommend[1].cover_image?baseurl+service_projectRecommend[1].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{service_projectRecommend[1].project_name}}
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="service_projectRecommend.length>2"
-                             @click="jump('../service_project/detail.html?id='+service_projectRecommend[2].id)"
-                             class="list-4-item animation-box item-3"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"260px","borderStyle":"solid","height":"130px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="service_projectRecommend[2].cover_image?baseurl+service_projectRecommend[2].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{service_projectRecommend[2].project_name}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="service_projectRecommend.length>3" class="list-4-item animation-box item-1"
-                         @click="jump('../service_project/detail.html?id='+service_projectRecommend[3].id)"
-                         :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 00px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"350px","borderStyle":"solid","height":"460px"}'>
-                        <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                             :src="service_projectRecommend[3].cover_image?baseurl+service_projectRecommend[3].cover_image.split(',')[0]:''"
-                             alt=""/>
-                        <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                             v-if="true" class="list-4-item-center">
-                            <div class="line1"
-                                 :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                 class="list-4-item-title">{{service_projectRecommend[3].project_name}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-4-body">
-                        <div v-if="service_projectRecommend.length>4"
-                             @click="jump('../service_project/detail.html?id='+service_projectRecommend[4].id)"
-                             class="list-4-item animation-box item-4"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"-180px 370px 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"630px","borderStyle":"solid","height":"180px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="service_projectRecommend[4].cover_image?baseurl+service_projectRecommend[4].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{service_projectRecommend[4].project_name}}
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="service_projectRecommend.length>5"
-                             @click="jump('../service_project/detail.html?id='+service_projectRecommend[5].id)"
-                             class="list-4-item animation-box item-5"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"1000px","borderStyle":"solid","height":"170px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="service_projectRecommend[5].cover_image?baseurl+service_projectRecommend[5].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{service_projectRecommend[5].project_name}}
-                                </div>
-                            </div>
+                <div class="list">
+                    <div v-for="(item,index) in service_projectRecommend.slice(0,6)" :key="index" class="list-item">
+                        <div class="list-item-body animation-box" @click="jump('../service_project/detail.html?id='+item.id)">
+                            <img :src="item.cover_image?baseurl+item.cover_image.split(',')[0]:''" alt=""/>
+                            <div class="name line1">{{item.project_name}}</div>
                         </div>
                     </div>
                 </div>
                 <div class="clear"></div>
                 <div style="text-align: center;">
-                    <button @click="jump('../service_project/list.html')" style="display: block;cursor: pointer;"
-                            type="button"
-                            :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"40px auto 20px","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"6px","borderWidth":"0 8px 8px","width":"auto","fontSize":"14px","borderStyle":"solid","height":"34px"}'>
-                        查看更多<i v-if="true"
-                                   :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(0, 0, 0, 1)"}'
-                                   class="layui-icon layui-icon-next"></i></button>
+                    <button @click="jump('../service_project/list.html')" class="more-button">
+                        了解更多<i class="layui-icon layui-icon-next"></i>
+                    </button>
                 </div>
                 <div v-if="true && 1 == 3" class="idea recommendIdea"
                      :style='{"padding":"0","boxShadow":"0 0 0px rgba(0,0,0,0)","margin":"10px 0","borderColor":"#ccc","borderRadius":"0","borderWidth":"0","background":"rgba(0,0,0,.0)","width":"100%","borderStyle":"solid","height":"auto"}'>
@@ -1147,7 +580,7 @@
                 </div>
                 <div class="title"
                      :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"-100px 0 50px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(247, 247, 247, 0)","color":"rgba(0, 0, 0, 1)","borderRadius":"0","alignItems":"flex-start","borderWidth":"0","fontSize":"24px","borderStyle":"solid"}'>
-                    <span>Recommend</span><span>需求信息推荐</span>
+                    <span>需求信息推荐</span>
                 </div>
                 <div v-if="true && 1 == 2" class="idea recommendIdea"
                      :style='{"padding":"0","boxShadow":"0 0 0px rgba(0,0,0,0)","margin":"10px 0","borderColor":"#ccc","borderRadius":"0","borderWidth":"0","background":"rgba(0,0,0,.0)","width":"100%","borderStyle":"solid","height":"auto"}'>
@@ -1162,108 +595,19 @@
                     <div class="box9"></div>
                     <div class="box10"></div>
                 </div>
-                <div class="list-4">
-                    <div v-if="requirement_infoRecommend.length>0" class="list-4-item animation-box item-1"
-                         @click="jump('../requirement_info/detail.html?id='+requirement_infoRecommend[0].id)"
-                         :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"350px","borderStyle":"solid","height":"270px"}'>
-                        <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                             :src="requirement_infoRecommend[0].cover_image?baseurl+requirement_infoRecommend[0].cover_image.split(',')[0]:''"
-                             alt=""/>
-                        <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                             v-if="true" class="list-4-item-center">
-                            <div class="line1"
-                                 :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                 class="list-4-item-title">{{requirement_infoRecommend[0].title}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-4-body">
-                        <div v-if="requirement_infoRecommend.length>1"
-                             @click="jump('../requirement_info/detail.html?id='+requirement_infoRecommend[1].id)"
-                             class="list-4-item animation-box item-2"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 10px 10px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"260px","borderStyle":"solid","height":"130px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="requirement_infoRecommend[1].cover_image?baseurl+requirement_infoRecommend[1].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{requirement_infoRecommend[1].title}}
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="requirement_infoRecommend.length>2"
-                             @click="jump('../requirement_info/detail.html?id='+requirement_infoRecommend[2].id)"
-                             class="list-4-item animation-box item-3"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"260px","borderStyle":"solid","height":"130px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="requirement_infoRecommend[2].cover_image?baseurl+requirement_infoRecommend[2].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{requirement_infoRecommend[2].title}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="requirement_infoRecommend.length>3" class="list-4-item animation-box item-1"
-                         @click="jump('../requirement_info/detail.html?id='+requirement_infoRecommend[3].id)"
-                         :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 00px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"350px","borderStyle":"solid","height":"460px"}'>
-                        <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                             :src="requirement_infoRecommend[3].cover_image?baseurl+requirement_infoRecommend[3].cover_image.split(',')[0]:''"
-                             alt=""/>
-                        <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                             v-if="true" class="list-4-item-center">
-                            <div class="line1"
-                                 :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                 class="list-4-item-title">{{requirement_infoRecommend[3].title}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-4-body">
-                        <div v-if="requirement_infoRecommend.length>4"
-                             @click="jump('../requirement_info/detail.html?id='+requirement_infoRecommend[4].id)"
-                             class="list-4-item animation-box item-4"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"-180px 370px 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"630px","borderStyle":"solid","height":"180px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="requirement_infoRecommend[4].cover_image?baseurl+requirement_infoRecommend[4].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{requirement_infoRecommend[4].title}}
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="requirement_infoRecommend.length>5"
-                             @click="jump('../requirement_info/detail.html?id='+requirement_infoRecommend[5].id)"
-                             class="list-4-item animation-box item-5"
-                             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"1000px","borderStyle":"solid","height":"170px"}'>
-                            <img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}'
-                                 :src="requirement_infoRecommend[5].cover_image?baseurl+requirement_infoRecommend[5].cover_image.split(',')[0]:''"
-                                 alt=""/>
-                            <div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0, 0, 0, 0.45)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'
-                                 v-if="true" class="list-4-item-center">
-                                <div class="line1"
-                                     :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}'
-                                     class="list-4-item-title">{{requirement_infoRecommend[5].title}}
-                                </div>
-                            </div>
+                <div class="list">
+                    <div v-for="(item,index) in requirement_infoRecommend.slice(0,6)" :key="index" class="list-item">
+                        <div class="list-item-body animation-box" @click="jump('../requirement_info/detail.html?id='+item.id)">
+                            <img :src="item.cover_image?baseurl+item.cover_image.split(',')[0]:''" alt=""/>
+                            <div class="name line1">{{item.title}}</div>
                         </div>
                     </div>
                 </div>
                 <div class="clear"></div>
                 <div style="text-align: center;">
-                    <button @click="jump('../requirement_info/list.html')" style="display: block;cursor: pointer;"
-                            type="button"
-                            :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"40px auto 20px","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"6px","borderWidth":"0 8px 8px","width":"auto","fontSize":"14px","borderStyle":"solid","height":"34px"}'>
-                        查看更多<i v-if="true"
-                                   :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(0, 0, 0, 1)"}'
-                                   class="layui-icon layui-icon-next"></i></el-button>
+                    <button @click="jump('../requirement_info/list.html')" class="more-button">
+                        了解更多<i class="layui-icon layui-icon-next"></i>
+                    </button>
                 </div>
                 <div v-if="true && 1 == 3" class="idea recommendIdea"
                      :style='{"padding":"0","boxShadow":"0 0 0px rgba(0,0,0,0)","margin":"10px 0","borderColor":"#ccc","borderRadius":"0","borderWidth":"0","background":"rgba(0,0,0,.0)","width":"100%","borderStyle":"solid","height":"auto"}'>
@@ -1300,7 +644,7 @@
                 </div>
                 <div class="title"
                      :style='{"padding":"0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(247, 247, 247, 0)","color":"rgba(125, 159, 199, 1)","borderRadius":"0","alignItems":"center","borderWidth":"0","fontSize":"24px","borderStyle":"solid"}'>
-                    <span>HOME NEWS</span><span>网站公告</span>
+                    <span>网站公告</span>
                 </div>
                 <div v-if="true && 2 == 2" class="idea newsIdea"
                      :style='{"padding":"10px 5px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"10px 0","borderColor":"#ccc","borderRadius":"0","borderWidth":"0","background":"rgba(0,0,0,.0)","width":"100%","borderStyle":"solid","height":"auto"}'>
@@ -1376,11 +720,9 @@
 
                 <div class="clear"></div>
                 <div style="text-align: center;">
-                    <button @click="jump('../news/list.html')" style="display: block;cursor: pointer;" type="button"
-                            :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"40px auto 20px","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"6px","borderWidth":"0 8px 8px","width":"auto","fontSize":"14px","borderStyle":"solid","height":"34px"}'>
-                        查看更多<i v-if="true"
-                                   :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(0, 0, 0, 1)"}'
-                                   class="layui-icon layui-icon-next"></i></el-button>
+                    <button @click="jump('../news/list.html')" class="more-button">
+                        了解更多<i class="layui-icon layui-icon-next"></i>
+                    </button>
                 </div>
                 <div v-if="true && 2 == 3" class="idea newsIdea"
                      :style='{"padding":"10px 5px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"10px 0","borderColor":"#ccc","borderRadius":"0","borderWidth":"0","background":"rgba(0,0,0,.0)","width":"100%","borderStyle":"solid","height":"auto"}'>
