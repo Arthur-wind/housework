@@ -264,14 +264,14 @@
 				});
 				return false;
 			}
-
+			console.log("注册数据为",data);
 			var url = tablename + '/register';
 			http.requestJson(url, 'post', data, function (res) {
 				layer.msg('注册成功', {
 					time: 2000,
 					icon: 6,
 				}, function () {
-					window.location.href = '../login/login.html';
+					// window.location.href = '../login/login.html';
 				});
 			});
 			return false;

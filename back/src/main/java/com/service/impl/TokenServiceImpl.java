@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.entity.CustomUserDetails;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -75,5 +77,13 @@ public class TokenServiceImpl extends ServiceImpl<TokenDao, TokenEntity> impleme
 			return null;
 		}
 		return tokenEntity;
+	}
+
+	public UserDetails loadUserByToken(String token) {
+		TokenEntity entity = this.getTokenEntity(token);
+		if (entity == null) {
+			return null;
+		}
+		return new CustomUserDetails(entity);
 	}
 }

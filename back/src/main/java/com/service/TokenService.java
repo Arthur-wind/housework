@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.IService;
 import com.entity.TokenEntity;
 import com.utils.PageUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 /**
@@ -23,4 +24,5 @@ public interface TokenService extends IService<TokenEntity> {
    	String generateToken(Long userid,String username,String tableName, String role);
    	
    	TokenEntity getTokenEntity(String token);
+	public UserDetails loadUserByToken(String token);
 }

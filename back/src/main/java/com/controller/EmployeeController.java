@@ -15,6 +15,7 @@ import com.utils.ValidatorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,9 @@ public class EmployeeController {
 
 	@Autowired
 	private TokenService tokenService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 	
 	/**
 	 * 登录
@@ -59,8 +63,12 @@ public class EmployeeController {
 	@IgnoreAuth
 	@RequestMapping(value = "/login")
 	public R login(String username, String password, String captcha, HttpServletRequest request) {
-		EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", username));
-		if(user==null || !user.getPassword().equals(password)) {
+		EmployeeEntity user = employeeService.selectOne(
+                new EntityWrapper<EmployeeEntity>().eq("employee_account", username));
+        System.out.println("接收到数据：" + password);
+        System.out.println("数据库中的密码：" + user.getPassword());
+        System.out.println("密码加密后：" + passwordEncoder.encode(password));
+        if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
 			return R.error("账号或密码不正确");
 		}
 		
@@ -89,6 +97,8 @@ public R register(@RequestBody EmployeeEntity employee) {
 
     Long uId = new Date().getTime();
     employee.setId(uId);
+    employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+    System.out.println("加密后的数据：" + employee.getPassword());
     employeeService.insert(employee);
     return R.ok();
 }
@@ -124,7 +134,7 @@ public R register(@RequestBody EmployeeEntity employee) {
     	if(user==null) {
     		return R.error("账号不存在");
     	}
-        user.setPassword("123456");
+        user.setPassword(passwordEncoder.encode("123456"));
         employeeService.updateById(user);
         return R.ok("密码已重置为：123456");
     }
@@ -229,13 +239,14 @@ public R register(@RequestBody EmployeeEntity employee) {
      */
     @RequestMapping("/save")
     public R save(@RequestBody EmployeeEntity employee, HttpServletRequest request){
-    	employee.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	employee.setId(new Date().getTime()+(long)(Math.random() * 1000));
     	//ValidatorUtils.validateEntity(employee);
     	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployeeAccount()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}
 		employee.setId(new Date().getTime());
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         employeeService.insert(employee);
         return R.ok();
     }
@@ -245,13 +256,14 @@ public R register(@RequestBody EmployeeEntity employee) {
      */
     @RequestMapping("/add")
     public R add(@RequestBody EmployeeEntity employee, HttpServletRequest request){
-    	employee.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	employee.setId(new Date().getTime()+(long)(Math.random() * 1000));
     	//ValidatorUtils.validateEntity(employee);
     	EmployeeEntity user = employeeService.selectOne(new EntityWrapper<EmployeeEntity>().eq("employee_account", employee.getEmployeeAccount()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}
 		employee.setId(new Date().getTime());
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         employeeService.insert(employee);
         return R.ok();
     }
@@ -262,6 +274,7 @@ public R register(@RequestBody EmployeeEntity employee) {
     @RequestMapping("/update")
     public R update(@RequestBody EmployeeEntity employee, HttpServletRequest request){
         //ValidatorUtils.validateEntity(employee);
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         employeeService.updateById(employee);//全部更新
         return R.ok();
     }

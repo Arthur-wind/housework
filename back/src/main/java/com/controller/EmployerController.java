@@ -15,6 +15,7 @@ import com.utils.ValidatorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +54,8 @@ public class EmployerController {
     
 	@Autowired
 	private TokenService tokenService;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	/**
 	 * 登录
 	 */
@@ -61,7 +63,7 @@ public class EmployerController {
 	@RequestMapping(value = "/login")
 	public R login(String username, String password, String captcha, HttpServletRequest request) {
 		EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", username));
-		if(user==null || !user.getPassword().equals(password)) {
+		if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
 			return R.error("账号或密码不正确");
 		}
 		
@@ -75,13 +77,20 @@ public class EmployerController {
 	@IgnoreAuth
     @RequestMapping("/register")
     public R register(@RequestBody EmployerEntity employer){
-    	//ValidatorUtils.validateEntity(employer);
-    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployerAccount()));
+		if (employer.getEmployerAccount() == null || employer.getEmployerAccount().isEmpty()) {
+			return R.error("账号不能为空");
+		}
+
+    	ValidatorUtils.validateEntity(employer);
+
+    	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>()
+				.eq("employer_account", employer.getEmployerAccount()));
 		if(user!=null) {
 			return R.error("注册用户已存在");
 		}
 		Long uId = new Date().getTime();
 		employer.setId(uId);
+		employer.setPassword(passwordEncoder.encode(employer.getPassword()));
         employerService.insert(employer);
         return R.ok();
     }
@@ -116,7 +125,7 @@ public class EmployerController {
     	if(user==null) {
     		return R.error("账号不存在");
     	}
-        user.setPassword("123456");
+        user.setPassword(passwordEncoder.encode("123456"));
         employerService.updateById(user);
         return R.ok("密码已重置为：123456");
     }
@@ -212,13 +221,14 @@ public class EmployerController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody EmployerEntity employer, HttpServletRequest request){
-    	employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	employer.setId(new Date().getTime()+(long)(Math.random() * 1000));
     	//ValidatorUtils.validateEntity(employer);
     	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployerAccount()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}
 		employer.setId(new Date().getTime());
+		employer.setPassword(passwordEncoder.encode(employer.getPassword()));
         employerService.insert(employer);
         return R.ok();
     }
@@ -228,13 +238,14 @@ public class EmployerController {
      */
     @RequestMapping("/add")
     public R add(@RequestBody EmployerEntity employer, HttpServletRequest request){
-    	employer.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+    	employer.setId(new Date().getTime()+(long)(Math.random() * 1000));
     	//ValidatorUtils.validateEntity(employer);
     	EmployerEntity user = employerService.selectOne(new EntityWrapper<EmployerEntity>().eq("employer_account", employer.getEmployerAccount()));
 		if(user!=null) {
 			return R.error("用户已存在");
 		}
 		employer.setId(new Date().getTime());
+		employer.setPassword(passwordEncoder.encode(employer.getPassword()));
         employerService.insert(employer);
         return R.ok();
     }
@@ -245,6 +256,7 @@ public class EmployerController {
     @RequestMapping("/update")
     public R update(@RequestBody EmployerEntity employer, HttpServletRequest request){
         //ValidatorUtils.validateEntity(employer);
+		employer.setPassword(passwordEncoder.encode(employer.getPassword()));
         employerService.updateById(employer);//全部更新
         return R.ok();
     }
