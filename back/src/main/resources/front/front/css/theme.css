@@ -98,19 +98,16 @@
 }
 
 /* 详情页 */
-.data-detail {
-	background: #FFFFFF;
-}
 
 .data-detail-breadcrumb {
 	background: #EEEEEE;
 	color: #515151;
 }
 
-.data-detail .title {
-	color: #515151;
-	border: 3px dotted #EEEEEE;
-}
+/*.data-detail .title {*/
+/*	color: #515151;*/
+/*	border: 3px dotted #EEEEEE;*/
+/*}*/
 
 .data-detail .count-container {
 	color: #FFFFFF;
@@ -159,10 +156,6 @@
 
 .news-container .news-list .news-item .detail-container .create-time {
 	color: #515151;
-}
-
-.news-container .title {
-	color: #ce0b07;
 }
 
 

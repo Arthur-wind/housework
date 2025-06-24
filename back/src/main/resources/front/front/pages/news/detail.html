@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="../../css/common.css" />
 </head>
 <style>
+	<style>
 	#swiper {
 		overflow: hidden;
 	}
@@ -22,20 +23,20 @@
 		height: 10px;
 		border-width: 0;
 		border-style: solid;
-		border-color: rgba(0,0,0,.3);
+		border-color: rgba(0,0,0,.15);
 		border-radius: 10px;
-		background-color: #f7f7f7;
-		box-shadow: 0 0 6px #bebebe;
+		background-color: #f0f5f1; /* 浅绿色系浅底 */
+		box-shadow: none;
 	}
 	#swiper .layui-carousel-ind li.layui-this {
 		width: 34px;
 		height: 10px;
 		border-width: 0;
 		border-style: solid;
-		border-color: rgba(0,0,0,.3);
+		border-color: rgba(0,0,0,.15);
 		border-radius: 10px;
-		background-color: rgba(52, 101, 159, 1);
-		box-shadow: 0 0 6px #bebebe;
+		background-color: #3c9d46; /* 绿色标识 */
+		box-shadow: none;
 	}
 
 	.index-title {
@@ -46,6 +47,17 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		/* 新增绿色主题样式 */
+		padding: 10px;
+		margin: 10px auto;
+		border-radius: 8px;
+		border-width: 0 15px 15px;
+		border-style: solid;
+		border-color: #3c9d46;
+		background-color: #f9fdfa; /* 浅白绿色背景 */
+		color: #2d5d27;
+		font-size: 20px;
+		box-shadow: none;
 	}
 
 	.layui-laypage .layui-laypage-count {
@@ -63,21 +75,55 @@
 		display: flex;
 		align-items: center;
 		box-sizing: border-box;
-		width: 100%;
-		flex-wrap: wrap;
 		width: 980px !important;
 		margin: 0 auto !important;
 		justify-content: space-between !important;
+		save-wrap: wrap;
 	}
+
+	.news-container .btn-container {
+		padding: 0 10px;
+		box-shadow: none;
+		margin: 10px 0;
+		border-width: 0;
+		border-style: solid;
+		border-color: transparent;
+		background-color: #3c9d46; /* 主绿色背景 */
+		border-radius: 8px;
+		align-items: center;
+		justify-content: flex-end;
+		height: 60px;
+	}
+
+	.news-container .btn-container .title {
+		font-size: 18px;
+		color: #d6e9c6; /* 浅绿色文字 */
+	}
+
+	.news-container .btn-container button {
+		padding: 0 15px;
+		box-shadow: none;
+		margin-left: 10px;
+		border-color: #2c7a30;
+		background-color: #2c7a30; /* 深绿色按钮 */
+		color: #fff;
+		border-radius: 4px;
+		border-width: 0;
+		font-size: 14px;
+		height: 40px;
+	}
+
 	.news-container .btn-container button i {
 		margin-right: 4px;
 	}
 </style>
+
+</style>
 <body style="padding-bottom: 10px;">
 
 <div id="app">
-	<div class="index-title" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"rgba(255, 255, 255, 1)","color":"#333","borderRadius":"4px","borderWidth":"0 15px 15px","fontSize":"20px","borderStyle":"solid","height":"auto"}'>
-		<span>NEWS / INFORMATION</span><span>网站公告</span>
+	<div class="index-title">
+		<span>网站公告</span>
 	</div>
 
 	<div class="news-container">
@@ -88,19 +134,11 @@
 		<div class="content" style="word-break: break-all;" v-html="detail.content">
 		</div>
 
-		<!-- <div class="bottom-container">
-            <div class="title">
-                本篇文章：{{detail.title}}
-            </div>
-            <div onclick="back()" class="btn">
-                返回列表
-            </div>
-        </div> -->
-		<div class="btn-container" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(125, 159, 199, 1)","borderRadius":"4px","alignItems":"center","borderWidth":"0","borderStyle":"solid","justifyContent":"flex-end","height":"60px"}'>
-			<div class="title" style="font-size: 18px;color:#999;">
+		<div class="btn-container">
+			<div class="title">
 				本篇文章：{{detail.title}}
 			</div>
-			<button :style='{"padding":"0 15px","boxShadow":"0 0 8px rgba(0,0,0,0)","margin":"0 0 0 10px","borderColor":"#409EFF","backgroundColor":"rgba(72, 72, 72, 1)","color":"#fff","borderRadius":"4px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"40px"}' onclick="back()" type="button" class="layui-btn layui-btn-lg btn-theme">
+			<button onclick="back()" type="button" class="layui-btn layui-btn-lg btn-theme">
 				<i v-if="true" class="layui-icon">&#xe65c;</i> 返回列表
 			</button>
 		</div>

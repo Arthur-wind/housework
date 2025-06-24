@@ -1,295 +1,419 @@
-
-<!-- 个人中心 -->
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>个人中心</title>
-		<link rel="stylesheet" href="../../layui/css/layui.css">
-		<!-- 样式 -->
-		<link rel="stylesheet" href="../../css/style.css" />
-		<!-- 主题（主要颜色设置） -->
-		<link rel="stylesheet" href="../../css/theme.css" />
-		<!-- 通用的css -->
-		<link rel="stylesheet" href="../../css/common.css" />
-	</head>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>个人中心</title>
+
+	<link rel="stylesheet" href="../../layui/css/layui.css" />
+	<link rel="stylesheet" href="../../css/style.css" />
+	<link rel="stylesheet" href="../../css/theme.css" />
+	<link rel="stylesheet" href="../../css/common.css" />
+
 	<style>
+		/* 整体背景和布局 */
+		html, body {
+			height: 100%;
+			margin: 0;
+			background: #fff;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			color: #0f1419;
+		}
+
+		/* 伪元素背景示例，保留 */
 		html::after {
 			position: fixed;
-			top: 0;
-			right: 0;
-			left: 0;
-			bottom: 0;
-			content: '';
-			display: block;
+			top: 0; right: 0; bottom: 0; left: 0;
+			content: "";
 			background-attachment: fixed;
 			background-size: cover;
 			background-position: center;
 			z-index: -1;
+			/* 可自定义背景图片，如需可放开 */
+			/* background-image: url('../../img/background.jpg'); */
 		}
 
+		#app {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		/* 顶部标题区，类似Twitter较大字体，居中 */
 		.index-title {
-			text-align: center;
-			box-sizing: border-box;
-			width: 980px;
 			display: flex;
-			justify-content: center;
+			flex-direction: column;
 			align-items: center;
+			padding: 24px 0;
+			border-bottom: 1px solid #e1e8ed;
+			margin-bottom: 40px;
+		}
+		.index-title span:first-child {
+			font-weight: 600;
+			font-size: 12px;
+			color: #536471;
+			letter-spacing: 1.2px;
+			text-transform: uppercase;
+			margin-bottom: 4px;
+		}
+		.index-title span:last-child {
+			font-weight: 800;
+			font-size: 28px;
+			color: #0f1419;
+		}
+
+		/* 页面主容器左右布局（侧栏 + 内容区） */
+		.center-container {
+			display: flex;
+			gap: 32px;
+		}
+
+		/* 侧边菜单栏，仿Twitter侧栏风格 */
+		.left-container {
+			flex-shrink: 0;
+			width: 240px;
+			background-color: #f5f8fa;
+			border-radius: 16px;
+			padding-top: 16px;
+			box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+		}
+
+		.layui-nav-tree {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.layui-nav-item {
+			margin: 0;
+		}
+
+		.layui-nav-item a {
+			display: block;
+			padding: 12px 24px;
+			font-weight: 600;
+			font-size: 15px;
+			color: #536471;
+			text-decoration: none;
+			border-left: 4px solid transparent;
+			transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+		}
+
+		.layui-nav-item.layui-this a,
+		.layui-nav-item a:hover {
+			color: #1d9bf0;
+			background-color: #e8f5fd;
+			border-left-color: #1d9bf0;
+		}
+
+		/* 内容右侧区域 */
+		.right-container {
+			flex: 1;
+			background-color: #fff;
+			border-radius: 16px;
+			padding: 32px;
+			box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+			min-width: 0;
+			display: flex;
 			flex-direction: column;
 		}
-		.index-title span {
-			padding: 0 10px;
-			line-height: 1.4;
-		}
-		.center-container .layui-nav-tree {
-			width: 100%;
-		}
-		.center-container .layui-nav {
-			position: inherit;
-		}
-		.center-container .layui-nav-tree .layui-nav-item {
-			height: 44px;
-			line-height: 44px;
-			font-size: 14px;
-			color: rgba(0, 0, 0, 1);
-			border-width: 0;
-			border-style: solid;
-			border-color: rgba(255,0,0,.3);
-			border-radius: 0;
-			background-color: #fff;
-			box-shadow: 0 0 6px rgba(255,0,0,0);
-			text-align: center;
-		}
-		.center-container .layui-nav-tree .layui-nav-bar {
-			height: 44px !important;
-			opacity: 0 !important;
-		}
-		.center-container .layui-nav-tree .layui-nav-item.layui-this {
-			font-size: 14px;
-			color: #fff;
-			border-width: 0;
-			border-style: solid;
-			border-color: rgba(255,0,0,.3);
-			border-radius: 0;
-			background-color: rgba(125, 159, 199, 1);
-			box-shadow: 0 0 0px rgba(255,0,0,0);
-		}
-		.center-container .layui-nav-tree .layui-nav-item:hover {
-			font-size: 14px;
-			color: #fff;
-			border-width: 0;
-			border-style: solid;
-			border-color: rgba(255,0,0,.3);
-			border-radius: 0;
-			background-color: rgba(125, 159, 199, 1);
-			box-shadow: 0 0 0px rgba(255,0,0,0);
-		}
-		.center-container .layui-nav-tree .layui-nav-item a {
-			line-height: inherit;
-			height: auto;
-			background-color: inherit;
-			color: inherit;
-			text-decoration: none;
-		}
-		.right-container {
-			position: relative;
+
+		/* 表单样式，模仿twitter表单输入框简洁风格 */
+		form.layui-form {
+			display: flex;
+			flex-direction: column;
 		}
 
-		.right-container .layui-form-item {
+		.layui-form-item {
 			display: flex;
 			align-items: center;
+			border-bottom: 1px solid #e1e8ed;
+			padding: 16px 0;
 		}
-		.right-container .layui-input-block {
-			margin: 0;
+
+		.layui-form-item:last-child {
+			border-bottom: none;
+		}
+
+		label.layui-form-label {
+			width: 120px;
+			font-weight: 600;
+			font-size: 15px;
+			color: #536471;
+			padding-right: 15px;
+			text-align: right;
+			user-select: none;
+			flex-shrink: 0;
+		}
+
+		.layui-input-block {
 			flex: 1;
+			/* 清除原来的左边距 */
+			margin-left: 0;
 		}
-		.right-container .input .layui-input {
-			padding: 0 12px;
-			height: 40px;
-			font-size: 14px;
-			color: #333;
-			border-radius: 4px;
-			border-width: 1px;
-			border-style: solid;
-			border-color: #DCDFE6;
-			background-color: #fff;
-			box-shadow: 0 0 0px rgba(255,0,0,.8);
-			text-align: left;
+
+		input.layui-input,
+		select.layui-input {
+			width: 100%;
+			padding: 12px 16px;
+			font-size: 15px;
+			border-radius: 9999px; /* 流线型圆角 */
+			border: 1px solid #ccd6dd;
+			background-color: #f5f8fa;
+			color: #0f1419;
+			box-sizing: border-box;
+			outline-offset: 2px;
+			transition: border-color 0.3s;
 		}
-		.right-container .select .layui-input {
-			padding: 0 12px;
-			height: 40px;
-			font-size: 14px;
-			color: #333;
-			border-radius: 4px;
-			border-width: 1px;
-			border-style: solid;
-			border-color: #DCDFE6;
+
+		input.layui-input:focus,
+		select.layui-input:focus {
+			border-color: #1d9bf0;
 			background-color: #fff;
-			box-shadow: 0 0 0px rgba(255,0,0,.8);
-			text-align: left;
+			box-shadow: 0 0 0 2px rgb(29 155 240 / 0.3);
 		}
-		.right-container .date .layui-input {
-			padding: 0 12px;
-			height: 40px;
+
+		/* 头像图片 */
+		#photoImg {
+			width: 96px;
+			height: 96px;
+			border-radius: 50%;
+			border: 2px solid #e1e8ed;
+			object-fit: cover;
+			/* 不要内联样式 */
+		}
+
+		/* 上传图片按钮 */
+		#photoUpload {
+			margin-top: 12px;
+			padding: 10px 18px;
 			font-size: 14px;
-			color: #333;
-			border-radius: 4px;
-			border-width: 1px;
-			border-style: solid;
-			border-color: #DCDFE6;
-			background-color: #fff;
-			box-shadow: 0 0 0px rgba(255,0,0,.8);
-			text-align: left;
+			border-radius: 9999px;
+			background-color: #1d9bf0;
+			color: white;
+			border: none;
+			cursor: pointer;
+			transition: background-color 0.2s;
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+		}
+		#photoUpload:hover {
+			background-color: #1a8cd8;
+		}
+		#photoUpload .layui-icon {
+			font-size: 16px;
+		}
+
+		/* 按钮组容器 */
+		.form-buttons {
+			display: flex;
+			gap: 16px;
+			margin-top: 32px;
+			flex-wrap: wrap;
+		}
+		.btn-submit {
+			flex-grow: 1;
+			max-width: 200px;
+			font-size: 15px;
+			font-weight: 700;
+			border-radius: 9999px;
+			border: none;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		.btn-submit.btn-theme {
+			background-color: #1d9bf0;
+			color: white;
+		}
+		.btn-submit.btn-theme:hover {
+			background-color: #1a8cd8;
+		}
+
+		.btn-submit.logout {
+			background-color: #e6f0ff;
+			color: #1d9bf0;
+			border: 1px solid #1d9bf0;
+		}
+		.btn-submit.logout:hover {
+			background-color: #cbe3ff;
+		}
+
+		/* 兼容layui表单inline结构 */
+		.layui-input-block.input,
+		.layui-input-block.select,
+		.layui-input-block.date {
+			margin-left: 0;
 		}
 	</style>
-	<body>
+</head>
 
-		<div id="app">
+<body>
+<div id="app">
+	<div class="index-title">
+		<span>个人中心</span>
+	</div>
 
-			<!-- 标题 -->
-			<!-- <h2 style="margin-top: 20px;" class="index-title">USER / CENTER</h2>
-			<div class="line-container">
-				<p class="line" style="background: #EEEEEE;"> 个人中心 </p>
-			</div> -->
-			<div class="index-title" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"rgba(255, 255, 255, 1)","color":"#333","borderRadius":"4px","borderWidth":"0 15px 15px","fontSize":"20px","borderStyle":"solid","height":"auto"}'>
-			  <span>USER / CENTER</span><span>个人中心</span>
-			</div>
-			<!-- 标题 -->
+	<div class="center-container">
+		<nav class="left-container">
+			<ul class="layui-nav layui-nav-tree">
+				<li
+						v-for="(item, index) in centerMenu"
+						:key="index"
+						class="layui-nav-item"
+						:class="{ 'layui-this': index === 0 }"
+				>
+					<a :href="'javascript:jump(\'' + item.url + '\')'">{{ item.name }}</a>
+				</li>
+			</ul>
+		</nav>
 
-			<div class="center-container">
-				<!-- 个人中心菜单 config.js-->
-				<div class="left-container" :style='{"padding":"0","boxShadow":"0px 0px 0px rgba(255,0,0,.8)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","width":"160px","borderStyle":"solid"}'>
-					<ul class="layui-nav layui-nav-tree">
-						<li v-for="(item,index) in centerMenu" v-bind:key="index" class="layui-nav-item" :class="index==0?'layui-this':''">
-							<a :href="'javascript:jump(\''+item.url+'\')'">{{item.name}}</a>
-						</li>
-					</ul>
+		<section class="right-container">
+			<form class="layui-form" lay-filter="myForm">
+				<!-- 主键 -->
+				<input type="hidden" name="id" id="id" />
+
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="employer_account">雇主账号</label>
+					<div class="layui-input-block input">
+						<input
+								type="text"
+								readonly="readonly"
+								name="employer_account"
+								id="employer_account"
+								placeholder="雇主账号"
+								autocomplete="off"
+								class="layui-input"
+						/>
+					</div>
 				</div>
-				<!-- 个人中心菜单 -->
-				<!-- 个人中心 -->
-				<div class="right-container" :style='{"padding":"20px","boxShadow":"0px 0px 0px rgba(255,0,0,.8)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
-					<form class="layui-form" lay-filter="myForm">
-						<!-- 主键 -->
-						<input type="hidden" name="id" id="id" />
-                        <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' class="layui-form-label">账号</label>
-							<div class="layui-input-block input">
-								<input type="text" readonly="readonly" name="employer_account" id="employer_account" placeholder="账号" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-                        <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' class="layui-form-label">密码</label>
-							<div class="layui-input-block input">
-								<input type="password" name="password" id="password" placeholder="密码" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-                        <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' class="layui-form-label">姓名</label>
-							<div class="layui-input-block input">
-								<input type="text"  name="employer_name" id="employer_name" placeholder="姓名" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-                        <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' class="layui-form-label">年龄</label>
-							<div class="layui-input-block input">
-								<input type="text"  name="age" id="age" placeholder="年龄" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-                        <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' class="layui-form-label">性别</label>
-							<div class="layui-input-block select">
-								<select name="gender" id="gender" >
-									<option value="">请选择</option>
-									<option v-for="(item,index) in gender" v-bind:key="index" :value="item">{{item}}</option>
-								</select>
-							</div>
-						</div>
-                        <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' class="layui-form-label">手机</label>
-							<div class="layui-input-block input">
-								<input type="text"  name="phone" id="phone" placeholder="手机" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-                        <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' style="opacity: 0;" class="layui-form-label">头像</label>
-							<div class="layui-input-block">
-								<img id="photoImg" style="width: 100px;height: 100px;border-radius: 50%;border: 2px solid #EEEEEE;" :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"#DCDFE6","backgroundColor":"#fff","borderRadius":"10px","borderWidth":"1px","width":"80px","borderStyle":"solid","height":"80px"}' src="../../img/avator.png">
-								<input type="hidden" id="photo" name="photo" />
-							</div>
-						</div>
-						<div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(125, 159, 199, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0 0 1px 0","borderStyle":"solid"}'>
-							<label  :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"14px","color":"#333","textAlign":"right"}' style="opacity: 0;" class="layui-form-label">图片</label>
-							<div class="layui-input-block">
-								<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(215, 223, 233, 1)","color":"#fff","borderRadius":"8px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="button" class="layui-btn btn-theme" id="photoUpload">
-									<i v-if="true" :style='{"color":"#fff","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>上传图片
-								</button>
-							</div>
-						</div>
 
-						<div class="layui-form-item">
-							<div class="layui-input-block" style="display: flex;flex-wrap:wrap;">
-								<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"10px auto 0","borderColor":"#ccc","backgroundColor":"rgba(125, 159, 199, 1)","color":"#fff","borderRadius":"8px","borderWidth":"0","width":"20%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit btn-theme" lay-submit lay-filter="*">更新信息</button>
-                <button :style='{"padding":"0 10px","boxShadow":"0 0 6px #7d9fc7","margin":"10px auto","borderColor":"#ccc","backgroundColor":"#fff","color":"rgba(125, 159, 199, 1)","borderRadius":"8px","borderWidth":"0","width":"20%","fontSize":"14px","borderStyle":"solid","height":"44px"}' @click="logout" class="layui-btn btn-submit">退出登录</button>
-							</div>
-						</div>
-						<!-- <div class="layui-form-item">
-							<div class="layui-input-block">
-								<button :style='{"padding":"0 10px","boxShadow":"0 0 6px #7d9fc7","margin":"10px auto","borderColor":"#ccc","backgroundColor":"#fff","color":"rgba(125, 159, 199, 1)","borderRadius":"8px","borderWidth":"0","width":"20%","fontSize":"14px","borderStyle":"solid","height":"44px"}' @click="logout" class="layui-btn btn-submit">退出登录</button>
-							</div>
-						</div> -->
-					</form>
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="password">密码</label>
+					<div class="layui-input-block input">
+						<input
+								type="password"
+								name="password"
+								id="password"
+								placeholder="密码"
+								autocomplete="off"
+								class="layui-input"
+						/>
+					</div>
 				</div>
-				<!-- 个人中心 -->
-			</div>
 
-		</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="employer_name">雇主姓名</label>
+					<div class="layui-input-block input">
+						<input
+								type="text"
+								name="employer_name"
+								id="employer_name"
+								placeholder="雇主姓名"
+								autocomplete="off"
+								class="layui-input"
+						/>
+					</div>
+				</div>
 
-		<!-- layui -->
-		<script src="../../layui/layui.js"></script>
-		<!-- vue -->
-		<script src="../../js/vue.js"></script>
-		<!-- 组件配置信息 -->
-		<script src="../../js/config.js"></script>
-		<!-- 扩展插件配置信息 -->
-		<script src="../../modules/config.js"></script>
-		<!-- 工具方法 -->
-		<script src="../../js/utils.js"></script>
-		<!-- 校验格式工具类 -->
-		<script src="../../js/validate.js"></script>
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="age">年龄</label>
+					<div class="layui-input-block input">
+						<input
+								type="text"
+								name="age"
+								id="age"
+								placeholder="年龄"
+								autocomplete="off"
+								class="layui-input"
+						/>
+					</div>
+				</div>
 
-		<script>
-			var vue = new Vue({
-				el: '#app',
-				data: {
-					// 轮播图
-					swiperList: [],
-					gender: [],
-					centerMenu: centerMenu
-				},
-                updated: function() {
-					layui.form.render(null, 'myForm');
-				},
-				methods: {
-					jump(url) {
-						jump(url)
-					},
-					logout(){
-						localStorage.removeItem('Token');
-						localStorage.removeItem('role');
-						localStorage.removeItem('sessionTable');
-						localStorage.removeItem('adminName');
-						localStorage.removeItem('userid');
-						localStorage.removeItem('vip');
-						localStorage.removeItem('userTable');
-						localStorage.removeItem('iframeUrl');
-						window.parent.location.href = '../login/login.html';
-					}
-				}
-			})
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="gender">性别</label>
+					<div class="layui-input-block select">
+						<select name="gender" id="gender" class="layui-input">
+							<option value="">请选择</option>
+							<option v-for="(item, index) in gender" :key="index" :value="item">{{ item }}</option>
+						</select>
+					</div>
+				</div>
 
-			layui.use(['layer', 'element', 'carousel', 'http', 'jquery', 'form', 'upload', 'laydate'], function() {
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="contact_phone">联系电话</label>
+					<div class="layui-input-block input">
+						<input
+								type="text"
+								name="contact_phone"
+								id="contact_phone"
+								placeholder="联系电话"
+								autocomplete="off"
+								class="layui-input"
+						/>
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label" style="opacity:0;">头像</label>
+					<div class="layui-input-block">
+						<img id="photoImg" src="../../img/avator.png" alt="头像" />
+						<input type="hidden" id="photo" name="photo" />
+						<button type="button" id="photoUpload">
+							<i class="layui-icon">&#xe67c;</i> 上传图片
+						</button>
+					</div>
+				</div>
+
+				<div class="form-buttons layui-form-item">
+					<button class="btn-submit btn-theme layui-btn" lay-submit lay-filter="*">更新信息</button>
+					<button @click="logout" type="button" class="btn-submit logout layui-btn">退出登录</button>
+				</div>
+			</form>
+		</section>
+	</div>
+</div>
+
+<script src="../../layui/layui.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../modules/config.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="../../js/validate.js"></script>
+
+<script>
+	var vue = new Vue({
+		el: "#app",
+		data: {
+			swiperList: [],
+			gender: [],
+			centerMenu: centerMenu,
+		},
+		updated: function () {
+			layui.form.render(null, "myForm");
+		},
+		methods: {
+			jump(url) {
+				jump(url);
+			},
+			logout() {
+				localStorage.removeItem("Token");
+				localStorage.removeItem("role");
+				localStorage.removeItem("sessionTable");
+				localStorage.removeItem("adminName");
+				localStorage.removeItem("userid");
+				localStorage.removeItem("vip");
+				localStorage.removeItem("userTable");
+				localStorage.removeItem("iframeUrl");
+				window.parent.location.href = "../login/login.html";
+			},
+		},
+	});
+
+	layui.use(
+			["layer", "element", "carousel", "http", "jquery", "form", "upload", "laydate"],
+			function () {
 				var layer = layui.layer;
 				var element = layui.element;
 				var carousel = layui.carousel;
@@ -300,124 +424,82 @@
 				var laydate = layui.laydate;
 				vue.baseurl = http.baseurl;
 
-				vue.gender = '男,女'.split(',')
+				vue.gender = "男,女".split(",");
 				// 上传图片
 				var photoUpload = upload.render({
-					//绑定元素
-					elem: '#photoUpload',
-					//上传接口
-					url: http.baseurl + 'file/upload',
-					// 请求头
+					elem: "#photoUpload",
+					url: http.baseurl + "file/upload",
 					headers: {
-						Token: localStorage.getItem('Token')
+						Token: localStorage.getItem("Token"),
 					},
-					// 允许上传时校验的文件类型
-					accept: 'images',
-					before: function() {
-						//loading层
-						var index = layer.load(1, {
-							shade: [0.1, '#fff'] //0.1透明度的白色背景
-						});
+					accept: "images",
+					before: function () {
+						layer.load(1, { shade: [0.1, "#fff"] });
 					},
-					// 上传成功
-					done: function(res) {
+					done: function (res) {
 						console.log(res);
 						layer.closeAll();
 						if (res.code == 0) {
-							layer.msg("上传成功", {
-								time: 2000,
-								icon: 6
-							})
-							var url = 'upload/' + res.file;
-							jquery('#photo').val(url);
-							jquery('#photoImg').attr('src', http.baseurl+url)
+							layer.msg("上传成功", { time: 2000, icon: 6 });
+							var url = "upload/" + res.file;
+							jquery("#photo").val(url);
+							jquery("#photoImg").attr("src", http.baseurl + url);
 						} else {
-							layer.msg(res.msg, {
-								time: 2000,
-								icon: 5
-							})
+							layer.msg(res.msg, { time: 2000, icon: 5 });
 						}
 					},
-					//请求异常回调
-					error: function() {
+					error: function () {
 						layer.closeAll();
-						layer.msg("请求接口异常", {
-							time: 2000,
-							icon: 5
-						})
-					}
+						layer.msg("请求接口异常", { time: 2000, icon: 5 });
+					},
 				});
 
 				// 查询用户信息
 				let table = localStorage.getItem("userTable");
 
-				if(!table){
-					layer.msg('请先登录', {
-						time: 2000,
-						icon: 5
-					}, function() {
-						window.parent.location.href = '../login/login.html';
+				if (!table) {
+					layer.msg("请先登录", { time: 2000, icon: 5 }, function () {
+						window.parent.location.href = "../login/login.html";
 					});
 				}
 
-
-				http.request(`${table}/session`, 'get', {}, function(data) {
-					// 表单赋值
+				http.request(`${table}/session`, "get", {}, function (data) {
 					form.val("myForm", data.data);
-					// 图片赋值
-					jquery("#photoImg").attr("src", http.baseurl+data.data.photo);
+					jquery("#photoImg").attr("src", http.baseurl + data.data.photo);
 				});
 
 				// 提交表单
-				form.on('submit(*)', function(data) {
+				form.on("submit(*)", function (data) {
 					data = data.field;
-					if(!data.employer_account){
-						layer.msg('账号不能为空', {
-														time: 2000,
-														icon: 5
-												});
-						return false
+					if (!data.employee_account && !data.employer_account) {
+						layer.msg("账号不能为空", { time: 2000, icon: 5 });
+						return false;
 					}
-					if(!data.password){
-						layer.msg('密码不能为空', {
-														time: 2000,
-														icon: 5
-												});
-						return false
+					if (!data.password) {
+						layer.msg("密码不能为空", { time: 2000, icon: 5 });
+						return false;
 					}
-					if(!data.employer_name){
-						layer.msg('姓名不能为空', {
-														time: 2000,
-														icon: 5
-												});
-						return false
+					if (!data.employee_name && !data.employer_name) {
+						layer.msg("姓名不能为空", { time: 2000, icon: 5 });
+						return false;
 					}
-					if(!isIntNumer(data.age)){
-						layer.msg('年龄应输入整数', {
-														time: 2000,
-														icon: 5
-												});
-						return false
+					if (!isIntNumer(data.age)) {
+						layer.msg("年龄应输入整数", { time: 2000, icon: 5 });
+						return false;
 					}
-					if(!isMobile(data.phone)){
-						layer.msg('手机应输入手机格式', {
-														time: 2000,
-														icon: 5
-												});
-						return false
+					if (!isMobile(data.contact_phone || data.phone)) {
+						layer.msg("联系电话应输入手机格式", { time: 2000, icon: 5 });
+						return false;
 					}
-					http.requestJson(table + '/update', 'post', data, function(res) {
-						layer.msg('修改成功', {
-							time: 2000,
-							icon: 6
-						}, function() {
+					http.requestJson(table + "/update", "post", data, function (res) {
+						layer.msg("修改成功", { time: 2000, icon: 6 }, function () {
 							window.location.reload();
 						});
 					});
-					return false
+					return false;
 				});
-
-			});
-		</script>
-	</body>
+			}
+	);
+</script>
+</body>
 </html>
