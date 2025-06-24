@@ -16,13 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * 申请预约
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//  申请预约
+//  后端接口
+
 @RestController
 @RequestMapping("/application_appointment")
 public class Application_AppointmentController {
@@ -30,16 +27,11 @@ public class Application_AppointmentController {
     private Application_AppointmentService application_appointmentService;
 
 
-    
 
-
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Application_AppointmentEntity application_appointment,
         HttpServletRequest request){
-        // 手动处理映射
+
         if(params.containsKey("project_name")) {
             application_appointment.setProjectName((String)params.get("project_name"));
         }
@@ -65,14 +57,12 @@ public class Application_AppointmentController {
         return R.ok().put("data", page);
     }
 
-    /**
-     * 前端列表
-     */
+
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Application_AppointmentEntity application_appointment, 
 		HttpServletRequest request){
-        // 手动处理映射
+
         if(params.containsKey("project_name")) {
             application_appointment.setProjectName((String)params.get("project_name"));
         }
@@ -90,9 +80,7 @@ public class Application_AppointmentController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
+
     @RequestMapping("/lists")
     public R list( Application_AppointmentEntity application_appointment){
        	EntityWrapper<Application_AppointmentEntity> ew = new EntityWrapper<Application_AppointmentEntity>();
@@ -100,9 +88,7 @@ public class Application_AppointmentController {
         return R.ok().put("data", application_appointmentService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
+
     @RequestMapping("/query")
     public R query(Application_AppointmentEntity application_appointment){
         EntityWrapper< Application_AppointmentEntity> ew = new EntityWrapper< Application_AppointmentEntity>();
@@ -111,18 +97,14 @@ public class Application_AppointmentController {
 		return R.ok("查询申请预约成功").put("data", application_appointmentView);
     }
 	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Application_AppointmentEntity application_appointment = application_appointmentService.selectById(id);
         return R.ok().put("data", application_appointment);
     }
 
-    /**
-     * 前端详情
-     */
+
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -131,55 +113,39 @@ public class Application_AppointmentController {
     }
     
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Application_AppointmentEntity application_appointment, HttpServletRequest request){
 application_appointment.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(application_appointment);
         application_appointmentService.insert(application_appointment);
         return R.ok();
     }
     
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody Application_AppointmentEntity application_appointment, HttpServletRequest request){
 application_appointment.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(application_appointment);
         application_appointmentService.insert(application_appointment);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+
     @RequestMapping("/update")
     public R update(@RequestBody Application_AppointmentEntity application_appointment, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(application_appointment);
-        application_appointmentService.updateById(application_appointment);//全部更新
+
+        application_appointmentService.updateById(application_appointment);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         application_appointmentService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
     
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -228,14 +194,6 @@ application_appointment.setId(System.currentTimeMillis() + (long)(Math.random() 
 	}
 	
 
-
-
-
-
-
-    /**
-     * （按值统计）
-     */
     @RequestMapping("/value/{xColumnName}/{yColumnName}")
     public R value(@PathVariable("yColumnName") String yColumnName, @PathVariable("xColumnName") String xColumnName,HttpServletRequest request) {
         Map<String, Object> params = new HashMap<String, Object>();
@@ -261,9 +219,6 @@ application_appointment.setId(System.currentTimeMillis() + (long)(Math.random() 
         return R.ok().put("data", result);
     }
 
-    /**
-     * （按值统计）时间统计类型
-     */
     @RequestMapping("/value/{xColumnName}/{yColumnName}/{timeStatType}")
     public R valueDay(@PathVariable("yColumnName") String yColumnName, @PathVariable("xColumnName") String xColumnName, @PathVariable("timeStatType") String timeStatType,HttpServletRequest request) {
         Map<String, Object> params = new HashMap<String, Object>();
@@ -290,9 +245,6 @@ application_appointment.setId(System.currentTimeMillis() + (long)(Math.random() 
         return R.ok().put("data", result);
     }
 
-    /**
-     * 分组统计
-     */
     @RequestMapping("/group/{columnName}")
     public R group(@PathVariable("columnName") String columnName,HttpServletRequest request) {
         Map<String, Object> params = new HashMap<String, Object>();

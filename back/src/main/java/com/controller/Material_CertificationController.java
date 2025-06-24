@@ -36,30 +36,20 @@ import com.utils.MPUtil;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 资料认证
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//  资料认证
+//  后端接口
+
 @RestController
 @RequestMapping("/material_certification")
 public class Material_CertificationController {
     @Autowired
     private Material_CertificationService material_certificationService;
 
-
-    
-
-
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Material_CertificationEntity material_certification,
         HttpServletRequest request){
-        // 处理 employee_account、employee_name、is_reviewed 的手动映射
+
         if(params.containsKey("employee_account")) {
             material_certification.setEmployeeAccount((String)params.get("employee_account"));
         }
@@ -80,14 +70,11 @@ public class Material_CertificationController {
         return R.ok().put("data", page);
     }
 
-    /**
-     * 前端列表
-     */
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Material_CertificationEntity material_certification, 
 		HttpServletRequest request){
-        // 处理 employee_account、employee_name、is_reviewed 的手动映射
+
         if(params.containsKey("employee_account")) {
             material_certification.setEmployeeAccount((String)params.get("employee_account"));
         }
@@ -103,9 +90,6 @@ public class Material_CertificationController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
     @RequestMapping("/lists")
     public R list( Material_CertificationEntity material_certification){
        	EntityWrapper<Material_CertificationEntity> ew = new EntityWrapper<Material_CertificationEntity>();
@@ -113,9 +97,7 @@ public class Material_CertificationController {
         return R.ok().put("data", material_certificationService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
+
     @RequestMapping("/query")
     public R query(Material_CertificationEntity material_certification){
         EntityWrapper< Material_CertificationEntity> ew = new EntityWrapper< Material_CertificationEntity>();
@@ -123,19 +105,13 @@ public class Material_CertificationController {
 		Material_CertificationView material_certificationView =  material_certificationService.selectView(ew);
 		return R.ok("查询资料认证成功").put("data", material_certificationView);
     }
-	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Material_CertificationEntity material_certification = material_certificationService.selectById(id);
         return R.ok().put("data", material_certification);
     }
 
-    /**
-     * 前端详情
-     */
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -144,53 +120,38 @@ public class Material_CertificationController {
     }
     
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Material_CertificationEntity material_certification, HttpServletRequest request){
     	material_certification.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(material_certification);
+
         material_certificationService.insert(material_certification);
         return R.ok();
     }
     
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody Material_CertificationEntity material_certification, HttpServletRequest request){
     	material_certification.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(material_certification);
+
         material_certificationService.insert(material_certification);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+
     @RequestMapping("/update")
     public R update(@RequestBody Material_CertificationEntity material_certification, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(material_certification);
-        material_certificationService.updateById(material_certification);//全部更新
+
+        material_certificationService.updateById(material_certification);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         material_certificationService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -234,12 +195,5 @@ public class Material_CertificationController {
 		int count = material_certificationService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
-
-
-
-
-
-
 
 }

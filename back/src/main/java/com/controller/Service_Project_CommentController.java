@@ -36,13 +36,10 @@ import com.utils.MPUtil;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 服务项目评论表
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//   服务项目评论表
+//   后端接口
+
 @RestController
 @RequestMapping(value = {"/service_project_comment","/discussservice_project"})
 public class Service_Project_CommentController {
@@ -51,9 +48,6 @@ public class Service_Project_CommentController {
 
 
 
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Service_Project_CommentEntity service_project_comment,
 		HttpServletRequest request){
@@ -62,10 +56,7 @@ public class Service_Project_CommentController {
 
         return R.ok().put("data", page);
     }
-    
-    /**
-     * 前端列表
-     */
+
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Service_Project_CommentEntity service_project_comment,
@@ -75,9 +66,6 @@ public class Service_Project_CommentController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
     @RequestMapping("/lists")
     public R list( Service_Project_CommentEntity service_project_comment){
        	EntityWrapper<Service_Project_CommentEntity> ew = new EntityWrapper<Service_Project_CommentEntity>();
@@ -85,9 +73,7 @@ public class Service_Project_CommentController {
         return R.ok().put("data", service_project_commentService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
+
     @RequestMapping("/query")
     public R query(Service_Project_CommentEntity service_project_comment){
         EntityWrapper< Service_Project_CommentEntity> ew = new EntityWrapper< Service_Project_CommentEntity>();
@@ -96,18 +82,13 @@ public class Service_Project_CommentController {
 		return R.ok("查询服务项目评论表成功").put("data", service_project_commentView);
     }
 	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Service_Project_CommentEntity service_project_comment = service_project_commentService.selectById(id);
         return R.ok().put("data", service_project_comment);
     }
 
-    /**
-     * 前端详情
-     */
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -116,53 +97,36 @@ public class Service_Project_CommentController {
     }
     
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Service_Project_CommentEntity service_project_comment, HttpServletRequest request){
     	service_project_comment.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(service_project_comment);
-        service_project_commentService.insert(service_project_comment);
-        return R.ok();
-    }
-    
-    /**
-     * 前端保存
-     */
-    @RequestMapping("/add")
-    public R add(@RequestBody Service_Project_CommentEntity service_project_comment, HttpServletRequest request){
-    	service_project_comment.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(service_project_comment);
+
         service_project_commentService.insert(service_project_comment);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+    @RequestMapping("/add")
+    public R add(@RequestBody Service_Project_CommentEntity service_project_comment, HttpServletRequest request){
+    	service_project_comment.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
+
+        service_project_commentService.insert(service_project_comment);
+        return R.ok();
+    }
+
     @RequestMapping("/update")
     public R update(@RequestBody Service_Project_CommentEntity service_project_comment, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(service_project_comment);
+
         service_project_commentService.updateById(service_project_comment);//全部更新
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         service_project_commentService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {

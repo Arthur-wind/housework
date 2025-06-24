@@ -36,13 +36,10 @@ import com.utils.MPUtil;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 网站公告
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//  网站公告
+//  后端接口
+
 @RestController
 @RequestMapping("/news")
 public class NewsController {
@@ -50,12 +47,7 @@ public class NewsController {
     private NewsService newsService;
 
 
-    
 
-
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,NewsEntity news,
 		HttpServletRequest request){
@@ -64,10 +56,7 @@ public class NewsController {
 
         return R.ok().put("data", page);
     }
-    
-    /**
-     * 前端列表
-     */
+
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,NewsEntity news, 
@@ -77,9 +66,6 @@ public class NewsController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
     @RequestMapping("/lists")
     public R list( NewsEntity news){
        	EntityWrapper<NewsEntity> ew = new EntityWrapper<NewsEntity>();
@@ -87,9 +73,7 @@ public class NewsController {
         return R.ok().put("data", newsService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
+
     @RequestMapping("/query")
     public R query(NewsEntity news){
         EntityWrapper< NewsEntity> ew = new EntityWrapper< NewsEntity>();
@@ -97,19 +81,14 @@ public class NewsController {
 		NewsView newsView =  newsService.selectView(ew);
 		return R.ok("查询网站公告成功").put("data", newsView);
     }
-	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         NewsEntity news = newsService.selectById(id);
         return R.ok().put("data", news);
     }
 
-    /**
-     * 前端详情
-     */
+
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -118,55 +97,41 @@ public class NewsController {
     }
     
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody NewsEntity news, HttpServletRequest request){
 news.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(news);
+
         newsService.insert(news);
         return R.ok();
     }
     
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody NewsEntity news, HttpServletRequest request){
 news.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(news);
+
         newsService.insert(news);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+
     @RequestMapping("/update")
     public R update(@RequestBody NewsEntity news, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(news);
-        newsService.updateById(news);//全部更新
+
+        newsService.updateById(news);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         newsService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
     
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -206,12 +171,5 @@ news.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 		int count = newsService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
-
-
-
-
-
-
 
 }

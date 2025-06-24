@@ -33,19 +33,17 @@ import com.entity.EIException;
 import com.service.ConfigService;
 import com.utils.R;
 
-/**
- * 上传文件映射表
- */
+
+//  上传文件映射表
+
 @RestController
 @RequestMapping("file")
-@SuppressWarnings({"unchecked","rawtypes"})
+
 public class FileController{
 	@Autowired
 	private ConfigService configService;
-	/**
-	 * 上传文件
-	 */
-	@IgnoreAuth // 加上这行，允许未登录访问
+
+	@IgnoreAuth
 	@RequestMapping("/upload")
 	public R upload(@RequestParam("file") MultipartFile file,String type) throws Exception {
 		if (file.isEmpty()) {
@@ -63,8 +61,7 @@ public class FileController{
 		String fileName = new Date().getTime()+"."+fileExt;
 		File dest = new File(upload.getAbsolutePath()+"/"+fileName);
 		file.transferTo(dest);
-        // 删除或注释掉下面这行，不要再复制到桌面upload文件夹
-        // FileUtils.copyFile(dest, new File("C:\\Users\\yzfen\\Desktop\\HomeServicePlatform-main\\upload"+"/"+fileName));
+
         if(StringUtils.isNotBlank(type) && type.equals("1")) {
             ConfigEntity configEntity = configService.selectOne(new EntityWrapper<ConfigEntity>().eq("name", "faceFile"));
             if(configEntity==null) {
@@ -79,9 +76,6 @@ public class FileController{
         return R.ok().put("file", fileName);
 	}
 
-	/**
-	 * 下载文件
-	 */
 	@IgnoreAuth
 	@RequestMapping("/download")
 	public ResponseEntity<byte[]> download(@RequestParam String fileName) {
@@ -96,9 +90,6 @@ public class FileController{
 			}
 			File file = new File(upload.getAbsolutePath()+"/"+fileName);
 			if(file.exists()){
-				/*if(!fileService.canRead(file, SessionManager.getSessionUser())){
-					getResponse().sendError(403);
-				}*/
 				HttpHeaders headers = new HttpHeaders();
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 				headers.setContentDispositionFormData("attachment", fileName);

@@ -38,13 +38,10 @@ import com.utils.MPUtil;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 雇主评价
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//  雇主评价
+//  后端接口
+
 @RestController
 @RequestMapping("/employer_evaluation")
 public class Employer_evaluationController {
@@ -52,57 +49,25 @@ public class Employer_evaluationController {
     private Employer_evaluationService employer_evaluationService;
 
 
-    
-
-
-    /**
-     * 后端列表
-     */
-//    @RequestMapping("/page")
-//    public R page(@RequestParam Map<String, Object> params,Employer_evaluationEntity employer_evaluation,
-//        HttpServletRequest request){
-//        // 手动处理映射
-//        if(params.containsKey("project_name")) {
-//            employer_evaluation.setProjectName((String)params.get("project_name"));
-//        }
-//        if(params.containsKey("employer_name")) {
-//            employer_evaluation.setEmployerName((String)params.get("employer_name"));
-//        }
-//        if(params.containsKey("employee_name")) {
-//            employer_evaluation.setEmployeeName((String)params.get("employee_name"));
-//        }
-//        String tableName = request.getSession().getAttribute("tableName").toString();
-//        if(tableName.equals("employer")) {
-//            employer_evaluation.setEmployer_account((String)request.getSession().getAttribute("username"));
-//        }
-//        if(tableName.equals("employee")) {
-//            employer_evaluation.setEmployee_account((String)request.getSession().getAttribute("username"));
-//        }
-//        EntityWrapper<Employer_evaluationEntity> ew = new EntityWrapper<Employer_evaluationEntity>();
-//        PageUtils page = employer_evaluationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer_evaluation), params), params));
-//
-//        return R.ok().put("data", page);
-//    }
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,
                   Employer_evaluationEntity employer_evaluation,
                   HttpServletRequest request) {
 
-        // 1. 从 session 获取用户身份信息
+
         String tableName = request.getSession().getAttribute("tableName").toString();
         String username = (String) request.getSession().getAttribute("username");
 
-        // 2. 创建查询包装器
+
         EntityWrapper<Employer_evaluationEntity> ew = new EntityWrapper<>();
 
-        // 3. 根据用户类型添加数据隔离条件
+
         if ("employer".equals(tableName)) {
-            ew.eq("employer_account", username);  // 雇主只能看到自己的签名
+            ew.eq("employer_account", username);
         } else if ("employee".equals(tableName)) {
-            ew.eq("employee_account", username);  // 雇员只能看到自己的签名
+            ew.eq("employee_account", username);
         }
 
-        // 4. 添加前端查询参数（安全过滤）
         if (params.containsKey("project_name") && !params.get("project_name").toString().isEmpty()) {
             ew.like("project_name", params.get("project_name").toString());
         }
@@ -113,23 +78,18 @@ public class Employer_evaluationController {
             ew.like("employee_name", params.get("employee_name").toString());
         }
 
-        // 5. 执行分页查询
 
         PageUtils page = employer_evaluationService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, employer_evaluation), params), params));
 
 
-
-
         return R.ok().put("data", page);
     }
-    /**
-     * 前端列表
-     */
+
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Employer_evaluationEntity employer_evaluation,
 		HttpServletRequest request){
-        // 手动处理映射
+
         if(params.containsKey("project_name")) {
             employer_evaluation.setProjectName((String)params.get("project_name"));
         }
@@ -144,9 +104,6 @@ public class Employer_evaluationController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
     @RequestMapping("/lists")
     public R list( Employer_evaluationEntity employer_evaluation){
        	EntityWrapper<Employer_evaluationEntity> ew = new EntityWrapper<Employer_evaluationEntity>();
@@ -154,9 +111,6 @@ public class Employer_evaluationController {
         return R.ok().put("data", employer_evaluationService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
     @RequestMapping("/query")
     public R query(Employer_evaluationEntity employer_evaluation){
         EntityWrapper< Employer_evaluationEntity> ew = new EntityWrapper< Employer_evaluationEntity>();
@@ -164,19 +118,13 @@ public class Employer_evaluationController {
 		Employer_evaluationView employer_evaluationView =  employer_evaluationService.selectView(ew);
 		return R.ok("查询雇主评价成功").put("data", employer_evaluationView);
     }
-	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Employer_evaluationEntity employer_evaluation = employer_evaluationService.selectById(id);
         return R.ok().put("data", employer_evaluation);
     }
 
-    /**
-     * 前端详情
-     */
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -185,53 +133,36 @@ public class Employer_evaluationController {
     }
     
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Employer_evaluationEntity employer_evaluation, HttpServletRequest request){
     	employer_evaluation.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(employer_evaluation);
+
         employer_evaluationService.insert(employer_evaluation);
         return R.ok();
     }
-    
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody Employer_evaluationEntity employer_evaluation, HttpServletRequest request){
     	employer_evaluation.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(employer_evaluation);
+
         employer_evaluationService.insert(employer_evaluation);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+
     @RequestMapping("/update")
     public R update(@RequestBody Employer_evaluationEntity employer_evaluation, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(employer_evaluation);
-        employer_evaluationService.updateById(employer_evaluation);//全部更新
+
+        employer_evaluationService.updateById(employer_evaluation);
         return R.ok();
     }
-    
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         employer_evaluationService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -278,12 +209,5 @@ public class Employer_evaluationController {
 		int count = employer_evaluationService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
-
-
-
-
-
-
 
 }

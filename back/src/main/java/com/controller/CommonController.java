@@ -34,9 +34,7 @@ import com.service.ConfigService;
 import com.utils.BaiduUtil;
 import com.utils.FileUtil;
 import com.utils.R;
-/**
- * 通用接口
- */
+
 @RestController
 public class CommonController{
 	@Autowired
@@ -82,15 +80,7 @@ public class CommonController{
 		commonService.sh(map);
 		return R.ok();
 	}
-	
-	/**
-	 * 获取需要提醒的记录数
-	 * @param tableName
-	 * @param columnName
-	 * @param type 1:数字 2:日期
-	 * @param map
-	 * @return
-	 */
+
 	@IgnoreAuth
 	@RequestMapping("/remind/{tableName}/{columnName}/{type}")
 	public R remindCount(@PathVariable("tableName") String tableName, @PathVariable("columnName") String columnName, 
@@ -123,10 +113,7 @@ public class CommonController{
 		int count = commonService.remindCount(map);
 		return R.ok().put("count", count);
 	}
-	
-	/**
-	 * 单列求和
-	 */
+
 	@IgnoreAuth
 	@RequestMapping("/cal/{tableName}/{columnName}")
 	public R cal(@PathVariable("tableName") String tableName, @PathVariable("columnName") String columnName) {
@@ -136,10 +123,7 @@ public class CommonController{
 		Map<String, Object> result = commonService.selectCal(params);
 		return R.ok().put("data", result);
 	}
-	
-	/**
-	 * 分组统计
-	 */
+
 	@IgnoreAuth
 	@RequestMapping("/group/{tableName}/{columnName}")
 	public R group(@PathVariable("tableName") String tableName, @PathVariable("columnName") String columnName) {
@@ -157,10 +141,7 @@ public class CommonController{
 		}
 		return R.ok().put("data", result);
 	}
-	
-	/**
-	 * （按值统计）
-	 */
+
 	@IgnoreAuth
 	@RequestMapping("/value/{tableName}/{xColumnName}/{yColumnName}")
 	public R value(@PathVariable("tableName") String tableName, @PathVariable("yColumnName") String yColumnName, @PathVariable("xColumnName") String xColumnName) {
@@ -180,9 +161,6 @@ public class CommonController{
 		return R.ok().put("data", result);
 	}
 
-	/**
- 	 * （按值统计）时间统计类型
-	 */
 	@IgnoreAuth
 	@RequestMapping("/value/{tableName}/{xColumnName}/{yColumnName}/{timeStatType}")
 	public R valueDay(@PathVariable("tableName") String tableName, @PathVariable("yColumnName") String yColumnName, @PathVariable("xColumnName") String xColumnName, @PathVariable("timeStatType") String timeStatType) {
@@ -202,19 +180,12 @@ public class CommonController{
 		}
 		return R.ok().put("data", result);
 	}
-	
-    /**
-     * 人脸比对
-     * 
-     * @param face1 人脸1
-     * @param face2 人脸2
-     * @return
-     */
+
     @RequestMapping("/matchFace")
     @IgnoreAuth
     public R matchFace(String face1, String face2,HttpServletRequest request) {
         if(client==null) {
-            /*String AppID = configService.selectOne(new EntityWrapper<ConfigEntity>().eq("name", "AppID")).getValue();*/
+
             String APIKey = configService.selectOne(new EntityWrapper<ConfigEntity>().eq("name", "APIKey")).getValue();
             String SecretKey = configService.selectOne(new EntityWrapper<ConfigEntity>().eq("name", "SecretKey")).getValue();
             String token = BaiduUtil.getAuth(APIKey, SecretKey);

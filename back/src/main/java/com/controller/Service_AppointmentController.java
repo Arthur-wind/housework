@@ -32,13 +32,11 @@ import com.service.TokenService;
 
 import java.io.IOException;
 
-/**
- * 服务预约
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//   服务预约
+//   后端接口
+
+
 @RestController
 @RequestMapping("/service_appointment")
 public class Service_AppointmentController {
@@ -46,18 +44,12 @@ public class Service_AppointmentController {
     private Service_AppointmentService service_appointmentService;
 
 
-    
-
-
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,
                   Service_AppointmentEntity service_appointment,
                   HttpServletRequest request) {
 
-        // 从后端Session获取当前登录用户信息，实现安全隔离
+
         String tableName = (String) request.getSession().getAttribute("tableName");
         String username = (String) request.getSession().getAttribute("username");
 
@@ -67,16 +59,16 @@ public class Service_AppointmentController {
 
         EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<>();
 
-        // 数据隔离，确保用户只看到自己相关数据
+
         if ("guzhu".equalsIgnoreCase(tableName) || "employer".equalsIgnoreCase(tableName)) {
             ew.eq("employer_account", username);
         } else if ("guyuan".equalsIgnoreCase(tableName) || "employee".equalsIgnoreCase(tableName)) {
             ew.eq("employee_account", username);
         } else {
-            // 管理员等角色可见全部或根据需求增加其它判断
+
         }
 
-        // 其他查询条件
+
         if (StringUtils.isNotBlank(service_appointment.getProjectName())) {
             ew.like("project_name", service_appointment.getProjectName());
         }
@@ -96,14 +88,11 @@ public class Service_AppointmentController {
     }
 
 
-    /**
-     * 前端列表
-     */
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Service_AppointmentEntity service_appointment, 
 		HttpServletRequest request){
-        // 手动处理映射
+
         if(params.containsKey("project_name")) {
             service_appointment.setProjectName((String)params.get("project_name"));
         }
@@ -121,9 +110,7 @@ public class Service_AppointmentController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
+
     @RequestMapping("/lists")
     public R list( Service_AppointmentEntity service_appointment){
        	EntityWrapper<Service_AppointmentEntity> ew = new EntityWrapper<Service_AppointmentEntity>();
@@ -131,9 +118,7 @@ public class Service_AppointmentController {
         return R.ok().put("data", service_appointmentService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
+
     @RequestMapping("/query")
     public R query(Service_AppointmentEntity service_appointment){
         EntityWrapper< Service_AppointmentEntity> ew = new EntityWrapper< Service_AppointmentEntity>();
@@ -141,19 +126,13 @@ public class Service_AppointmentController {
 		Service_AppointmentView service_appointmentView =  service_appointmentService.selectView(ew);
 		return R.ok("查询服务预约成功").put("data", service_appointmentView);
     }
-	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Service_AppointmentEntity service_appointment = service_appointmentService.selectById(id);
         return R.ok().put("data", service_appointment);
     }
 
-    /**
-     * 前端详情
-     */
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -162,53 +141,39 @@ public class Service_AppointmentController {
     }
     
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Service_AppointmentEntity service_appointment, HttpServletRequest request){
     	service_appointment.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(service_appointment);
+
         service_appointmentService.insert(service_appointment);
         return R.ok();
     }
     
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody Service_AppointmentEntity service_appointment, HttpServletRequest request){
     	service_appointment.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(service_appointment);
+
         service_appointmentService.insert(service_appointment);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+
     @RequestMapping("/update")
     public R update(@RequestBody Service_AppointmentEntity service_appointment, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(service_appointment);
-        service_appointmentService.updateById(service_appointment);//全部更新
+
+        service_appointmentService.updateById(service_appointment);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         service_appointmentService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
     
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -257,14 +222,6 @@ public class Service_AppointmentController {
 	}
 	
 
-
-
-
-
-
-    /**
-     * （按值统计）
-     */
     @RequestMapping("/value/{xColumnName}/{yColumnName}")
     public R value(@PathVariable("yColumnName") String yColumnName, @PathVariable("xColumnName") String xColumnName,HttpServletRequest request) {
         Map<String, Object> params = new HashMap<String, Object>();
@@ -290,9 +247,6 @@ public class Service_AppointmentController {
         return R.ok().put("data", result);
     }
 
-    /**
-     * （按值统计）时间统计类型
-     */
     @RequestMapping("/value/{xColumnName}/{yColumnName}/{timeStatType}")
     public R valueDay(@PathVariable("yColumnName") String yColumnName, @PathVariable("xColumnName") String xColumnName, @PathVariable("timeStatType") String timeStatType,HttpServletRequest request) {
         Map<String, Object> params = new HashMap<String, Object>();
@@ -319,9 +273,7 @@ public class Service_AppointmentController {
         return R.ok().put("data", result);
     }
 
-    /**
-     * 分组统计
-     */
+
     @RequestMapping("/group/{columnName}")
     public R group(@PathVariable("columnName") String columnName,HttpServletRequest request) {
         Map<String, Object> params = new HashMap<String, Object>();

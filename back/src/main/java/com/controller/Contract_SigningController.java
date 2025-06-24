@@ -36,13 +36,10 @@ import com.utils.MPUtil;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 签订合同
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//  签订合同
+//  后端接口
+
 @RestController
 @RequestMapping("/contract_signing")
 public class Contract_SigningController {
@@ -50,37 +47,31 @@ public class Contract_SigningController {
     private Contract_SigningService contract_signingService;
 
 
-    
-
-
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,
                   Contract_SigningEntity contract_signing,
                   HttpServletRequest request) {
 
-        // 1. 从 session 获取用户身份信息
+
         String tableName = request.getSession().getAttribute("tableName").toString();
         String username = (String) request.getSession().getAttribute("username");
 
-        // 2. 创建查询包装器
+
         EntityWrapper<Contract_SigningEntity> ew = new EntityWrapper<>();
 
-        // 3. 根据用户类型添加数据隔离条件
+
         if ("employer".equals(tableName)) {
-            ew.eq("employer_account", username);  // 雇主只能看到自己的合同
+            ew.eq("employer_account", username);
         } else if ("employee".equals(tableName)) {
-            ew.eq("employee_account", username);  // 雇员只能看到自己的合同
+            ew.eq("employee_account", username);
         }
 
-        // 4. 添加前端查询参数（安全过滤）
+
         if (params.containsKey("project_name") && !params.get("project_name").toString().isEmpty()) {
             ew.like("project_name", params.get("project_name").toString());
         }
 
-        // 5. 执行分页查询
+
         PageUtils page = contract_signingService.queryPage(
                 params,
                 MPUtil.sort(MPUtil.between(ew, params),
@@ -89,14 +80,12 @@ public class Contract_SigningController {
 
         return R.ok().put("data", page);
     }
-    /**
-     * 前端列表
-     */
+
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Contract_SigningEntity contract_signing, 
         HttpServletRequest request){
-        // 手动处理映射
+
         if(params.containsKey("project_name")) {
             contract_signing.setProjectName((String)params.get("project_name"));
         }
@@ -108,9 +97,6 @@ public class Contract_SigningController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
     @RequestMapping("/lists")
     public R list( Contract_SigningEntity contract_signing){
        	EntityWrapper<Contract_SigningEntity> ew = new EntityWrapper<Contract_SigningEntity>();
@@ -118,9 +104,6 @@ public class Contract_SigningController {
         return R.ok().put("data", contract_signingService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
     @RequestMapping("/query")
     public R query(Contract_SigningEntity contract_signing){
         EntityWrapper< Contract_SigningEntity> ew = new EntityWrapper< Contract_SigningEntity>();
@@ -128,76 +111,54 @@ public class Contract_SigningController {
 		Contract_SigningView contract_signingView =  contract_signingService.selectView(ew);
 		return R.ok("查询签订合同成功").put("data", contract_signingView);
     }
-	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Contract_SigningEntity contract_signing = contract_signingService.selectById(id);
         return R.ok().put("data", contract_signing);
     }
 
-    /**
-     * 前端详情
-     */
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
         Contract_SigningEntity contract_signing = contract_signingService.selectById(id);
         return R.ok().put("data", contract_signing);
     }
-    
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Contract_SigningEntity contract_signing, HttpServletRequest request){
 contract_signing.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(contract_signing);
+
         contract_signingService.insert(contract_signing);
         return R.ok();
     }
     
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody Contract_SigningEntity contract_signing, HttpServletRequest request){
 contract_signing.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(contract_signing);
+
         contract_signingService.insert(contract_signing);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+
     @RequestMapping("/update")
     public R update(@RequestBody Contract_SigningEntity contract_signing, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(contract_signing);
-        contract_signingService.updateById(contract_signing);//全部更新
+
+        contract_signingService.updateById(contract_signing);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         contract_signingService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -244,12 +205,5 @@ contract_signing.setId(System.currentTimeMillis() + (long)(Math.random() * 1000)
 		int count = contract_signingService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
-
-
-
-
-
-
 
 }

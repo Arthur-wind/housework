@@ -36,13 +36,11 @@ import com.utils.MPUtil;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 需求信息
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//   需求信息
+//   后端接口
+
+
 @RestController
 @RequestMapping("/requirement_info")
 public class Requirement_InfoController {
@@ -50,31 +48,29 @@ public class Requirement_InfoController {
     private Requirement_InfoService requirement_infoService;
 
 
-    /**
-     * 后端列表
-     */
+
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,
                   Requirement_InfoEntity requirement_info,
                   HttpServletRequest request) {
 
-        // 1. 从session获取当前用户信息
+
         String tableName = request.getSession().getAttribute("tableName").toString();
         String username = (String) request.getSession().getAttribute("username");
 
-        // 2. 根据用户类型设置隔离条件
+
         EntityWrapper<Requirement_InfoEntity> ew = new EntityWrapper<>();
 
         if ("employer".equals(tableName)) {
-            // 雇主只能查看自己发布的需求
+
             ew.eq("employer_account", username);
         }
         else if ("employee".equals(tableName)) {
-            // 雇员可能查看所有需求，或按业务需要添加限制
+
             // ew.eq("employee_account", username); // 如果需要限制雇员查看范围
         }
 
-        // 3. 添加查询条件（安全方式）
+
         if (params.containsKey("work_location") && !params.get("work_location").toString().isEmpty()) {
             ew.like("work_location", params.get("work_location").toString());
         }
@@ -82,7 +78,7 @@ public class Requirement_InfoController {
             ew.like("project_type", params.get("project_type").toString());
         }
 
-        // 4. 执行查询
+
         PageUtils page = requirement_infoService.queryPage(
                 params,
                 MPUtil.sort(MPUtil.between(ew, params), params)
@@ -91,14 +87,11 @@ public class Requirement_InfoController {
         return R.ok().put("data", page);
     }
 
-    /**
-     * 前端列表
-     */
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Requirement_InfoEntity requirement_info, 
         HttpServletRequest request){
-        // 手动处理工作地点映射
+
         if(params.containsKey("work_location")) {
             requirement_info.setWorkLocation((String)params.get("work_location"));
         }
@@ -107,9 +100,7 @@ public class Requirement_InfoController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
+
     @RequestMapping("/lists")
     public R list( Requirement_InfoEntity requirement_info){
        	EntityWrapper<Requirement_InfoEntity> ew = new EntityWrapper<Requirement_InfoEntity>();
@@ -117,9 +108,6 @@ public class Requirement_InfoController {
         return R.ok().put("data", requirement_infoService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
     @RequestMapping("/query")
     public R query(Requirement_InfoEntity requirement_info){
         EntityWrapper< Requirement_InfoEntity> ew = new EntityWrapper< Requirement_InfoEntity>();
@@ -128,9 +116,7 @@ public class Requirement_InfoController {
 		return R.ok("查询需求信息成功").put("data", requirement_infoView);
     }
 	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Requirement_InfoEntity requirement_info = requirement_infoService.selectById(id);
@@ -140,9 +126,7 @@ public class Requirement_InfoController {
         return R.ok().put("data", requirement_info);
     }
 
-    /**
-     * 前端详情
-     */
+
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -154,51 +138,37 @@ public class Requirement_InfoController {
     }
     
 
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Requirement_InfoEntity requirement_info, HttpServletRequest request){
     	requirement_info.setId(new Date().getTime()+(long)(Math.random() * 1000));
-    	//ValidatorUtils.validateEntity(requirement_info);
+
         requirement_infoService.insert(requirement_info);
         return R.ok();
     }
-    
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody Requirement_InfoEntity requirement_info, HttpServletRequest request){
     	requirement_info.setId(new Date().getTime()+(long)(Math.random() * 1000));
-    	//ValidatorUtils.validateEntity(requirement_info);
+
         requirement_infoService.insert(requirement_info);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
     @RequestMapping("/update")
     public R update(@RequestBody Requirement_InfoEntity requirement_info, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(requirement_info);
-        requirement_infoService.updateById(requirement_info);//全部更新
+
+        requirement_infoService.updateById(requirement_info);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         requirement_infoService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
     
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -243,9 +213,7 @@ public class Requirement_InfoController {
 		return R.ok().put("count", count);
 	}
 	
-	/**
-     * 前端智能排序
-     */
+
 	@IgnoreAuth
     @RequestMapping("/autoSort")
     public R autoSort(@RequestParam Map<String, Object> params,Requirement_InfoEntity requirement_info, HttpServletRequest request,String pre){
@@ -270,11 +238,5 @@ public class Requirement_InfoController {
 		PageUtils page = requirement_infoService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, requirement_info), params), params));
         return R.ok().put("data", page);
     }
-
-
-
-
-
-
 
 }

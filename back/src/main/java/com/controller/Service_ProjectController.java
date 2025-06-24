@@ -38,13 +38,10 @@ import java.io.IOException;
 import com.service.StoreupService;
 import com.entity.StoreupEntity;
 
-/**
- * 服务项目
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//   服务项目
+//   后端接口
+
 @RestController
 @RequestMapping("/service_project")
 public class Service_ProjectController {
@@ -54,16 +51,10 @@ public class Service_ProjectController {
     @Autowired
     private StoreupService storeupService;
 
-    
-
-
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,Service_ProjectEntity service_project,
         HttpServletRequest request){
-        // 手动处理下划线参数映射
+
         if(params.containsKey("project_name")) {
             service_project.setProjectName((String)params.get("project_name"));
         }
@@ -90,14 +81,11 @@ public class Service_ProjectController {
         return R.ok().put("data", page);
     }
 
-    /**
-     * 前端列表
-     */
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,Service_ProjectEntity service_project, 
         HttpServletRequest request){
-        // 手动处理下划线参数映射
+
         if(params.containsKey("project_name")) {
             service_project.setProjectName((String)params.get("project_name"));
         }
@@ -119,9 +107,6 @@ public class Service_ProjectController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
     @RequestMapping("/lists")
     public R list( Service_ProjectEntity service_project){
        	EntityWrapper<Service_ProjectEntity> ew = new EntityWrapper<Service_ProjectEntity>();
@@ -129,9 +114,7 @@ public class Service_ProjectController {
         return R.ok().put("data", service_projectService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
+
     @RequestMapping("/query")
     public R query(Service_ProjectEntity service_project){
         EntityWrapper< Service_ProjectEntity> ew = new EntityWrapper< Service_ProjectEntity>();
@@ -139,10 +122,7 @@ public class Service_ProjectController {
 		Service_ProjectView service_projectView =  service_projectService.selectView(ew);
 		return R.ok("查询服务项目成功").put("data", service_projectView);
     }
-	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         Service_ProjectEntity service_project = service_projectService.selectById(id);
@@ -152,9 +132,6 @@ public class Service_ProjectController {
         return R.ok().put("data", service_project);
     }
 
-    /**
-     * 前端详情
-     */
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -166,9 +143,6 @@ public class Service_ProjectController {
     }
     
 
-    /**
-     * 赞或踩
-     */
     @RequestMapping("/thumbsup/{id}")
     public R vote(@PathVariable("id") String id,String type){
         Service_ProjectEntity service_project = service_projectService.selectById(id);
@@ -181,51 +155,38 @@ public class Service_ProjectController {
         return R.ok("投票成功");
     }
 
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody Service_ProjectEntity service_project, HttpServletRequest request){
     	service_project.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(service_project);
+
         service_projectService.insert(service_project);
         return R.ok();
     }
     
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody Service_ProjectEntity service_project, HttpServletRequest request){
     	service_project.setId(new Date().getTime()+new Double(Math.floor(Math.random()*1000)).longValue());
-    	//ValidatorUtils.validateEntity(service_project);
+
         service_projectService.insert(service_project);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
+
     @RequestMapping("/update")
     public R update(@RequestBody Service_ProjectEntity service_project, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(service_project);
-        service_projectService.updateById(service_project);//全部更新
+
+        service_projectService.updateById(service_project);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         service_projectService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -269,10 +230,7 @@ public class Service_ProjectController {
 		int count = service_projectService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
-	/**
-     * 前端智能排序
-     */
+
 	@IgnoreAuth
     @RequestMapping("/autoSort")
     public R autoSort(@RequestParam Map<String, Object> params,Service_ProjectEntity service_project, HttpServletRequest request,String pre){

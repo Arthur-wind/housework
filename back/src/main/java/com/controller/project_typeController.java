@@ -36,13 +36,9 @@ import com.utils.MPUtil;
 import com.utils.CommonUtil;
 import java.io.IOException;
 
-/**
- * 项目类型
- * 后端接口
- * @author 
- * @email 
- * @date 2022-04-18 19:23:55
- */
+
+//  项目类型
+
 @RestController
 @RequestMapping("/project_type")
 public class project_typeController {
@@ -50,16 +46,10 @@ public class project_typeController {
     private project_typeService project_typeService;
 
 
-    
-
-
-    /**
-     * 后端列表
-     */
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,project_typeEntity project_type,
         HttpServletRequest request){
-        // 手动处理 project_type 下划线参数映射
+
         if(params.containsKey("project_type")) {
             project_type.setProjectType((String)params.get("project_type"));
         }
@@ -68,15 +58,12 @@ public class project_typeController {
 
         return R.ok().put("data", page);
     }
-    
-    /**
-     * 前端列表
-     */
+
 	@IgnoreAuth
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,project_typeEntity project_type, 
 		HttpServletRequest request){
-        // 手动处理 project_type 下划线参数映射
+
         if(params.containsKey("project_type")) {
             project_type.setProjectType((String)params.get("project_type"));
         }
@@ -85,9 +72,7 @@ public class project_typeController {
         return R.ok().put("data", page);
     }
 
-	/**
-     * 列表
-     */
+
     @RequestMapping("/lists")
     public R list( project_typeEntity project_type){
        	EntityWrapper<project_typeEntity> ew = new EntityWrapper<project_typeEntity>();
@@ -95,9 +80,6 @@ public class project_typeController {
         return R.ok().put("data", project_typeService.selectListView(ew));
     }
 
-	 /**
-     * 查询
-     */
     @RequestMapping("/query")
     public R query(project_typeEntity project_type){
         EntityWrapper< project_typeEntity> ew = new EntityWrapper< project_typeEntity>();
@@ -105,19 +87,14 @@ public class project_typeController {
 		project_typeView project_typeView =  project_typeService.selectView(ew);
 		return R.ok("查询项目类型成功").put("data", project_typeView);
     }
-	
-    /**
-     * 后端详情
-     */
+
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
         project_typeEntity project_type = project_typeService.selectById(id);
         return R.ok().put("data", project_type);
     }
 
-    /**
-     * 前端详情
-     */
+
 	@IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id){
@@ -126,55 +103,39 @@ public class project_typeController {
     }
     
 
-
-
-    /**
-     * 后端保存
-     */
     @RequestMapping("/save")
     public R save(@RequestBody project_typeEntity project_type, HttpServletRequest request){
-project_type.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+        project_type.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(project_type);
+
         project_typeService.insert(project_type);
         return R.ok();
     }
     
-    /**
-     * 前端保存
-     */
+
     @RequestMapping("/add")
     public R add(@RequestBody project_typeEntity project_type, HttpServletRequest request){
-project_type.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
+        project_type.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 
-    	//ValidatorUtils.validateEntity(project_type);
+
         project_typeService.insert(project_type);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
     @RequestMapping("/update")
     public R update(@RequestBody project_typeEntity project_type, HttpServletRequest request){
-        //ValidatorUtils.validateEntity(project_type);
-        project_typeService.updateById(project_type);//全部更新
+
+        project_typeService.updateById(project_type);
         return R.ok();
     }
     
 
-    /**
-     * 删除
-     */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
         project_typeService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    
-    /**
-     * 提醒接口
-     */
+
 	@RequestMapping("/remind/{columnName}/{type}")
 	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
@@ -214,12 +175,5 @@ project_type.setId(System.currentTimeMillis() + (long)(Math.random() * 1000));
 		int count = project_typeService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
-
-
-
-
-
-
 
 }
