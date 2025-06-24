@@ -27,15 +27,16 @@ import com.annotation.IgnoreAuth;
 
 import com.entity.EmployerEntity;
 import com.entity.view.EmployerView;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.EmployerService;
 import com.service.TokenService;
-import com.utils.PageUtils;
-import com.utils.R;
-import com.utils.MD5Util;
-import com.utils.MPUtil;
-import com.utils.CommonUtil;
-import java.io.IOException;
+import com.utils.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 雇主
@@ -66,9 +67,39 @@ public class EmployerController {
 		if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
 			return R.error("账号或密码不正确");
 		}
-		
+		System.out.println("用户名：" + username + " 密码：" + password);
+
 		String token = tokenService.generateToken(user.getId(), username,"employer",  "雇主" );
-		return R.ok().put("token", token);
+		// 3. 使用 JWT 生成可携带用户信息的 token（用于传递给后台系统）
+		Map<String, Object> claims = new HashMap<>();
+		claims.put("userId", user.getId());
+		claims.put("userName", username);
+		claims.put("role", "employer");
+		claims.put("tableName", "employer");
+		claims.put("token", token);
+		String jwtToken = JwtUtils.generateToken(claims, user.getEmployer_Name());
+		String enTicket;
+
+		try {
+			// 把 claims 转成 JSON 字符串（这里用 Jackson ObjectMapper，确保你pom依赖了）
+			ObjectMapper objectMapper = new ObjectMapper();
+			String json = objectMapper.writeValueAsString(claims);
+
+			// AES密钥，和AESUtil中保持一致
+			String aesSecret = "1234567890123456"; // 16位密钥，示例
+
+			enTicket = AESUtil.encrypt(json, aesSecret);
+			System.out.println("ticket: " + enTicket);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.error("生成 ticket 失败");
+		}
+
+		return R.ok()
+				.put("enTicket", enTicket)		//加密ticket
+				.put("token", token)       // 旧逻辑：存入数据库的 token
+				.put("jwtToken", jwtToken);	// 新逻辑：用于页面间跳转的 JWT token
+
 	}
 	
 	/**

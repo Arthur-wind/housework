@@ -11,7 +11,9 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-import com.utils.ValidatorUtils;
+import com.entity.TokenEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.utils.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -56,7 +58,7 @@ public class EmployeeController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-	
+
 	/**
 	 * 登录
 	 */
@@ -71,9 +73,39 @@ public class EmployeeController {
         if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
 			return R.error("账号或密码不正确");
 		}
-		
+
+
 		String token = tokenService.generateToken(user.getId(), username,"employee",  "雇员" );
-		return R.ok().put("token", token);
+		Map<String, Object> claims = new HashMap<>();
+		claims.put("userId", user.getId());
+		claims.put("userName", username);
+		claims.put("role", "employee");
+		claims.put("tableName", "employee");
+		claims.put("token", token);
+
+		String jwtToken = JwtUtils.generateToken(claims, user.getEmployee_Name());
+		String enTicket;
+
+		try {
+			// 把 claims 转成 JSON 字符串（这里用 Jackson ObjectMapper，确保你pom依赖了）
+			ObjectMapper objectMapper = new ObjectMapper();
+			String json = objectMapper.writeValueAsString(claims);
+
+			// AES密钥，和AESUtil中保持一致
+			String aesSecret = "1234567890123456"; // 16位密钥，示例
+
+			enTicket = AESUtil.encrypt(json, aesSecret);
+			System.out.println("ticket: " + enTicket);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.error("生成 ticket 失败");
+		}
+
+
+		return R.ok()
+				.put("enTicket", enTicket)		//加密ticket
+				.put("token", token)       // 旧逻辑：存入数据库的 token
+				.put("jwtToken", jwtToken);	// 新逻辑：用于页面间跳转的 JWT token
 	}
 	
 	/**

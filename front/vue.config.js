@@ -1,15 +1,18 @@
 // var webpack = require('webpack');
 const path = require('path')
+
 function resolve(dir) {
     return path.join(__dirname, dir)
 }
-function publicPath(){
+
+function publicPath() {
     if (process.env.NODE_ENV == 'production') {
         return "././";
     } else {
         return "/";
     }
 }
+
 // vue.config.js
 module.exports = {
     // publicPath:"././",
@@ -25,38 +28,41 @@ module.exports = {
             }
         }
     },
-lintOnSave: false,
+    lintOnSave: false,
     devServer: {
         host: "0.0.0.0", //指定使用一个 host。默认是 localhost，这里默认值即可
         port: 8081, //指定端口
         hot: true, // 开启热更新
         https: false, // 是否开启https模式
         proxy: { // 请求代理服务器
-            '/springbootc90g5': { //带上api前缀的
+            '/springbootc90g5': { 
                 target: 'http://localhost:8080/springbootc90g5/', //代理目标地址
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: { // 在发出请求后将/api替换为''空值，这样不影响接口请求
                     '^/springbootc90g5': ''
-                }
+                },
+                    onProxyReq(proxyReq, req, res) {
+      console.log('Proxying request:', req.method, req.url);
+    }
             }
         }
     },
-chainWebpack(config) {
-    config.module
-      .rule('svg')
-      .exclude.add(resolve('src/icons'))
-      .end()
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'icon-[name]'
-      })
-      .end()
-}
+    chainWebpack(config) {
+        config.module
+            .rule('svg')
+            .exclude.add(resolve('src/icons'))
+            .end()
+        config.module
+            .rule('icons')
+            .test(/\.svg$/)
+            .include.add(resolve('src/icons'))
+            .end()
+            .use('svg-sprite-loader')
+            .loader('svg-sprite-loader')
+            .options({
+                symbolId: 'icon-[name]'
+            })
+            .end()
+    }
 }

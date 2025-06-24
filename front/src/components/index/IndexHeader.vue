@@ -46,13 +46,22 @@
 			onLogout() {
 				let storage = this.$storage
 				let router = this.$router
-				storage.clear()
+        this.$storage.clear();
+				storage.clear();
 				router.replace({
 					name: "login"
 				});
 			},
       			onIndexTap(){
-      				window.location.href = `${this.$base.indexUrl}`
+              //原来可行方案
+      				// window.location.href = `${this.$base.indexUrl}/ticket`
+              // console.log('index：', this.$base.indexUrl);
+              // http://localhost:8080/springbootc90g5/front/index.html
+              let ticket = this.$storage.get("ticket");
+              console.log('index：', `${this.$base.loginUrl}?ticket=${encodeURIComponent(ticket)}`);
+              window.location.href = `${this.$base.loginUrl}?ticket=${encodeURIComponent(ticket)}`;
+
+
     			},
 			setHeaderStyle() {
 			  this.$nextTick(()=>{

@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.utils.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,20 +46,27 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         }
 
 		//支持跨域请求
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with,request-source,Token, Origin,imgType, Content-Type, cache-control,postman-token,Cookie, Accept,authorization");
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 	// 跨域时会首先发送一个OPTIONS请求，这里我们给OPTIONS请求直接返回正常状态
-	if (request.getMethod().equals(RequestMethod.OPTIONS.name())) {
-        	response.setStatus(HttpStatus.OK.value());
-            return false;
+        System.out.println("==> 进入拦截器方法，Method = " + request.getMethod());
+
+        if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
+            // 设置响应头，防止预检失败
+            response.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+            response.setHeader("Access-Control-Allow-Methods", "*");
+            response.setHeader("Access-Control-Allow-Headers", "*");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setStatus(HttpServletResponse.SC_OK);
+            return false; // ⚠️ 注意要 return false，直接结束处理链，不让它继续走
         }
         
         IgnoreAuth annotation;
         if (handler instanceof HandlerMethod) {
             annotation = ((HandlerMethod) handler).getMethodAnnotation(IgnoreAuth.class);
+            if (annotation != null) {
+                return true;
+            }
         } else {
             return true;
         }
@@ -69,21 +77,43 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         /**
          * 不需要验证权限的方法直接放过
          */
-        if(annotation!=null) {
-        	return true;
+        if (annotation != null) {
+            return true;
         }
-        
-        TokenEntity tokenEntity = null;
-        if(StringUtils.isNotBlank(token)) {
-        	tokenEntity = tokenService.getTokenEntity(token);
+
+        // ========== 1. 检查 Authorization Header 中的 JWT ==========
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String jwt = authHeader.substring(7); // 去掉 "Bearer "
+
+            try {
+                Map<String, Object> claims = JwtUtils.parseToken(jwt);
+                Long userId = Long.valueOf(claims.get("userId").toString());
+                String username = (String) claims.get("username");
+                String role = (String) claims.get("role");
+                String tableName = (String) claims.get("tableName");
+
+                request.getSession().setAttribute("userId", userId);
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("role", role);
+                request.getSession().setAttribute("tableName", tableName);
+
+                return true;
+            } catch (Exception e) {
+                // JWT 无效或已过期，继续往下走旧逻辑
+            }
         }
-        
-        if(tokenEntity != null) {
-        	request.getSession().setAttribute("userId", tokenEntity.getUserid());
-        	request.getSession().setAttribute("role", tokenEntity.getRole());
-        	request.getSession().setAttribute("tableName", tokenEntity.getTablename());
-        	request.getSession().setAttribute("username", tokenEntity.getUsername());
-        	return true;
+
+        // ========== 2. 检查原有 Token ==========
+        if (StringUtils.isNotBlank(token)) {
+            TokenEntity tokenEntity = tokenService.getTokenEntity(token);
+            if (tokenEntity != null) {
+                request.getSession().setAttribute("userId", tokenEntity.getUserid());
+                request.getSession().setAttribute("username", tokenEntity.getUsername());
+                request.getSession().setAttribute("role", tokenEntity.getRole());
+                request.getSession().setAttribute("tableName", tokenEntity.getTablename());
+                return true;
+            }
         }
         
 		PrintWriter writer = null;
