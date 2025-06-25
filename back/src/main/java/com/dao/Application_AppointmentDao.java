@@ -18,7 +18,7 @@ import com.entity.view.Application_AppointmentView;
  * 
  * @author 
  * @email 
- * @date 2022-04-18 19:23:55
+ * @date 2025-6-13 19:23:55
  */
 public interface Application_AppointmentDao extends BaseMapper<Application_AppointmentEntity> {
 	

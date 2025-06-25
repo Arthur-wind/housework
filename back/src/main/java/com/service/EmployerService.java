@@ -16,7 +16,7 @@ import com.entity.view.EmployerView;
  *
  * @author 
  * @email 
- * @date 2022-04-18 19:23:54
+ * @date 2025-6-13 19:23:54
  */
 public interface EmployerService extends IService<EmployerEntity> {
 

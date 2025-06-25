@@ -79,7 +79,7 @@
           </el-form-item>
         </div>
       </el-col>
-      <el-col :span="24">  
+      <!-- <el-col :span="24">  
         <el-form-item class="upload" v-if="type!='info'&& !ro.application_materials" label="申请资料" prop="application_materials">
           <file-upload
           tip="点击上传申请资料"
@@ -95,7 +95,7 @@
             <el-button type="text" size="small" @click="download($base.url+ruleForm.application_materials)">下载</el-button>
           </el-form-item>
         </div>    
-      </el-col>      
+      </el-col>       -->
       <el-col :span="12">
         <el-form-item class="date" v-if="type!='info'" label="申请时间" prop="application_time">
             <el-date-picker

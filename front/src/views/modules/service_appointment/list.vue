@@ -556,25 +556,6 @@ contents: {
         })
       })
     },
-    // 表格
-    // rowStyle({ row, rowIndex}) {
-    //   if (rowIndex % 2 == 1) {
-    //     if(this.contents.tableStripe) {
-    //       return {color:this.contents.tableStripeFontColor}
-    //     }
-    //   } else {
-    //     return ''
-    //   }
-    // },
-    // cellStyle({ row, rowIndex}){
-    //   if (rowIndex % 2 == 1) {
-    //     if(this.contents.tableStripe) {
-    //       return {backgroundColor:this.contents.tableStripeBgColor}
-    //     }
-    //   } else {
-    //     return ''
-    //   }
-    // },
     headerRowStyle({ row, rowIndex}){
       return {color: this.contents.tableHeaderFontColor}
     },
@@ -583,41 +564,7 @@ contents: {
     },
     // 表格按钮
     contentTableBtnStyleChange(){
-      // this.$nextTick(()=>{
-      //   setTimeout(()=>{
-      //     document.querySelectorAll('.table-content .tables .el-table__body .el-button--success').forEach(el=>{
-      //       el.style.height = this.contents.tableBtnHeight
-      //       el.style.color = this.contents.tableBtnDetailFontColor
-      //       el.style.fontSize = this.contents.tableBtnFontSize
-      //       el.style.borderWidth = this.contents.tableBtnBorderWidth
-      //       el.style.borderStyle = this.contents.tableBtnBorderStyle
-      //       el.style.borderColor = this.contents.tableBtnBorderColor
-      //       el.style.borderRadius = this.contents.tableBtnBorderRadius
-      //       el.style.backgroundColor = this.contents.tableBtnDetailBgColor
-      //     })
-      //     document.querySelectorAll('.table-content .tables .el-table__body .el-button--primary').forEach(el=>{
-      //       el.style.height = this.contents.tableBtnHeight
-      //       el.style.color = this.contents.tableBtnEditFontColor
-      //       el.style.fontSize = this.contents.tableBtnFontSize
-      //       el.style.borderWidth = this.contents.tableBtnBorderWidth
-      //       el.style.borderStyle = this.contents.tableBtnBorderStyle
-      //       el.style.borderColor = this.contents.tableBtnBorderColor
-      //       el.style.borderRadius = this.contents.tableBtnBorderRadius
-      //       el.style.backgroundColor = this.contents.tableBtnEditBgColor
-      //     })
-      //     document.querySelectorAll('.table-content .tables .el-table__body .el-button--danger').forEach(el=>{
-      //       el.style.height = this.contents.tableBtnHeight
-      //       el.style.color = this.contents.tableBtnDelFontColor
-      //       el.style.fontSize = this.contents.tableBtnFontSize
-      //       el.style.borderWidth = this.contents.tableBtnBorderWidth
-      //       el.style.borderStyle = this.contents.tableBtnBorderStyle
-      //       el.style.borderColor = this.contents.tableBtnBorderColor
-      //       el.style.borderRadius = this.contents.tableBtnBorderRadius
-      //       el.style.backgroundColor = this.contents.tableBtnDelBgColor
-      //     })
-
-      //   }, 50)
-      // })
+  
     },
     // 分页
     contentPageStyleChange(){
@@ -745,69 +692,6 @@ contents: {
       this.getDataList();
     },
 
-    // 获取数据列表
-//    getDataList() {
-//   this.dataListLoading = true;
-  
-//   // 获取当前用户信息
-//   const userInfo = this.$storage.getObj('data') || {};
-//   const sessionTable = this.$storage.get('sessionTable');
-  
-//   console.log('用户信息:', JSON.stringify(userInfo, null, 2));
-//   console.log('用户角色:', sessionTable);
-  
-//   // 根据角色获取用户名 - 修复点
-//   let username = '';
-//   if (sessionTable === 'guzhu' || sessionTable === 'employer') {
-//     username = userInfo.employer_account || '';
-//   } else if (sessionTable === 'guyuan' || sessionTable === 'employee') {
-//     username = userInfo.employee_account || '';
-//   }
-  
-//   console.log('用户名:', username);
-
-//   // 构建参数对象
-//   let params = {
-//     page: this.pageIndex,
-//     limit: this.pageSize,
-//     sort: 'id',
-//     // 角色隔离参数
-//     tableName: sessionTable,
-//     username: username,
-    
-//     // 搜索参数
-//     ...(this.searchForm.project_name && { 
-//       project_name: `%${this.searchForm.project_name}%` 
-//     }),
-//     ...(this.searchForm.employer_name && { 
-//       employer_name: `%${this.searchForm.employer_name}%` 
-//     }),
-//     ...(this.searchForm.employee_name && { 
-//       employee_name: `%${this.searchForm.employee_name}%` 
-//     }),
-//     ...(this.searchForm.is_reviewed && { 
-//       is_reviewed: this.searchForm.is_reviewed 
-//     })
-//   };
-
-//   console.log('请求参数:', JSON.stringify(params, null, 2));
-  
-//   this.$http({
-//     url: "service_appointment/page",
-//     method: "get",
-//     params: params
-//   }).then(({ data }) => {
-//     if (data && data.code === 0) {
-//       this.dataList = data.data.list;
-//       this.totalPage = data.data.total;
-//     } else {
-//       this.dataList = [];
-//       this.totalPage = 0;
-//     }
-//     this.dataListLoading = false;
-//   });
-// },
-// 在getDataList方法中添加参数传递逻辑
 getDataList() {
   this.dataListLoading = true;
   
@@ -828,15 +712,13 @@ getDataList() {
     page: this.pageIndex,
     limit: this.pageSize,
     sort: 'id',
-    tableName: sessionTable,  // 添加tableName参数
-    username: username,       // 添加username参数
-    
-    // 添加搜索表单参数
-    project_name: this.searchForm.project_name,
-    employer_name: this.searchForm.employer_name,
-    employee_name: this.searchForm.employee_name,
-    is_reviewed: this.searchForm.is_reviewed
+    tableName: sessionTable,
+    username: username
   };
+  if(this.searchForm.project_name) params.project_name = '%' + this.searchForm.project_name + '%';
+  if(this.searchForm.employer_name) params.employer_name = '%' + this.searchForm.employer_name + '%';
+  if(this.searchForm.employee_name) params.employee_name = '%' + this.searchForm.employee_name + '%';
+  if(this.searchForm.is_reviewed) params.is_reviewed = this.searchForm.is_reviewed;
 
   console.log("请求参数:", JSON.stringify(params, null, 2)); // 调试日志
 

@@ -17,7 +17,7 @@ import com.entity.view.Material_CertificationView;
  * 
  * @author 
  * @email 
- * @date 2022-04-18 19:23:55
+ * @date 2025-6-13 19:23:55
  */
 public interface Material_CertificationDao extends BaseMapper<Material_CertificationEntity> {
 	

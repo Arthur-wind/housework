@@ -16,7 +16,7 @@ import com.entity.view.Electronic_SignatureView;
  *
  * @author 
  * @email 
- * @date 2022-04-18 19:23:55
+ * @date 2025-6-13 19:23:55
  */
 public interface Electronic_SignatureService extends IService<Electronic_SignatureEntity> {
 

@@ -17,7 +17,7 @@ import com.entity.view.Requirement_InfoView;
  * 
  * @author 
  * @email 
- * @date 2022-04-18 19:23:55
+ * @date 2025-6-13 19:23:55
  */
 public interface Requirement_InfoDao extends BaseMapper<Requirement_InfoEntity> {
 	
